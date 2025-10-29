@@ -8,12 +8,22 @@ const app = express();
 // compress responses
 app.use(compression());
 
-// serve static assets
-app.use(express.static("build/client", { immutable: true, maxAge: "1y" }));
+// Remix fingerprints its assets so we can cache forever.
+app.use(
+  "/assets",
+  express.static("build/client/assets", {
+    immutable: true,
+    maxAge: "1y",
+    fallthrough: false,
+  })
+);
 
-// handle React Router requests
-app.all(
-  "(.*)",
+// Everything else (like favicon.ico) is cached for an hour. You may want to be
+// more aggressive with this caching.
+app.use(express.static("build/client", { maxAge: "1h" }));
+
+// handle React Router requests (catch-all)
+app.use(
   createRequestHandler({
     build,
     mode: process.env.NODE_ENV || "production",
