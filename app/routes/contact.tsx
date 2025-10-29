@@ -10,7 +10,7 @@ import Button from "../../src/components/Button";
 import { contactInfo } from "../../src/data/content";
 import Layout from "../../src/components/Layout";
 import { sendContactEmail } from "../utils/email.server";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export const links: LinksFunction = () => {
   const baseUrl = "https://www.chiryo-energie.fr";
@@ -133,17 +133,168 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 }
 
+// Static components
+const ContactHeader = () => (
+  <header className="text-center mb-12">
+    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      Pour me contacter
+    </h1>
+    <p className="text-lg text-gray-600">
+      N'hésitez pas à me contacter pour toute question ou pour prendre
+      rendez-vous à Joué-Les-Tours, Tours ou pour une consultation à distance
+    </p>
+  </header>
+);
+
+const ContactInfo = () => (
+  <div className="space-y-6">
+    <div>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        Informations de contact
+      </h2>
+
+      <div className="space-y-4">
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+            <svg
+              className="w-5 h-5 text-primary-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              />
+            </svg>
+          </div>
+          <div>
+            <p className="font-semibold text-gray-900">Téléphone</p>
+            <a
+              href={`tel:${contactInfo.phone}`}
+              className="text-primary-600 hover:text-primary-700 transition-colors"
+            >
+              {contactInfo.phone}
+            </a>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+            <svg
+              className="w-5 h-5 text-primary-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+          <div>
+            <p className="font-semibold text-gray-900">Email</p>
+            <a
+              href={`mailto:${contactInfo.email}`}
+              className="text-primary-600 hover:text-primary-700 transition-colors"
+            >
+              {contactInfo.email}
+            </a>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+            <svg
+              className="w-5 h-5 text-primary-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+          <div>
+            <p className="font-semibold text-gray-900">
+              Localisation
+            </p>
+            <p className="text-gray-700">
+              101 Rue de Saint-Léger
+              <br />
+              {contactInfo.location}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const ContactMap = () => (
+  <div className="mt-16">
+    <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+      Localisation
+    </h2>
+    <p className="text-center text-gray-600 mb-8">
+      Chiryo Energie - {contactInfo.address || contactInfo.location}
+    </p>
+    <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-gray-200">
+      <iframe
+        src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Localisation de Chiryo Energie à Joué-Les-Tours"
+        aria-label="Carte Google Maps montrant la localisation de Chiryo Energie à Joué-Les-Tours"
+      />
+    </div>
+    <p className="text-center text-sm text-gray-500 mt-4">
+      <a
+        href="https://www.google.com/maps/search/101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary-600 hover:text-primary-700 underline"
+      >
+        Ouvrir dans Google Maps
+      </a>
+    </p>
+  </div>
+);
+
 export default function Contact() {
   const lastResult = useActionData<typeof action>();
   const [open, setOpen] = useState(false);
+  
+  // Memoize the validation function to prevent unnecessary re-renders
+  const handleValidate = useCallback(({ formData }: { formData: FormData }) => {
+    return parseWithZod(formData, { schema: contactSchema });
+  }, []);
+
   const [form, fields] = useForm({
     lastResult,
     constraint: getZodConstraint(contactSchema),
-    onValidate({ formData }) {
-      return parseWithZod(formData, { schema: contactSchema });
-    },
+    onValidate: handleValidate,
     shouldValidate: "onBlur",
-    shouldRevalidate: "onInput",
+    shouldRevalidate: "onSubmit", // Only revalidate on submit, not on every input
   });
 
   // Show toast on successful form submission (epic-stack pattern)
@@ -171,115 +322,9 @@ export default function Contact() {
       <article className="py-20 bg-gray-50">
         <Container>
           <div className="max-w-4xl mx-auto">
-            <header className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Pour me contacter
-              </h1>
-              <p className="text-lg text-gray-600">
-                N'hésitez pas à me contacter pour toute question ou pour prendre
-                rendez-vous à Joué-Les-Tours, Tours ou pour une consultation à distance
-              </p>
-            </header>
-
+            <ContactHeader />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Contact Information */}
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    Informations de contact
-                  </h2>
-
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
-                        <svg
-                          className="w-5 h-5 text-primary-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-900">Téléphone</p>
-                        <a
-                          href={`tel:${contactInfo.phone}`}
-                          className="text-primary-600 hover:text-primary-700 transition-colors"
-                        >
-                          {contactInfo.phone}
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
-                        <svg
-                          className="w-5 h-5 text-primary-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-900">Email</p>
-                        <a
-                          href={`mailto:${contactInfo.email}`}
-                          className="text-primary-600 hover:text-primary-700 transition-colors"
-                        >
-                          {contactInfo.email}
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
-                        <svg
-                          className="w-5 h-5 text-primary-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-900">
-                          Localisation
-                        </p>
-                        <p className="text-gray-700">
-                          101 Rue de Saint-Léger
-                          <br />
-                          {contactInfo.location}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ContactInfo />
 
               {/* Contact Form */}
               <div>
@@ -424,38 +469,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Google Map Section */}
-            <div className="mt-16">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Localisation
-              </h2>
-              <p className="text-center text-gray-600 mb-8">
-                Chiryo Energie - {contactInfo.address || contactInfo.location}
-              </p>
-              <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-gray-200">
-                <iframe
-                  src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Localisation de Chiryo Energie à Joué-Les-Tours"
-                  aria-label="Carte Google Maps montrant la localisation de Chiryo Energie à Joué-Les-Tours"
-                />
-              </div>
-              <p className="text-center text-sm text-gray-500 mt-4">
-                <a
-                  href="https://www.google.com/maps/search/101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary-600 hover:text-primary-700 underline"
-                >
-                  Ouvrir dans Google Maps
-                </a>
-              </p>
-            </div>
+            <ContactMap />
           </div>
         </Container>
       </article>
