@@ -14,9 +14,6 @@ import { useLocation } from "react-router";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
-// Declare process for server-side meta function (runs in Node.js environment)
-declare const process: { env: { ALLOW_INDEXING?: string } };
-
 export const links: LinksFunction = ({ request }: { request?: Request } = {}) => {
   const baseUrl = "https://www.chiryo-energie.fr";
   
@@ -44,8 +41,12 @@ export const links: LinksFunction = ({ request }: { request?: Request } = {}) =>
 };
 
 export const meta: MetaFunction = () => {
-  // Access environment variable - meta function runs server-side where process.env is available
-  const allowIndexing = process.env.ALLOW_INDEXING === "true";
+  // Access environment variable - meta runs on both server and client
+  // On server: process.env is available
+  // On client: process is undefined, safe to check - defaults to false (block indexing)
+  const allowIndexing = 
+    typeof process !== "undefined" && 
+    process.env?.ALLOW_INDEXING === "true";
   
   const metaTags = [
     { title: "Chiryo Energie - Psycho énergéticienne" },
