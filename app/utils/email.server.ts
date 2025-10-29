@@ -81,8 +81,8 @@ export async function sendContactEmail(data: ContactEmailData) {
 
   try {
     const result = await resend.emails.send({
-      from: process.env.CONTACT_EMAIL_FROM || "chiryoenergie@gmail.com",
-      to: process.env.CONTACT_EMAIL_TO || "chiryoenergie@gmail.com",
+      from: process.env.CONTACT_EMAIL_FROM || "contact@cheryo-energy.sevend.io",
+      to: process.env.CONTACT_EMAIL_TO || "contact@cheryo-energy.sevend.io",
       replyTo: data.email,
       subject: `Nouveau message de contact de ${data.name}`,
       html: `

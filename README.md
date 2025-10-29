@@ -2,6 +2,14 @@
 
 Website for Chiryo Energie, built with React Router v7, TypeScript, and Vite.
 
+## Features
+
+- **Contact Form** - Secure POST-based form with honeypot spam protection and email integration
+- **Toast Notifications** - User-friendly success notifications using Radix UI
+- **Email Integration** - Resend API integration with automatic development mocking
+- **Type-Aware Linting** - Full TypeScript type checking with ESLint
+- **Server-Side Rendering** - Full SSR support with React Router v7
+
 ## Environment Variables
 
 Create a `.env` file in the root directory with the following variables:
@@ -14,12 +22,12 @@ Create a `.env` file in the root directory with the following variables:
 ### Contact Form Email Configuration
 - `CONTACT_EMAIL_FROM` (optional)
   - Verified sender email address (must be verified with Resend)
-  - Should be a domain you own (e.g., `contact@chiryo-energie.fr`)
-  - Defaults to `chiryoenergie@gmail.com` if not set
+  - Should be a domain you own (e.g., `contact@cheryo-energy.sevend.io`)
+  - Defaults to `contact@cheryo-energy.sevend.io` if not set
 
 - `CONTACT_EMAIL_TO` (optional)
   - Email address where contact form submissions are delivered
-  - Defaults to `chiryoenergie@gmail.com` if not set
+  - Defaults to `contact@cheryo-energy.sevend.io` if not set
 
 ### Security
 - `HONEYPOT_ENCRYPTION_SEED` (optional)
@@ -58,74 +66,53 @@ Create a `.env` file in the root directory with the following variables:
 
 ---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technical Details
 
-Currently, two official plugins are available:
+### Form Handling
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The contact form uses:
+- **POST method** for secure form submission (prevents honeypot fields from appearing in URLs)
+- **Zod v4** for schema validation
+- **Conform** for type-safe form handling
+- **Honeypot** protection via `remix-utils` to prevent spam
+- **Toast notifications** using Radix UI for user feedback
 
-## React Compiler
+### Email Integration
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Uses **Resend API** for sending emails
+- Automatically mocks email sending in development (logs to console)
+- Properly typed with TypeScript interfaces
+- Handles errors gracefully with user-friendly messages
 
-## Expanding the ESLint configuration
+### Type Safety
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Full TypeScript coverage
+- Type-aware ESLint rules enabled
+- React Router type generation for route safety
+- Proper ServerBuild typing for Express integration
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Deployment
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Fly.io
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This application is configured for deployment on Fly.io. The configuration is in `fly.toml`.
+
+#### Environment Variables on Fly.io
+
+Set environment variables using:
+```bash
+fly secrets set RESEND_API_KEY=your_key
+fly secrets set CONTACT_EMAIL_FROM=contact@yourdomain.com
+fly secrets set CONTACT_EMAIL_TO=your@email.com
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Code Quality
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project uses **type-aware linting** with TypeScript ESLint, providing enhanced type safety and catching more errors at lint time. The configuration includes:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Type-checked rules from `@typescript-eslint`
+- React-specific linting rules
+- Proper handling of React Router generated types
+- Strict type checking across the codebase
+
+All linting errors have been resolved to ensure code quality and type safety.
