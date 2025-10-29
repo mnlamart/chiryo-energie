@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f5f1e8;
+  --color-primary-100: #e8ddd0;
+  --color-primary-200: #d4c1a8;
+  --color-primary-300: #ba9d7a;
+  --color-primary-400: #a17e59;
+  --color-primary-500: #8b6644;
+  --color-primary-600: #72533a;
+  --color-primary-700: #5c4231;
+  --color-primary-800: #4d372b;
+  --color-primary-900: #423027;
+  
+  --color-accent-50: #f0f7f4;
+  --color-accent-100: #dceee6;
+  --color-accent-200: #bcddcd;
+  --color-accent-300: #90c4ad;
+  --color-accent-400: #5fa587;
+  --color-accent-500: #3d856a;
+  --color-accent-600: #2d6b55;
+  --color-accent-700: #265646;
+  --color-accent-800: #21463a;
+  --color-accent-900: #1d3b32;
+  
+  --color-warm-50: #fef7f0;
+  --color-warm-100: #feede0;
+  --color-warm-200: #fcd8bf;
+  --color-warm-300: #f9bd94;
+  --color-warm-400: #f5975e;
+  --color-warm-500: #f27738;
+  --color-warm-600: #e3591a;
+  --color-warm-700: #bc4514;
+  --color-warm-800: #973818;
+  --color-warm-900: #7a3016;
+}
+
+@layer base {
+  body {
+    @apply text-gray-900 bg-white;
+  }
+  
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Screen reader only class */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
