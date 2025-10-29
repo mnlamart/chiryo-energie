@@ -8,10 +8,13 @@ import { services } from "../../src/data/services";
 import { serviceFAQs } from "../../src/data/faqs";
 import Layout from "../../src/components/Layout";
 
-export const links: LinksFunction = ({ params }) => {
-  const { id } = params;
+export const links: LinksFunction = ({ params } = { params: undefined }) => {
   const baseUrl = "https://www.chiryo-energie.fr";
-  const canonical = `${baseUrl}/services/${id}`;
+  let canonical = `${baseUrl}/services/unknown`;
+  
+  if (params?.id) {
+    canonical = `${baseUrl}/services/${params.id}`;
+  }
 
   return [{ rel: "canonical", href: canonical }];
 };
