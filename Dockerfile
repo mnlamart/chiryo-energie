@@ -1,14 +1,11 @@
 # Use Node.js 22 on Debian Bookworm Slim
 FROM node:22-bookworm-slim AS base
 
-# Set NODE_ENV for base and all layers that inherit from it
-ENV NODE_ENV=production
-
-# Install dependencies only when needed
+# Install dependencies only when needed (including dev dependencies for build)
 FROM base AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --include=dev
 
 # Setup production node_modules (prune dev dependencies)
 FROM base AS production-deps
@@ -27,6 +24,9 @@ RUN npm run build
 # Production image
 FROM base AS runner
 WORKDIR /app
+
+# Set NODE_ENV for production
+ENV NODE_ENV=production
 
 # Don't run as root
 # The node image may already have a nodejs group, so try to create it or use existing
