@@ -14,6 +14,9 @@ import { useLocation } from "react-router";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
+// Declare process for server-side meta function (runs in Node.js environment)
+declare const process: { env: { ALLOW_INDEXING?: string } };
+
 export const links: LinksFunction = ({ request }: { request?: Request } = {}) => {
   const baseUrl = "https://www.chiryo-energie.fr";
   
@@ -40,32 +43,45 @@ export const links: LinksFunction = ({ request }: { request?: Request } = {}) =>
   ];
 };
 
-export const meta: MetaFunction = () => [
-  { title: "Chiryo Energie - Psycho énergéticienne" },
-  {
-    name: "description",
-    content:
-      "Votre énergie, votre chemin, l'équilibre à portée de mains. Chiryo Energie offre des services holistiques pour votre bien-être.",
-  },
-  {
-    name: "summary",
-    content:
-      "Chiryo Energie: Psycho énergéticienne offrant Reiki, Sophro-relaxation, Réflexologie, Magnétisme et Médiumnité à Joué-Les-Tours, Tours (Indre-et-Loire). Consultations en présentiel ou à distance. Maître enseignante en Reiki.",
-  },
-  {
-    name: "keywords",
-    content:
-      "Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité, bien-être holistique, Joué-Les-Tours, Tours, Indre-et-Loire, énergéticien, coupeuse de feu, voyance",
-  },
-  { name: "robots", content: "index, follow" },
-  { name: "theme-color", content: "#8B4513" },
-  { name: "apple-mobile-web-app-capable", content: "yes" },
-  { name: "author", content: "Chiryo Energie" },
-  { property: "og:type", content: "website" },
-  { property: "og:site_name", content: "Chiryo Energie" },
-  { property: "og:image", content: "https://www.chiryo-energie.fr/og-image.jpg" },
-  { name: "twitter:card", content: "summary_large_image" },
-];
+export const meta: MetaFunction = () => {
+  // Access environment variable - meta function runs server-side where process.env is available
+  const allowIndexing = process.env.ALLOW_INDEXING === "true";
+  
+  const metaTags = [
+    { title: "Chiryo Energie - Psycho énergéticienne" },
+    {
+      name: "description",
+      content:
+        "Votre énergie, votre chemin, l'équilibre à portée de mains. Chiryo Energie offre des services holistiques pour votre bien-être.",
+    },
+    {
+      name: "summary",
+      content:
+        "Chiryo Energie: Psycho énergéticienne offrant Reiki, Sophro-relaxation, Réflexologie, Magnétisme et Médiumnité à Joué-Les-Tours, Tours (Indre-et-Loire). Consultations en présentiel ou à distance. Maître enseignante en Reiki.",
+    },
+    {
+      name: "keywords",
+      content:
+        "Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité, bien-être holistique, Joué-Les-Tours, Tours, Indre-et-Loire, énergéticien, coupeuse de feu, voyance",
+    },
+    { name: "theme-color", content: "#8B4513" },
+    { name: "apple-mobile-web-app-capable", content: "yes" },
+    { name: "author", content: "Chiryo Energie" },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "Chiryo Energie" },
+    { property: "og:image", content: "https://www.chiryo-energie.fr/og-image.jpg" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ];
+
+  // Add robots meta tag based on ALLOW_INDEXING env variable
+  // If allowIndexing is false or not set, add noindex, nofollow
+  if (!allowIndexing) {
+    metaTags.push({ name: "robots", content: "noindex, nofollow" });
+  }
+  // If allowIndexing is true, don't add any robots tag (null behavior)
+
+  return metaTags;
+};
 
 function generateStructuredData(pathname: string) {
   const baseUrl = "https://www.chiryo-energie.fr";
