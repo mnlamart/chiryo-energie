@@ -1,3 +1,4 @@
+import * as Accordion from '@radix-ui/react-accordion';
 import { useParams, Link } from "react-router";
 import type { LinksFunction, MetaFunction } from "react-router";
 import Container from "../../src/components/Container";
@@ -168,15 +169,20 @@ export default function Service() {
                   Questions fréquentes - {service.title}
                 </h2>
 
-                <div className="space-y-4" role="list">
+                <Accordion.Root 
+                  type="single" 
+                  collapsible 
+                  className="space-y-4"
+                >
                   {faqs.map((faq, index) => (
                     <FAQ
                       key={index}
+                      value={`service-${service.id}-faq-${index}`}
                       question={faq.question}
                       answer={faq.answer}
                     />
                   ))}
-                </div>
+                </Accordion.Root>
               </section>
             )}
 

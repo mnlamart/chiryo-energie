@@ -1,3 +1,4 @@
+import * as Accordion from '@radix-ui/react-accordion';
 import Container from './Container';
 import FAQ from './FAQ';
 import { generalFAQs } from '../data/faqs';
@@ -16,15 +17,20 @@ export default function FAQs() {
             </p>
           </header>
           
-          <div className="space-y-4" role="list">
+          <Accordion.Root 
+            type="single" 
+            collapsible 
+            className="space-y-4"
+          >
             {generalFAQs.map((faq, index) => (
               <FAQ 
                 key={index}
+                value={`faq-${index}`}
                 question={faq.question}
                 answer={faq.answer}
               />
             ))}
-          </div>
+          </Accordion.Root>
         </div>
       </Container>
     </section>
