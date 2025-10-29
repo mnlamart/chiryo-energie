@@ -95,4 +95,17 @@
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
   }
+
+  /* Progressive enhancement: Scroll animation classes
+     Content is visible by default (no-JS). Animation only applies when JS enhances it. */
+  .scroll-animation-pending {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  .scroll-animation-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -4,13 +4,17 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  data,
+  useLoaderData,
 } from "react-router";
-import type { LinksFunction, MetaFunction } from "react-router";
+import type { LinksFunction, MetaFunction, LoaderFunctionArgs } from "react-router";
 import { contactInfo } from "../src/data/content";
 import { services } from "../src/data/services";
 import { testimonials } from "../src/data/testimonials";
 import { generalFAQs, serviceFAQs } from "../src/data/faqs";
 import { useLocation } from "react-router";
+import { honeypotMiddleware, getHoneypotInputProps } from "./middleware/honeypot";
+import { HoneypotProvider } from "remix-utils/honeypot/react";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
@@ -688,9 +692,18 @@ function getEnhancedFAQAnswer(question: string, originalAnswer: string, service:
   return enhanced;
 }
 
+export const middleware = honeypotMiddleware;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function loader(_args: LoaderFunctionArgs) {
+  const honeypotInputProps = await getHoneypotInputProps();
+  return data({ honeypotInputProps });
+}
+
 export default function Root() {
   const location = useLocation();
   const schemas = generateStructuredData(location.pathname);
+  const { honeypotInputProps } = useLoaderData<typeof loader>();
 
   return (
     <html lang="fr">
@@ -708,7 +721,9 @@ export default function Root() {
         ))}
       </head>
       <body>
-        <Outlet />
+        <HoneypotProvider {...honeypotInputProps}>
+          <Outlet />
+        </HoneypotProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

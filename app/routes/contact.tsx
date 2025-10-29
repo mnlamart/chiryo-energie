@@ -1,9 +1,11 @@
-import { useState } from "react";
-import type { FormEvent } from "react";
-import type { LinksFunction, MetaFunction } from "react-router";
+import { useForm, getInputProps, getTextareaProps } from "@conform-to/react";
+import { parseWithZod, getZodConstraint } from "@conform-to/zod/v4";
+import { useActionData, data } from "react-router";
+import type { LinksFunction, MetaFunction, ActionFunctionArgs } from "react-router";
+import { z } from "zod";
+import { HoneypotInputs } from "remix-utils/honeypot/react";
 import Container from "../../src/components/Container";
 import Button from "../../src/components/Button";
-import FormField from "../../src/components/FormField";
 import { contactInfo } from "../../src/data/content";
 import Layout from "../../src/components/Layout";
 
@@ -49,100 +51,76 @@ export const meta: MetaFunction = () => [
   },
 ];
 
-interface FormErrors {
-  name?: string;
-  email?: string;
-  phone?: string;
-  message?: string;
+// Zod v4 schema for contact form validation
+const contactSchema = z.object({
+  name: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined
+          ? "Le nom est requis"
+          : "Le nom doit être une chaîne de caractères",
+    })
+    .min(1, { error: "Le nom est requis" }),
+  email: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined
+          ? "L'email est requis"
+          : "L'email doit être une chaîne de caractères",
+    })
+    .email({ error: "Veuillez entrer un email valide" }),
+  phone: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined || issue.input === ""
+          ? "Le numéro de téléphone est requis"
+          : "Le numéro de téléphone doit être une chaîne de caractères",
+    })
+    .min(1, { error: "Le numéro de téléphone est requis" })
+    .regex(
+      /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/,
+      { error: "Veuillez entrer un numéro de téléphone valide (format français)" }
+    ),
+  message: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined
+          ? "Le message est requis"
+          : "Le message doit être une chaîne de caractères",
+    })
+    .min(10, { error: "Le message doit contenir au moins 10 caractères" }),
+});
+
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const submission = parseWithZod(formData, {
+    schema: contactSchema,
+  });
+
+  if (submission.status !== "success") {
+    return data(submission.reply(), {
+      status: submission.status === "error" ? 400 : 200,
+    });
+  }
+
+  // TODO: Handle form submission (send email, save to database, etc.)
+  // For now, simulate success
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  return data(submission.reply({ resetForm: true }));
 }
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
+  const lastResult = useActionData<typeof action>();
+  const [form, fields] = useForm({
+    lastResult,
+    constraint: getZodConstraint(contactSchema),
+    onValidate({ formData }) {
+      return parseWithZod(formData, { schema: contactSchema });
+    },
+    shouldValidate: "onBlur",
+    shouldRevalidate: "onInput",
   });
-
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-
-  const validateEmail = (email: string) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
-
-  const validatePhone = (phone: string) => {
-    if (!phone) return true; // Phone is optional
-    const re = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
-    return re.test(phone);
-  };
-
-  const validate = () => {
-    const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Le nom est requis";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "L'email est requis";
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Veuillez entrer un email valide";
-    }
-
-    if (formData.phone && !validatePhone(formData.phone)) {
-      newErrors.phone = "Veuillez entrer un numéro de téléphone valide";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Le message est requis";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Le message doit contenir au moins 10 caractères";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: undefined,
-      }));
-    }
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!validate()) {
-      return;
-    }
-
-    setIsSubmitting(true);
-    setErrors({});
-
-    // Simulate form submission (in a real app, this would call an API)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", phone: "", message: "" });
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    }, 1000);
-  };
 
   return (
     <Layout>
@@ -261,60 +239,148 @@ export default function Contact() {
 
               {/* Contact Form */}
               <div>
-                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                  <FormField
-                    label="Nom complet"
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    error={errors.name}
-                  />
+                <form
+                  id={form.id}
+                  method="post"
+                  onSubmit={form.onSubmit}
+                  className="space-y-6"
+                  noValidate={form.noValidate}
+                >
+                  {form.errors && form.errors.length > 0 && (
+                    <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                      {form.errors.map((error, index) => (
+                        <div key={index}>{error}</div>
+                      ))}
+                    </div>
+                  )}
 
-                  <FormField
-                    label="Email"
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    error={errors.email}
-                  />
+                  <HoneypotInputs />
 
-                  <FormField
-                    label="Téléphone"
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    error={errors.phone}
-                    placeholder="06 12 34 56 78"
-                  />
+                  <div>
+                    <label
+                      htmlFor={fields.name.id}
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Nom complet
+                      <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                      {...getInputProps(fields.name, { type: "text" })}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors border-gray-300"
+                      aria-invalid={fields.name.errors ? "true" : "false"}
+                      aria-describedby={
+                        fields.name.errors ? `${fields.name.id}-error` : undefined
+                      }
+                    />
+                    {fields.name.errors && (
+                      <p
+                        id={`${fields.name.id}-error`}
+                        className="mt-1 text-sm text-red-600"
+                        role="alert"
+                      >
+                        {fields.name.errors}
+                      </p>
+                    )}
+                  </div>
 
-                  <FormField
-                    label="Message"
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    error={errors.message}
-                  />
+                  <div>
+                    <label
+                      htmlFor={fields.email.id}
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Email
+                      <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                      {...getInputProps(fields.email, { type: "email" })}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors border-gray-300"
+                      aria-invalid={fields.email.errors ? "true" : "false"}
+                      aria-describedby={
+                        fields.email.errors ? `${fields.email.id}-error` : undefined
+                      }
+                    />
+                    {fields.email.errors && (
+                      <p
+                        id={`${fields.email.id}-error`}
+                        className="mt-1 text-sm text-red-600"
+                        role="alert"
+                      >
+                        {fields.email.errors}
+                      </p>
+                    )}
+                  </div>
 
-                  {submitStatus === "success" && (
+                  <div>
+                    <label
+                      htmlFor={fields.phone.id}
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Téléphone
+                      <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                      {...getInputProps(fields.phone, {
+                        type: "tel",
+                      })}
+                      placeholder="06 12 34 56 78"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors border-gray-300"
+                      aria-invalid={fields.phone.errors ? "true" : "false"}
+                      aria-describedby={
+                        fields.phone.errors ? `${fields.phone.id}-error` : undefined
+                      }
+                    />
+                    {fields.phone.errors && (
+                      <p
+                        id={`${fields.phone.id}-error`}
+                        className="mt-1 text-sm text-red-600"
+                        role="alert"
+                      >
+                        {fields.phone.errors}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor={fields.message.id}
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Message
+                      <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <textarea
+                      {...getTextareaProps(fields.message)}
+                      rows={5}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors resize-none border-gray-300"
+                      aria-invalid={fields.message.errors ? "true" : "false"}
+                      aria-describedby={
+                        fields.message.errors
+                          ? `${fields.message.id}-error`
+                          : undefined
+                      }
+                    />
+                    {fields.message.errors && (
+                      <p
+                        id={`${fields.message.id}-error`}
+                        className="mt-1 text-sm text-red-600"
+                        role="alert"
+                      >
+                        {fields.message.errors}
+                      </p>
+                    )}
+                  </div>
+
+                  {form.status === "success" && (
                     <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
                       Merci ! Votre message a été envoyé. Je vous répondrai dans
                       les plus brefs délais.
                     </div>
                   )}
 
-                  <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+                  <Button type="submit">
+                    {form.status === "success"
+                      ? "Message envoyé"
+                      : "Envoyer le message"}
                   </Button>
                 </form>
               </div>
