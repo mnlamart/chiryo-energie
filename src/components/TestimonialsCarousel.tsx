@@ -11,7 +11,7 @@ export default function TestimonialsCarousel() {
     setCurrentIndex(index);
     setIsPaused(true);
     // Resume after 10 seconds
-    setTimeout(() => setIsPaused(false), 10000);
+    void setTimeout(() => setIsPaused(false), 10000);
   };
 
   const goToPrevious = () => {
@@ -19,7 +19,7 @@ export default function TestimonialsCarousel() {
       prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
     setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 10000);
+    void setTimeout(() => setIsPaused(false), 10000);
   };
 
   const goToNext = () => {
@@ -27,7 +27,7 @@ export default function TestimonialsCarousel() {
       prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
     );
     setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 10000);
+    void setTimeout(() => setIsPaused(false), 10000);
   };
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function TestimonialsCarousel() {
                     "{testimonials[currentIndex].text}"
                   </p>
                   <div className="flex items-center gap-1 mb-2">
-                    {[...Array(5)].map((_, i) => (
+                    {Array.from({ length: 5 }).map((_, i) => (
                       <svg
                         key={i}
                         className="w-5 h-5 text-warm-500 fill-current"

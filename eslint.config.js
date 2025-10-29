@@ -7,17 +7,29 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   globalIgnores(['dist']),
+  // Ignore .react-router directory (generated files, like epic-stack)
+  {
+    ignores: ['.react-router/**'],
+  },
+  // Type-aware linting for project files
   {
     files: ['**/*.{ts,tsx}'],
+    ignores: ['build/**', 'node_modules/**'],
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
+      // Enable type-aware linting rules
+      ...tseslint.configs.recommendedTypeChecked,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
     ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      // Required for type-aware linting
+      parserOptions: {
+        project: ['./tsconfig.app.json', './tsconfig.node.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
     rules: {
       // Allow exports alongside components in route files (React Router convention)
@@ -25,7 +37,7 @@ export default defineConfig([
         'warn',
         {
           allowConstantExport: true,
-          allowExportNames: ['links', 'meta', 'loader', 'action'],
+          allowExportNames: ['links', 'meta', 'loader', 'action', 'middleware'],
         },
       ],
     },

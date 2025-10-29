@@ -153,11 +153,13 @@ export default function Contact() {
       // Only show toast if there are no field errors
       const result = lastResult as { success: boolean; fieldErrors?: Record<string, string[]> };
       const hasErrors = result.fieldErrors && Object.keys(result.fieldErrors).length > 0;
-      
+
       if (!hasErrors) {
         setOpen(true);
         // Auto-close after 5 seconds
-        const timer = setTimeout(() => setOpen(false), 5000);
+        const timer = setTimeout(() => {
+          setOpen(false);
+        }, 5000);
         return () => clearTimeout(timer);
       }
     }
@@ -165,10 +167,10 @@ export default function Contact() {
 
   return (
     <>
-      <Layout>
-        <article className="py-20 bg-gray-50">
-          <Container>
-            <div className="max-w-4xl mx-auto">
+    <Layout>
+      <article className="py-20 bg-gray-50">
+        <Container>
+          <div className="max-w-4xl mx-auto">
             <header className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Pour me contacter
@@ -454,10 +456,10 @@ export default function Contact() {
                 </a>
               </p>
             </div>
-            </div>
-          </Container>
-        </article>
-      </Layout>
+          </div>
+        </Container>
+      </article>
+    </Layout>
 
       <Toast.Root
         className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg shadow-lg data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=end]:animate-swipeOut"

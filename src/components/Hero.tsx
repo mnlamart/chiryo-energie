@@ -13,9 +13,9 @@ export default function Hero() {
     
     // If we're not on the home page, navigate first
     if (location.pathname !== '/') {
-      navigate('/');
+      void navigate('/');
       // Wait for navigation, then scroll
-      setTimeout(() => {
+      void setTimeout(() => {
         const servicesSection = document.getElementById('services');
         if (servicesSection) {
           const headerOffset = 80;

@@ -1,8 +1,9 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { services } from "~/data/services";
-import { contactInfo } from "~/data/content";
+import { services } from "../../src/data/services";
+import { contactInfo } from "../../src/data/content";
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function loader(_args: LoaderFunctionArgs) {
   const summary = `Chiryo Energie - Services de bien-être holistique
 
 Localisation: Joué-Les-Tours, Tours, Indre-et-Loire, Centre-Val de Loire, France

@@ -78,7 +78,7 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     
     if (!validate()) {
@@ -89,11 +89,11 @@ export default function Contact() {
     setErrors({});
     
     // Simulate form submission (in a real app, this would call an API)
-    setTimeout(() => {
+    void setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      void setTimeout(() => setSubmitStatus('idle'), 5000);
     }, 1000);
   };
 

@@ -726,7 +726,7 @@ export default function Root() {
           <HoneypotProvider {...honeypotInputProps}>
             <Outlet />
           </HoneypotProvider>
-          <Toast.Viewport className="fixed bottom-0 right-0 z-[100] flex flex-col p-6 gap-2 w-full max-w-[420px] m-0 list-none outline-none" />
+          <Toast.Viewport className="fixed bottom-0 right-0 z-100 flex flex-col p-6 gap-2 w-full max-w-[420px] m-0 list-none outline-none" />
         </Toast.Provider>
         <ScrollRestoration />
         <Scripts />

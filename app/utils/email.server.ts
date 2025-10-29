@@ -14,11 +14,32 @@ const getResendClient = () => {
   return new Resend(apiKey);
 };
 
+// Type for Resend email payload (simplified)
+interface ResendEmailPayload {
+  from: string;
+  to: string | string[];
+  replyTo?: string;
+  subject: string;
+  html?: string;
+  text?: string;
+}
+
+// Resend email response type (simplified)
+interface ResendEmailResponse {
+  data: {
+    id: string;
+    from: string;
+    to: string[];
+    created_at: string;
+  };
+  error: unknown;
+}
+
 // Mock Resend client for development
 function createMockResend() {
   return {
     emails: {
-      send: async (payload: any) => {
+      send: async (payload: ResendEmailPayload): Promise<ResendEmailResponse> => {
         // In dev, log the email instead of sending
         console.log("\n📧 [MOCK EMAIL] Would send email:");
         console.log("To:", payload.to);
@@ -29,6 +50,9 @@ function createMockResend() {
         console.log("---\n");
 
         // Return a mock success response matching Resend's API
+        // Use Promise.resolve to satisfy async requirement
+        await Promise.resolve();
+        
         return {
           data: {
             id: `mock-${Date.now()}`,

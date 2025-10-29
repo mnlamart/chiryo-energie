@@ -1,4 +1,4 @@
-import { StrictMode, type ReactNode } from "react";
+import { StrictMode } from "react";
 import { HydratedRouter } from "react-router/dom";
 import { hydrateRoot } from "react-dom/client";
 

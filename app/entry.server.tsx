@@ -11,7 +11,7 @@ export default function handleRequest(
   routerContext: EntryContext
 ) {
   return new Promise((resolve, reject) => {
-    const { pipe, abort } = renderToPipeableStream(
+    const { pipe } = renderToPipeableStream(
       <ServerRouter context={routerContext} url={request.url} />,
       {
         onShellReady() {
@@ -30,7 +30,7 @@ export default function handleRequest(
           pipe(body);
         },
         onShellError(error: unknown) {
-          reject(error);
+          reject(error instanceof Error ? error : new Error(String(error)));
         },
       }
     );

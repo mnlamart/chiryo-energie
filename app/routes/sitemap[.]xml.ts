@@ -1,7 +1,8 @@
 import type { LoaderFunctionArgs } from "react-router";
 import { services } from "../../src/data/services";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function loader(_args: LoaderFunctionArgs) {
   const baseUrl = "https://www.chiryo-energie.fr";
   const currentDate = new Date().toISOString().split("T")[0];
 

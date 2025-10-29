@@ -44,7 +44,7 @@ export default function ScrollAnimation({ children, className = '', delay = 0 }:
       { threshold: 0.01, rootMargin: '100px' }
     );
 
-    observer.observe(ref.current);
+      observer.observe(ref.current);
 
     // Check if element is already in viewport
     const checkImmediate = () => {
@@ -55,7 +55,7 @@ export default function ScrollAnimation({ children, className = '', delay = 0 }:
           setTimeout(() => {
             makeVisible();
           }, delay);
-        }
+      }
       }
     };
 
