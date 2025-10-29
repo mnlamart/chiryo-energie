@@ -4,10 +4,13 @@ import { useActionData, data } from "react-router";
 import type { LinksFunction, MetaFunction, ActionFunctionArgs } from "react-router";
 import { z } from "zod";
 import { HoneypotInputs } from "remix-utils/honeypot/react";
+import * as Toast from "@radix-ui/react-toast";
 import Container from "../../src/components/Container";
 import Button from "../../src/components/Button";
 import { contactInfo } from "../../src/data/content";
 import Layout from "../../src/components/Layout";
+import { sendContactEmail } from "../utils/email.server";
+import { useEffect, useState } from "react";
 
 export const links: LinksFunction = () => {
   const baseUrl = "https://www.chiryo-energie.fr";
@@ -103,15 +106,36 @@ export async function action({ request }: ActionFunctionArgs) {
     });
   }
 
-  // TODO: Handle form submission (send email, save to database, etc.)
-  // For now, simulate success
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  try {
+    // Send email using Resend (or mock in dev)
+    await sendContactEmail({
+      name: submission.value.name,
+      email: submission.value.email,
+      phone: submission.value.phone,
+      message: submission.value.message,
+    });
 
-  return data(submission.reply({ resetForm: true }));
+    return data(
+      {
+        ...submission.reply({ resetForm: true }),
+        success: true,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error processing contact form:", error);
+    return data(
+      submission.reply({
+        formErrors: ["Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard."],
+      }),
+      { status: 500 }
+    );
+  }
 }
 
 export default function Contact() {
   const lastResult = useActionData<typeof action>();
+  const [open, setOpen] = useState(false);
   const [form, fields] = useForm({
     lastResult,
     constraint: getZodConstraint(contactSchema),
@@ -122,11 +146,29 @@ export default function Contact() {
     shouldRevalidate: "onInput",
   });
 
+  // Show toast on successful form submission (epic-stack pattern)
+  useEffect(() => {
+    // Check if action returned success and form has no errors
+    if (lastResult && 'success' in lastResult && lastResult.success === true) {
+      // Only show toast if there are no field errors
+      const result = lastResult as { success: boolean; fieldErrors?: Record<string, string[]> };
+      const hasErrors = result.fieldErrors && Object.keys(result.fieldErrors).length > 0;
+      
+      if (!hasErrors) {
+        setOpen(true);
+        // Auto-close after 5 seconds
+        const timer = setTimeout(() => setOpen(false), 5000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [lastResult]);
+
   return (
-    <Layout>
-      <article className="py-20 bg-gray-50">
-        <Container>
-          <div className="max-w-4xl mx-auto">
+    <>
+      <Layout>
+        <article className="py-20 bg-gray-50">
+          <Container>
+            <div className="max-w-4xl mx-auto">
             <header className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Pour me contacter
@@ -370,12 +412,6 @@ export default function Contact() {
                     )}
                   </div>
 
-                  {form.status === "success" && (
-                    <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
-                      Merci ! Votre message a été envoyé. Je vous répondrai dans
-                      les plus brefs délais.
-                    </div>
-                  )}
 
                   <Button type="submit">
                     {form.status === "success"
@@ -418,10 +454,24 @@ export default function Contact() {
                 </a>
               </p>
             </div>
-          </div>
-        </Container>
-      </article>
-    </Layout>
+            </div>
+          </Container>
+        </article>
+      </Layout>
+
+      <Toast.Root
+        className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg shadow-lg data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=end]:animate-swipeOut"
+        open={open}
+        onOpenChange={setOpen}
+      >
+        <Toast.Title className="font-semibold">
+          Message envoyé avec succès
+        </Toast.Title>
+        <Toast.Description className="mt-1">
+          Merci ! Votre message a été envoyé. Je vous répondrai dans les plus brefs délais.
+        </Toast.Description>
+      </Toast.Root>
+    </>
   );
 }
 
