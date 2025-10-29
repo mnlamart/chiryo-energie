@@ -129,18 +129,18 @@ export default function Contact() {
 
   return (
     <Layout>
-      <div className="py-20 bg-gray-50">
+      <article className="py-20 bg-gray-50">
         <Container>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <header className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Pour me contacter
               </h1>
               <p className="text-lg text-gray-600">
                 N'hésitez pas à me contacter pour toute question ou pour prendre
-                rendez-vous
+                rendez-vous à Joué-Les-Tours, Tours ou pour une consultation à distance
               </p>
-            </div>
+            </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {/* Contact Information */}
@@ -300,7 +300,7 @@ export default function Contact() {
             </div>
           </div>
         </Container>
-      </div>
+      </article>
     </Layout>
   );
 }

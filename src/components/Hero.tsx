@@ -45,9 +45,9 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-primary-50 to-warm-50 py-20 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-primary-50 to-warm-50 py-20 overflow-hidden" aria-label="Hero section">
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <img 
           src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80" 
           srcSet="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=960&q=80 960w, https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80 1920w"

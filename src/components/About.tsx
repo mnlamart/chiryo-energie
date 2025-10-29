@@ -3,10 +3,10 @@ import { aboutContent } from '../data/content';
 
 export default function About() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50" aria-labelledby="about-heading">
       <Container>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+        <article className="max-w-4xl mx-auto">
+          <h2 id="about-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
             {aboutContent.title}
           </h2>
           
@@ -25,14 +25,24 @@ export default function About() {
               />
             </div>
             <div className="md:col-span-2 space-y-6 text-gray-700 leading-relaxed">
-              {aboutContent.paragraphs.map((paragraph, index) => (
-                <p key={index} className="text-lg">
-                  {paragraph}
-                </p>
-              ))}
+              {aboutContent.paragraphs.map((paragraph, index) => {
+                // Enhance paragraph about working locations with more specific location keywords
+                if (paragraph.includes('à distance, en présentiel, à domicile')) {
+                  return (
+                    <p key={index} className="text-lg">
+                      {paragraph} Mes consultations sont disponibles à Joué-Les-Tours, Tours et dans tout le département d'Indre-et-Loire (région Centre-Val de Loire).
+                    </p>
+                  );
+                }
+                return (
+                  <p key={index} className="text-lg">
+                    {paragraph}
+                  </p>
+                );
+              })}
             </div>
           </div>
-        </div>
+        </article>
       </Container>
     </section>
   );

@@ -47,16 +47,16 @@ export default function TestimonialsCarousel() {
   }, [isPaused]);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" aria-labelledby="testimonials-heading">
       <Container>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <header className="text-center mb-12">
+          <h2 id="testimonials-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Témoignages de transformation
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Découvrez comment Chiryo Energie a aidé d'autres personnes à transformer leur vie et à atteindre un bien-être durable. Laissez-vous inspirer par leurs histoires et imaginez votre propre succès.
+            Découvrez comment Chiryo Energie a aidé d'autres personnes à Joué-Les-Tours et Tours à transformer leur vie et à atteindre un bien-être durable. Laissez-vous inspirer par leurs histoires et imaginez votre propre succès.
           </p>
-        </div>
+        </header>
         
         <div className="max-w-4xl mx-auto">
           {/* Carousel Container */}

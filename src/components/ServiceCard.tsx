@@ -8,7 +8,7 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ service }: ServiceCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 overflow-hidden flex flex-col hover:scale-105">
+    <article className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 overflow-hidden flex flex-col hover:scale-105">
       {service.image && (
         <Link to={`/services/${service.id}`} className="mb-4 -mx-6 -mt-6 block">
           <img 
@@ -64,7 +64,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           {!['reiki', 'sophro-relaxation', 'relaxation-energetique', 'reflexologie', 'harmonisation-lymphatique', 'shiatsu-sevrage', 'magnetiseuse', 'mediumnite'].includes(service.id) && `En savoir plus sur ${service.title}`}
         </Button>
       </Link>
-    </div>
+    </article>
   );
 }
 

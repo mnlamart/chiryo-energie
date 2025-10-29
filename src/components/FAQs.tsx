@@ -4,19 +4,19 @@ import { generalFAQs } from '../data/faqs';
 
 export default function FAQs() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50" aria-labelledby="faq-heading">
       <Container>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <header className="text-center mb-12">
+            <h2 id="faq-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Questions fréquentes
             </h2>
             <p className="text-lg text-gray-600">
-              Trouvez rapidement les réponses aux questions les plus courantes
+              Trouvez rapidement les réponses aux questions les plus courantes sur nos services de bien-être à Joué-Les-Tours
             </p>
-          </div>
+          </header>
           
-          <div className="space-y-4">
+          <div className="space-y-4" role="list">
             {generalFAQs.map((faq, index) => (
               <FAQ 
                 key={index}

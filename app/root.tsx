@@ -194,6 +194,7 @@ function generateStructuredData(pathname: string) {
 
   // 5. All Services Schema (for home page)
   if (pathname === "/") {
+    // Individual Service schemas
     services.forEach((service) => {
       const serviceSchema = {
         "@context": "https://schema.org",
@@ -207,6 +208,25 @@ function generateStructuredData(pathname: string) {
       };
       schemas.push(serviceSchema);
     });
+
+    // ItemList schema for services list
+    const servicesListSchema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Services de bien-être holistique",
+      description: "Liste des services proposés par Chiryo Energie à Joué-Les-Tours",
+      itemListElement: services.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+          url: `${baseUrl}/services/${service.id}`,
+        },
+      })),
+    };
+    schemas.push(servicesListSchema);
   }
 
   // 6. BreadcrumbList

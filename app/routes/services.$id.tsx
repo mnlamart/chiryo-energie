@@ -152,12 +152,12 @@ export default function Service() {
 
             {/* FAQ Section */}
             {faqs.length > 0 && (
-              <section className="mt-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              <section className="mt-16" aria-labelledby={`faq-${service.id}-heading`}>
+                <h2 id={`faq-${service.id}-heading`} className="text-3xl font-bold text-gray-900 mb-8">
                   Questions fréquentes - {service.title}
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-4" role="list">
                   {faqs.map((faq, index) => (
                     <FAQ
                       key={index}
@@ -170,8 +170,8 @@ export default function Service() {
             )}
 
             {/* Related Services */}
-            <section className="mt-16">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <section className="mt-16" aria-labelledby="related-services-heading">
+              <h2 id="related-services-heading" className="text-2xl font-bold text-gray-900 mb-6">
                 Autres services disponibles
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
