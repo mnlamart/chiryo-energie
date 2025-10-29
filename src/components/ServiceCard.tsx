@@ -13,9 +13,14 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         <Link to={`/services/${service.id}`} className="mb-4 -mx-6 -mt-6 block">
           <img 
             src={service.image} 
-            alt={service.title}
+            srcSet={`${service.image.replace('w=800', 'w=400')} 400w, ${service.image.replace('w=800', 'w=800')} 800w, ${service.image.replace('w=800', 'w=1200')} 1200w`}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            alt={`${service.title} - Chiryo Energie à Joué-Les-Tours`}
             className="w-full h-48 object-cover hover:opacity-90 transition-opacity"
+            width={800}
+            height={480}
             loading="lazy"
+            decoding="async"
           />
         </Link>
       )}
@@ -27,7 +32,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           {service.title}
         </Link>
       </h3>
-      <p className="text-gray-700 mb-4 leading-relaxed flex-grow">{service.description}</p>
+      <p className="text-gray-700 mb-4 leading-relaxed grow">{service.description}</p>
       
       <div className="space-y-2 mb-4">
         <div className="flex items-center gap-2">
@@ -48,7 +53,15 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
       <Link to={`/services/${service.id}`}>
         <Button variant="secondary" className="w-full">
-          En savoir plus
+          {service.id === 'reiki' && 'Découvrir le Reiki'}
+          {service.id === 'sophro-relaxation' && 'En savoir plus sur la Sophro-relaxation'}
+          {service.id === 'relaxation-energetique' && 'Découvrir la Relaxation énergétique'}
+          {service.id === 'reflexologie' && 'En savoir plus sur la Réflexologie'}
+          {service.id === 'harmonisation-lymphatique' && 'Découvrir l\'Harmonisation lymphatique'}
+          {service.id === 'shiatsu-sevrage' && 'En savoir plus sur le Shiatsu sevrage'}
+          {service.id === 'magnetiseuse' && 'Découvrir le Magnétisme'}
+          {service.id === 'mediumnite' && 'En savoir plus sur la Médiumnité'}
+          {!['reiki', 'sophro-relaxation', 'relaxation-energetique', 'reflexologie', 'harmonisation-lymphatique', 'shiatsu-sevrage', 'magnetiseuse', 'mediumnite'].includes(service.id) && `En savoir plus sur ${service.title}`}
         </Button>
       </Link>
     </div>

@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => [
   {
     name: "description",
     content:
-      "Services holistiques de bien-être : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Prenez rendez-vous à Joué-Les-Tours, France. Maître enseignante en Reiki.",
+      "Services holistiques de bien-être à Joué-Les-Tours : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Maître enseignante en Reiki. Consultations à Tours, Indre-et-Loire ou à distance. Prenez rendez-vous.",
   },
   {
     property: "og:title",

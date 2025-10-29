@@ -14,9 +14,14 @@ export default function About() {
             <div className="md:col-span-1">
               <img 
                 src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80" 
-                alt="Chiryo Energie - Psycho énergéticienne" 
+                srcSet="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80 400w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80 800w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80 1200w"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium" 
                 className="w-full rounded-lg shadow-lg object-cover aspect-square"
+                width={800}
+                height={800}
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="md:col-span-2 space-y-6 text-gray-700 leading-relaxed">

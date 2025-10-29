@@ -50,9 +50,15 @@ export default function Hero() {
       <div className="absolute inset-0 opacity-10">
         <img 
           src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80" 
-          alt="Meditation and wellness" 
+          srcSet="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=960&q=80 960w, https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80 1920w"
+          sizes="100vw"
+          alt="Bien-être et relaxation - Services holistiques à Joué-Les-Tours" 
           className="w-full h-full object-cover"
-          loading="lazy"
+          width={1920}
+          height={1080}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
       

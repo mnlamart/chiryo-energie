@@ -21,7 +21,7 @@ export const meta: MetaFunction = ({ params }) => {
     ];
   }
 
-  const description = `${service.description.substring(0, 155)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Prise de rendez-vous à Joué-Les-Tours.`;
+  const description = `${service.description.substring(0, 120)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Consultation à Joué-Les-Tours, Tours (Indre-et-Loire) ou à distance. Prise de rendez-vous.`;
 
   return [
     {
@@ -91,16 +91,21 @@ export default function Service() {
             ]}
           />
 
-          <div className="max-w-4xl mx-auto">
+          <article className="max-w-4xl mx-auto">
             {/* Service Header */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {service.image && (
                 <div>
                   <img
                     src={service.image}
-                    alt={service.title}
+                    srcSet={`${service.image.replace('w=800', 'w=400')} 400w, ${service.image.replace('w=800', 'w=800')} 800w, ${service.image.replace('w=800', 'w=1200')} 1200w`}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
                     className="w-full rounded-lg shadow-lg object-cover aspect-square"
+                    width={800}
+                    height={800}
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               )}
@@ -164,19 +169,48 @@ export default function Service() {
               </section>
             )}
 
+            {/* Related Services */}
+            <section className="mt-16">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Autres services disponibles
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services
+                  .filter((s) => s.id !== service.id)
+                  .slice(0, 3)
+                  .map((relatedService) => (
+                    <Link
+                      key={relatedService.id}
+                      to={`/services/${relatedService.id}`}
+                      className="block p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200"
+                    >
+                      <h3 className="text-lg font-semibold text-primary-600 mb-2 hover:text-primary-700">
+                        {relatedService.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 line-clamp-2">
+                        {relatedService.description}
+                      </p>
+                      <span className="inline-block mt-2 text-sm text-primary-600 font-medium">
+                        En savoir plus →
+                      </span>
+                    </Link>
+                  ))}
+              </div>
+            </section>
+
             {/* Call to Action */}
             <div className="mt-16 bg-gradient-to-br from-primary-50 to-warm-50 rounded-lg p-8 text-center">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 Prêt à commencer votre parcours de bien-être ?
               </h2>
               <p className="text-gray-700 mb-6">
-                Contactez-moi dès aujourd'hui pour prendre rendez-vous
+                Contactez-moi dès aujourd'hui pour prendre rendez-vous à Joué-Les-Tours, Tours ou en ligne
               </p>
               <Link to="/contact">
                 <Button>Me contacter</Button>
               </Link>
             </div>
-          </div>
+          </article>
         </Container>
       </div>
     </Layout>

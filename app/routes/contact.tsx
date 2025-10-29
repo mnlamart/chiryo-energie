@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => [
   {
     name: "description",
     content:
-      "Contactez Chiryo Energie pour prendre rendez-vous. Téléphone: 06.61.86.94.01, Email: chiryoenergie@gmail.com. Services à Joué-Les-Tours, France.",
+      "Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, Tours (Indre-et-Loire). Téléphone: 06.61.86.94.01. Email: chiryoenergie@gmail.com. Services de bien-être disponibles.",
   },
   { property: "og:title", content: "Contact - Chiryo Energie" },
   {

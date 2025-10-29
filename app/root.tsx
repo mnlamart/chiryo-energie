@@ -18,7 +18,9 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: rootStylesheetUrl },
   { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
   { rel: "preconnect", href: "https://images.unsplash.com" },
+  { rel: "dns-prefetch", href: "https://images.unsplash.com" },
   { rel: "preconnect", href: "https://i.pravatar.cc" },
+  { rel: "dns-prefetch", href: "https://i.pravatar.cc" },
   { rel: "manifest", href: "/manifest.json" },
 ];
 
@@ -93,11 +95,38 @@ function generateStructuredData(pathname: string) {
     url: baseUrl,
     telephone: contactInfo.phone.replace(/\./g, ""),
     email: contactInfo.email,
+    image: `${baseUrl}/og-image.jpg`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Joué-Les-Tours",
+      addressRegion: "Centre-Val de Loire",
+      postalCode: "37300",
       addressCountry: "FR",
+      streetAddress: "", // Add if street address available
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "47.3499",
+      longitude: "0.6667",
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Joué-Les-Tours",
+      },
+      {
+        "@type": "City",
+        name: "Tours",
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Indre-et-Loire",
+      },
+      {
+        "@type": "State",
+        name: "Centre-Val de Loire",
+      },
+    ],
     priceRange: "€€",
     aggregateRating: {
       "@type": "AggregateRating",
@@ -132,10 +161,24 @@ function generateStructuredData(pathname: string) {
       provider: {
         "@id": `${baseUrl}#business`,
       },
-      areaServed: {
-        "@type": "Country",
-        name: "France",
-      },
+      areaServed: [
+        {
+          "@type": "City",
+          name: "Joué-Les-Tours",
+        },
+        {
+          "@type": "City",
+          name: "Tours",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Indre-et-Loire",
+        },
+        {
+          "@type": "State",
+          name: "Centre-Val de Loire",
+        },
+      ],
       offers: {
         "@type": "Offer",
         price: priceMatch ? priceMatch[0] : "0",
