@@ -1,6 +1,7 @@
 import { createRequestHandler } from "@react-router/express";
 import compression from "compression";
 import express from "express";
+// @ts-expect-error - build/server/index.js is generated and doesn't have types
 import * as build from "./build/server/index.js";
 
 const app = express();
