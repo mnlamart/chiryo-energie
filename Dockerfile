@@ -21,18 +21,26 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Don't run as root
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nodejs
+RUN groupadd --system --gid 1001 nodejs
+RUN useradd --system --uid 1001 nodejs
 
-# Copy package files and install production dependencies
+# Copy package files for reference
 COPY --from=builder --chown=nodejs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nodejs:nodejs /app/package-lock.json ./package-lock.json
-RUN npm ci --omit=dev && npm cache clean --force
-RUN chown -R nodejs:nodejs /app/node_modules
+
+# Copy production node_modules from deps stage (already installed with all deps)
+# We'll prune dev dependencies after copying
+COPY --from=deps --chown=nodejs:nodejs /app/node_modules ./node_modules
+
+# Remove dev dependencies to keep image small
+RUN npm prune --production && npm cache clean --force
 
 # Copy application files
 COPY --from=builder --chown=nodejs:nodejs /app/build ./build
 COPY --from=builder --chown=nodejs:nodejs /app/server.js ./server.js
+
+# Ensure node_modules ownership is correct
+RUN chown -R nodejs:nodejs /app/node_modules
 
 USER nodejs
 
