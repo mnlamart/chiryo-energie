@@ -1,5 +1,5 @@
-# Use Node.js LTS version
-FROM node:20-alpine AS base
+# Use Node.js 22 on Debian Bookworm Slim
+FROM node:22-bookworm-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
