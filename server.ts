@@ -13,7 +13,7 @@ app.use(express.static("build/client", { immutable: true, maxAge: "1y" }));
 
 // handle React Router requests
 app.all(
-  "*",
+  "(.*)",
   createRequestHandler({
     build,
     mode: process.env.NODE_ENV || "production",
