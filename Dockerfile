@@ -42,13 +42,12 @@ COPY --from=builder --chown=nodejs:nodejs /app/package.json ./package.json
 
 # Copy application files
 COPY --from=builder --chown=nodejs:nodejs /app/build ./build
-COPY --from=builder --chown=nodejs:nodejs /app/server.js ./server.js
+COPY --from=builder --chown=nodejs:nodejs /app/server.ts ./server.ts
 
 USER nodejs
 
 EXPOSE 3000
 
 ENV PORT=3000
-ENV HOST=0.0.0.0
 
-CMD ["node", "server.js"]
+CMD ["npx", "tsx", "server.ts"]
