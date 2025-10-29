@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router";
-import type { MetaFunction } from "react-router";
+import type { LinksFunction, MetaFunction } from "react-router";
 import Container from "../../src/components/Container";
 import Button from "../../src/components/Button";
 import FAQ from "../../src/components/FAQ";
@@ -7,6 +7,14 @@ import Breadcrumbs from "../../src/components/Breadcrumbs";
 import { services } from "../../src/data/services";
 import { serviceFAQs } from "../../src/data/faqs";
 import Layout from "../../src/components/Layout";
+
+export const links: LinksFunction = ({ params }) => {
+  const { id } = params;
+  const baseUrl = "https://www.chiryo-energie.fr";
+  const canonical = `${baseUrl}/services/${id}`;
+
+  return [{ rel: "canonical", href: canonical }];
+};
 
 export const meta: MetaFunction = ({ params }) => {
   const service = services.find((s) => s.id === params.id);

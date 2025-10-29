@@ -1,11 +1,18 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import type { MetaFunction } from "react-router";
+import type { LinksFunction, MetaFunction } from "react-router";
 import Container from "../../src/components/Container";
 import Button from "../../src/components/Button";
 import FormField from "../../src/components/FormField";
 import { contactInfo } from "../../src/data/content";
 import Layout from "../../src/components/Layout";
+
+export const links: LinksFunction = () => {
+  const baseUrl = "https://www.chiryo-energie.fr";
+  const canonical = `${baseUrl}/contact`;
+
+  return [{ rel: "canonical", href: canonical }];
+};
 
 export const meta: MetaFunction = () => [
   { title: "Contact - Chiryo Energie" },

@@ -14,15 +14,22 @@ import { useLocation } from "react-router";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: rootStylesheetUrl },
-  { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
-  { rel: "preconnect", href: "https://images.unsplash.com" },
-  { rel: "dns-prefetch", href: "https://images.unsplash.com" },
-  { rel: "preconnect", href: "https://i.pravatar.cc" },
-  { rel: "dns-prefetch", href: "https://i.pravatar.cc" },
-  { rel: "manifest", href: "/manifest.json" },
-];
+export const links: LinksFunction = ({ request }) => {
+  const baseUrl = "https://www.chiryo-energie.fr";
+  const url = new URL(request.url);
+  const canonical = `${baseUrl}${url.pathname}`;
+
+  return [
+    { rel: "stylesheet", href: rootStylesheetUrl },
+    { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
+    { rel: "preconnect", href: "https://images.unsplash.com" },
+    { rel: "dns-prefetch", href: "https://images.unsplash.com" },
+    { rel: "preconnect", href: "https://i.pravatar.cc" },
+    { rel: "dns-prefetch", href: "https://i.pravatar.cc" },
+    { rel: "manifest", href: "/manifest.json" },
+    { rel: "canonical", href: canonical },
+  ];
+};
 
 export const meta: MetaFunction = () => [
   { title: "Chiryo Energie - Psycho énergéticienne" },
@@ -128,6 +135,8 @@ function generateStructuredData(pathname: string) {
       },
     ],
     priceRange: "€€",
+    paymentAccepted: "Cash, Check, Credit Card",
+    currenciesAccepted: "EUR",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5",
@@ -147,6 +156,20 @@ function generateStructuredData(pathname: string) {
         ratingValue: "5",
       },
     })),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services de bien-être holistique",
+      itemListElement: services.map((service, index) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+          url: `${baseUrl}/services/${service.id}`,
+        },
+        position: index + 1,
+      })),
+    },
   };
   schemas.push(businessSchema);
 

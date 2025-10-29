@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
-import type { MetaFunction } from "react-router";
+import type { LinksFunction, MetaFunction } from "react-router";
 import Hero from "../../src/components/Hero";
 import Services from "../../src/components/Services";
 import About from "../../src/components/About";
@@ -8,6 +8,13 @@ import TestimonialsCarousel from "../../src/components/TestimonialsCarousel";
 import FAQs from "../../src/components/FAQs";
 import ScrollAnimation from "../../src/components/ScrollAnimation";
 import Layout from "../../src/components/Layout";
+
+export const links: LinksFunction = () => {
+  const baseUrl = "https://www.chiryo-energie.fr";
+  const canonical = `${baseUrl}/`;
+
+  return [{ rel: "canonical", href: canonical }];
+};
 
 export const meta: MetaFunction = () => [
   {
