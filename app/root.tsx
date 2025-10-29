@@ -14,10 +14,19 @@ import { useLocation } from "react-router";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
-export const links: LinksFunction = ({ request }) => {
+export const links: LinksFunction = ({ request } = { request: undefined }) => {
   const baseUrl = "https://www.chiryo-energie.fr";
-  const url = new URL(request.url);
-  const canonical = `${baseUrl}${url.pathname}`;
+  
+  // Handle canonical URL - use request if available, otherwise use default
+  let canonical = `${baseUrl}/`;
+  if (request) {
+    try {
+      const url = new URL(request.url);
+      canonical = `${baseUrl}${url.pathname}`;
+    } catch {
+      // Fallback to default if URL parsing fails
+    }
+  }
 
   return [
     { rel: "stylesheet", href: rootStylesheetUrl },
