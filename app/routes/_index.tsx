@@ -26,6 +26,16 @@ export const meta: MetaFunction = () => [
       "Services holistiques de bien-être à Joué-Les-Tours : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Maître enseignante en Reiki. Consultations à Tours, Indre-et-Loire ou à distance. Prenez rendez-vous.",
   },
   {
+    name: "summary",
+    content:
+      "Chiryo Energie offre 8 services de bien-être holistique à Joué-Les-Tours et Tours (Indre-et-Loire) : Reiki (60€), Sophro-relaxation (60€ adulte, 45€ enfant), Réflexologie (50€), Relaxation énergétique (35€), Harmonisation lymphatique (60€), Shiatsu sevrage (50€), Magnétisme (sur mesure), Médiumnité (60€). Consultations en présentiel, à domicile ou à distance.",
+  },
+  {
+    name: "keywords",
+    content:
+      "Reiki Joué-Les-Tours, Sophro-relaxation Tours, Réflexologie Indre-et-Loire, Magnétiseur Tours, Médiumnité Joué-Les-Tours, bien-être holistique Centre-Val de Loire, énergéticien Tours, coupeuse de feu",
+  },
+  {
     property: "og:title",
     content: "Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours",
   },

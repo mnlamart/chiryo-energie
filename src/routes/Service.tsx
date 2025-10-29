@@ -106,6 +106,7 @@ export default function Service() {
                 {faqs.map((faq, index) => (
                   <FAQ 
                     key={index}
+                    value={`service-${service.id}-faq-${index}`}
                     question={faq.question}
                     answer={faq.answer}
                   />
@@ -115,7 +116,7 @@ export default function Service() {
           )}
 
           {/* Call to Action */}
-          <div className="mt-16 bg-gradient-to-br from-primary-50 to-warm-50 rounded-lg p-8 text-center">
+          <div className="mt-16 bg-linear-to-br from-primary-50 to-warm-50 rounded-lg p-8 text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
               Prêt à commencer votre parcours de bien-être ?
             </h2>

@@ -35,6 +35,10 @@ export const meta: MetaFunction = ({ params }) => {
 
   const description = `${service.description.substring(0, 120)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Consultation à Joué-Les-Tours, Tours (Indre-et-Loire) ou à distance. Prise de rendez-vous.`;
 
+  const summary = `${service.title} par Chiryo Energie à Joué-Les-Tours, Tours (Indre-et-Loire). ${service.description} Tarif : ${service.price}. ${service.duration ? `Durée : ${service.duration}.` : ""} Consultation en présentiel, à domicile ou à distance selon le service.`;
+  
+  const keywords = `${service.title}, ${service.title} Joué-Les-Tours, ${service.title} Tours, ${service.title} Indre-et-Loire, bien-être ${service.title?.toLowerCase()}, énergéticien ${service.title?.toLowerCase()}`;
+
   return [
     {
       title: `${service.title} à Joué-Les-Tours | Chiryo Energie`,
@@ -42,6 +46,14 @@ export const meta: MetaFunction = ({ params }) => {
     {
       name: "description",
       content: description,
+    },
+    {
+      name: "summary",
+      content: summary,
+    },
+    {
+      name: "keywords",
+      content: keywords,
     },
     {
       property: "og:title",
@@ -216,7 +228,7 @@ export default function Service() {
             </section>
 
             {/* Call to Action */}
-            <div className="mt-16 bg-gradient-to-br from-primary-50 to-warm-50 rounded-lg p-8 text-center">
+            <div className="mt-16 bg-linear-to-br from-primary-50 to-warm-50 rounded-lg p-8 text-center">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 Prêt à commencer votre parcours de bien-être ?
               </h2>

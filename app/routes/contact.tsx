@@ -21,6 +21,16 @@ export const meta: MetaFunction = () => [
     content:
       "Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, Tours (Indre-et-Loire). Téléphone: 06.61.86.94.01. Email: chiryoenergie@gmail.com. Services de bien-être disponibles.",
   },
+  {
+    name: "summary",
+    content:
+      "Contactez Chiryo Energie, Psycho énergéticienne à Joué-Les-Tours et Tours (Indre-et-Loire). Téléphone : 06.61.86.94.01. Email : chiryoenergie@gmail.com. Prenez rendez-vous pour Reiki, Sophro-relaxation, Réflexologie, Magnétisme ou Médiumnité.",
+  },
+  {
+    name: "keywords",
+    content:
+      "contact énergéticien Joué-Les-Tours, prendre rendez-vous Tours, contact Chiryo Energie, téléphone énergéticien Indre-et-Loire",
+  },
   { property: "og:title", content: "Contact - Chiryo Energie" },
   {
     property: "og:description",
@@ -159,7 +169,7 @@ export default function Contact() {
 
                   <div className="space-y-4">
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
                         <svg
                           className="w-5 h-5 text-primary-600"
                           fill="none"
@@ -186,7 +196,7 @@ export default function Contact() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
                         <svg
                           className="w-5 h-5 text-primary-600"
                           fill="none"
@@ -213,7 +223,7 @@ export default function Contact() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
                         <svg
                           className="w-5 h-5 text-primary-600"
                           fill="none"
@@ -238,7 +248,11 @@ export default function Contact() {
                         <p className="font-semibold text-gray-900">
                           Localisation
                         </p>
-                        <p className="text-gray-700">{contactInfo.location}</p>
+                        <p className="text-gray-700">
+                          101 Rue de Saint-Léger
+                          <br />
+                          {contactInfo.location}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -304,6 +318,39 @@ export default function Contact() {
                   </Button>
                 </form>
               </div>
+            </div>
+
+            {/* Google Map Section */}
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                Localisation
+              </h2>
+              <p className="text-center text-gray-600 mb-8">
+                Chiryo Energie - {contactInfo.address || contactInfo.location}
+              </p>
+              <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-gray-200">
+                <iframe
+                  src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localisation de Chiryo Energie à Joué-Les-Tours"
+                  aria-label="Carte Google Maps montrant la localisation de Chiryo Energie à Joué-Les-Tours"
+                />
+              </div>
+              <p className="text-center text-sm text-gray-500 mt-4">
+                <a
+                  href="https://www.google.com/maps/search/101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-600 hover:text-primary-700 underline"
+                >
+                  Ouvrir dans Google Maps
+                </a>
+              </p>
             </div>
           </div>
         </Container>
