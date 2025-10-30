@@ -12,15 +12,29 @@ export default function About() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-8">
             <div className="md:col-span-1">
-              <img 
-                src="/images/hero/about-wellness.jpg" 
-                alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium" 
-                className="w-full rounded-lg shadow-lg object-cover aspect-square"
-                width={800}
-                height={800}
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/images/hero/about-wellness-640w.webp 640w,
+                          /images/hero/about-wellness-960w.webp 960w"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <source
+                  type="image/jpeg"
+                  srcSet="/images/hero/about-wellness-640w.jpg 640w,
+                          /images/hero/about-wellness-960w.jpg 960w"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <img 
+                  src="/images/hero/about-wellness-960w.jpg" 
+                  alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium" 
+                  className="w-full rounded-lg shadow-lg object-cover aspect-square"
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div className="md:col-span-2 space-y-6 text-gray-700 leading-relaxed">
               {aboutContent.paragraphs.map((paragraph, index) => {

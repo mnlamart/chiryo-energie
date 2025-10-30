@@ -69,12 +69,20 @@ export default function TestimonialsCarousel() {
             <div className="bg-gradient-to-br from-primary-50 to-warm-50 rounded-lg p-8 shadow-lg border border-primary-100 min-h-[300px] flex flex-col justify-center transition-opacity duration-500">
               <div className="flex items-start gap-6 mb-6">
                 {testimonials[currentIndex].avatar && (
-                  <img 
-                    src={testimonials[currentIndex].avatar} 
-                    alt={testimonials[currentIndex].author}
-                    className="w-20 h-20 rounded-full object-cover flex-shrink-0 border-2 border-primary-200"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={testimonials[currentIndex].avatar.replace(/\.(jpg|jpeg|png)$/i, '-150w.webp')}
+                    />
+                    <img 
+                      src={testimonials[currentIndex].avatar.replace(/\.(jpg|jpeg|png)$/i, '-150w.jpg')}
+                      alt={testimonials[currentIndex].author}
+                      className="w-20 h-20 rounded-full object-cover flex-shrink-0 border-2 border-primary-200"
+                      width={150}
+                      height={150}
+                      loading="lazy"
+                    />
+                  </picture>
                 )}
                 <div className="flex-1">
                   <p className="text-gray-700 italic leading-relaxed text-lg mb-4">

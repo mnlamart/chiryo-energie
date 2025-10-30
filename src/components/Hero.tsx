@@ -48,16 +48,34 @@ export default function Hero() {
     <section className="relative bg-gradient-to-br from-primary-50 to-warm-50 py-20 overflow-hidden" aria-label="Hero section">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-30" aria-hidden="true">
-        <img 
-          src="/images/hero/hero-meditation.jpg" 
-          alt="Bien-être et relaxation - Services holistiques à Joué-Les-Tours" 
-          className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-        />
+        <picture>
+          <source
+            type="image/webp"
+            srcSet="/images/hero/hero-meditation-640w.webp 640w,
+                    /images/hero/hero-meditation-960w.webp 960w,
+                    /images/hero/hero-meditation-1280w.webp 1280w,
+                    /images/hero/hero-meditation-1920w.webp 1920w"
+            sizes="100vw"
+          />
+          <source
+            type="image/jpeg"
+            srcSet="/images/hero/hero-meditation-640w.jpg 640w,
+                    /images/hero/hero-meditation-960w.jpg 960w,
+                    /images/hero/hero-meditation-1280w.jpg 1280w,
+                    /images/hero/hero-meditation-1920w.jpg 1920w"
+            sizes="100vw"
+          />
+          <img 
+            src="/images/hero/hero-meditation-1920w.jpg" 
+            alt="Bien-être et relaxation - Services holistiques à Joué-Les-Tours" 
+            className="w-full h-full object-cover"
+            width={1920}
+            height={1080}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
       
       <Container>

@@ -7,21 +7,39 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({ service }: ServiceCardProps) {
+  // Extract base filename from image path (e.g., /images/services/reiki.jpg -> reiki)
+  const imageName = service.image ? service.image.split('/').pop()?.replace(/\.(jpg|jpeg|png|webp)$/i, '') : '';
+  const imageDir = service.image?.substring(0, service.image.lastIndexOf('/')) || '';
+  
   return (
     <article className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 overflow-hidden flex flex-col hover:scale-105">
-      {service.image && (
+      {service.image && imageName && (
         <Link to={`/services/${service.id}`} className="mb-4 -mx-6 -mt-6 block">
-          <img 
-            src={service.image} 
-            srcSet={`${service.image.replace('w=800', 'w=400')} 400w, ${service.image.replace('w=800', 'w=800')} 800w, ${service.image.replace('w=800', 'w=1200')} 1200w`}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            alt={`${service.title} - Chiryo Energie à Joué-Les-Tours`}
-            className="w-full h-48 object-cover hover:opacity-90 transition-opacity"
-            width={800}
-            height={480}
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${imageDir}/${imageName}-400w.webp 400w,
+                      ${imageDir}/${imageName}-800w.webp 800w,
+                      ${imageDir}/${imageName}-1200w.webp 1200w`}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+            <source
+              type="image/jpeg"
+              srcSet={`${imageDir}/${imageName}-400w.jpg 400w,
+                      ${imageDir}/${imageName}-800w.jpg 800w,
+                      ${imageDir}/${imageName}-1200w.jpg 1200w`}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+            <img 
+              src={`${imageDir}/${imageName}-800w.jpg`}
+              alt={`${service.title} - Chiryo Energie à Joué-Les-Tours`}
+              className="w-full h-48 object-cover hover:opacity-90 transition-opacity"
+              width={800}
+              height={480}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </Link>
       )}
       <h3 className="text-xl font-bold text-primary-600 mb-3">

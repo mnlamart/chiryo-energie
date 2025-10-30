@@ -22,12 +22,20 @@ export default function Testimonials() {
             >
               <div className="flex items-start gap-4 mb-4">
                 {testimonial.avatar && (
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.author}
-                    className="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-purple-200"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={testimonial.avatar.replace(/\.(jpg|jpeg|png)$/i, '-150w.webp')}
+                    />
+                    <img 
+                      src={testimonial.avatar.replace(/\.(jpg|jpeg|png)$/i, '-150w.jpg')}
+                      alt={testimonial.author}
+                      className="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-purple-200"
+                      width={150}
+                      height={150}
+                      loading="lazy"
+                    />
+                  </picture>
                 )}
                 <p className="text-gray-700 italic leading-relaxed flex-1">
                   "{testimonial.text}"
