@@ -18,8 +18,6 @@ import * as Toast from "@radix-ui/react-toast";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
-const baseUrl = import.meta.env.VITE_BASE_URL || "https://cheryo-energy.sevend.io";
-
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: rootStylesheetUrl },
@@ -30,7 +28,7 @@ export const links: LinksFunction = () => {
 };
 
 
-function generateStructuredData(pathname: string) {
+function generateStructuredData(pathname: string, baseUrl: string) {
   const schemas: object[] = [];
   const today = new Date().toISOString().split("T")[0];
 
@@ -639,13 +637,14 @@ export const middleware = honeypotMiddleware;
 export async function loader(_args: LoaderFunctionArgs) {
   const honeypotInputProps = await getHoneypotInputProps();
   const allowIndexing = process.env.ALLOW_INDEXING === "true";
-  return data({ honeypotInputProps, allowIndexing });
+  const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
+  return data({ honeypotInputProps, allowIndexing, baseUrl });
 }
 
 export default function Root() {
   const location = useLocation();
-  const schemas = generateStructuredData(location.pathname);
-  const { honeypotInputProps, allowIndexing } = useLoaderData<typeof loader>();
+  const { honeypotInputProps, allowIndexing, baseUrl } = useLoaderData<typeof loader>();
+  const schemas = generateStructuredData(location.pathname, baseUrl);
 
   return (
     <html lang="fr">

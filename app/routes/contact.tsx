@@ -12,7 +12,7 @@ import Layout from "../../src/components/Layout";
 import { sendContactEmail } from "../utils/email.server";
 import { useEffect, useState, useCallback } from "react";
 
-const baseUrl = import.meta.env.VITE_BASE_URL || "https://cheryo-energy.sevend.io";
+const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
 
 // Zod v4 schema for contact form validation
 const contactSchema = z.object({

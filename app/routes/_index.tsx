@@ -8,7 +8,7 @@ import FAQs from "../../src/components/FAQs";
 import ScrollAnimation from "../../src/components/ScrollAnimation";
 import Layout from "../../src/components/Layout";
 
-const baseUrl = import.meta.env.VITE_BASE_URL || "https://cheryo-energy.sevend.io";
+const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
 
 export default function Index() {
   const location = useLocation();
