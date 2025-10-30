@@ -13,9 +13,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-8">
             <div className="md:col-span-1">
               <img 
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80" 
-                srcSet="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80 400w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80 800w, https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80 1200w"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                src="/images/hero/about-wellness.jpg" 
                 alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium" 
                 className="w-full rounded-lg shadow-lg object-cover aspect-square"
                 width={800}

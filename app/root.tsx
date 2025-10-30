@@ -24,10 +24,6 @@ export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: rootStylesheetUrl },
     { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
-    { rel: "preconnect", href: "https://images.unsplash.com" },
-    { rel: "dns-prefetch", href: "https://images.unsplash.com" },
-    { rel: "preconnect", href: "https://i.pravatar.cc" },
-    { rel: "dns-prefetch", href: "https://i.pravatar.cc" },
     { rel: "manifest", href: "/manifest.json" },
   ];
 };
