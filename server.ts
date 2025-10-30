@@ -40,7 +40,15 @@ app.use(
 );
 
 // Other static files (24 hours for most, 5 minutes for HTML)
-app.use(
+// Skip dynamic routes that should be handled by React Router
+app.use((req, res, next) => {
+  // Dynamic routes handled by React Router
+  const dynamicRoutes = ['/robots.txt', '/sitemap.xml', '/content-summary.txt', '/.well-known/security.txt'];
+  if (dynamicRoutes.includes(req.path)) {
+    return next();
+  }
+  
+  // Serve static files
   express.static("build/client", { 
     maxAge: "1d",
     setHeaders: (res, path) => {
@@ -50,8 +58,8 @@ app.use(
         res.setHeader("Cache-Control", "public, max-age=86400");
       }
     },
-  })
-);
+  })(req, res, next);
+});
 
 // handle React Router requests (catch-all)
 const requestHandler = createRequestHandler({
