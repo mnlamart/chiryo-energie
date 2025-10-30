@@ -675,6 +675,7 @@ export default function Root() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={`${baseUrl}/og-image.jpg`} />
         <meta name="twitter:image:alt" content="Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" />
+        <meta name="google-site-verification" content="MOpUQdR_qghmbFNNNyThogjUCisgAKht_yDRRClwKyM" />
         <link rel="canonical" href={baseUrl + location.pathname} />
         <Links />
         {schemas.map((schema, index) => (
