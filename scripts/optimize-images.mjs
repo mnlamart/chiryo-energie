@@ -75,8 +75,8 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
       });
       
       // Compression settings (more aggressive for hero to improve LCP)
-      const webpQuality = isHero ? 60 : 75;
-      const jpegQuality = isHero ? 70 : 80;
+      const webpQuality = isHero ? 60 : 70;
+      const jpegQuality = isHero ? 70 : 75;
 
       // Generate WebP version
       const webpPath = join(outputDir, `${name}-${size}w.webp`);
