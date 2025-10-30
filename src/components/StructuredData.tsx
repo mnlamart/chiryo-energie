@@ -10,7 +10,9 @@ export default function StructuredData() {
   const currentService = services.find(s => location.pathname === `/services/${s.id}`);
 
   useEffect(() => {
-    const baseUrl = 'https://www.chiryo-energie.fr';
+    const baseUrl =
+      (typeof process !== 'undefined' && process.env.BASE_URL) ||
+      'https://cheryo-energy.sevend.io';
     const schemas: object[] = [];
 
     // 1. FAQPage Schema (for home page)

@@ -9,8 +9,11 @@ import { services } from "../../src/data/services";
 import { serviceFAQs } from "../../src/data/faqs";
 import Layout from "../../src/components/Layout";
 
+const baseUrl =
+  (typeof process !== "undefined" && process.env.BASE_URL) ||
+  "https://cheryo-energy.sevend.io";
+
 export const links: LinksFunction = ({ params } = { params: undefined }) => {
-  const baseUrl = "https://www.chiryo-energie.fr";
   let canonical = `${baseUrl}/services/unknown`;
   
   if (params?.id) {
@@ -65,7 +68,7 @@ export const meta: MetaFunction = ({ params }) => {
     },
     {
       property: "og:url",
-      content: `https://www.chiryo-energie.fr/services/${service.id}`,
+      content: `${baseUrl}/services/${service.id}`,
     },
     {
       name: "twitter:title",

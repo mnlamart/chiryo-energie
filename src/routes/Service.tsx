@@ -7,6 +7,10 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import { services } from '../data/services';
 import { serviceFAQs } from '../data/faqs';
 
+const baseUrl =
+  (typeof process !== 'undefined' && process.env.BASE_URL) ||
+  'https://cheryo-energy.sevend.io';
+
 export default function Service() {
   const { id } = useParams<{ id: string }>();
   const service = services.find(s => s.id === id);
@@ -33,7 +37,7 @@ export default function Service() {
       <MetaTags 
         title={`${service.title} à Joué-Les-Tours | Chiryo Energie`}
         description={`${service.description.substring(0, 155)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ''} Prise de rendez-vous à Joué-Les-Tours.`}
-        url={`https://www.chiryo-energie.fr/services/${service.id}`}
+        url={`${baseUrl}/services/${service.id}`}
       />
       <div className="py-20 bg-white">
         <Container>

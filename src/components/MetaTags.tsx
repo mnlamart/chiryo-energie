@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
 
+const baseUrl =
+  (typeof process !== 'undefined' && process.env.BASE_URL) ||
+  'https://cheryo-energy.sevend.io';
+
 interface MetaTagsProps {
   title?: string;
   description?: string;
@@ -11,8 +15,8 @@ interface MetaTagsProps {
 export default function MetaTags({ 
   title = "Chiryo Energie - Psycho énergéticienne",
   description = "Votre énergie, votre chemin, l'équilibre à portée de mains. Chiryo Energie offre des services holistiques pour votre bien-être.",
-  image = "https://www.chiryo-energie.fr/og-image.jpg",
-  url = "https://www.chiryo-energie.fr",
+  image = `${baseUrl}/og-image.jpg`,
+  url = baseUrl,
   type = "website"
 }: MetaTagsProps) {
   useEffect(() => {

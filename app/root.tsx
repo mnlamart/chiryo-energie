@@ -19,17 +19,17 @@ import * as Toast from "@radix-ui/react-toast";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
+const baseUrl = (typeof process !== "undefined" && process.env.BASE_URL) || "https://cheryo-energy.sevend.io";
+
 export const links: LinksFunction = ({ request }: { request?: Request } = {}) => {
-  const baseUrl = "https://www.chiryo-energie.fr";
-  
-  // Handle canonical URL - use request if available, otherwise use default
+  // Use BASE_URL env:
   let canonical = `${baseUrl}/`;
   if (request) {
     try {
       const urlObj = new URL(request.url);
       canonical = `${baseUrl}${urlObj.pathname}`;
     } catch {
-      // Fallback to default if URL parsing fails
+      // Fallback to default canonical URL if parsing fails
     }
   }
 
@@ -75,8 +75,15 @@ export const meta: MetaFunction = () => {
     { name: "author", content: "Chiryo Energie" },
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Chiryo Energie" },
-    { property: "og:image", content: "https://www.chiryo-energie.fr/og-image.jpg" },
+    { property: "og:url", content: baseUrl },
+    { property: "og:image", content: `${baseUrl}/og-image.jpg` },
+    { property: "og:image:alt", content: "Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:image", content: `${baseUrl}/og-image.jpg` },
+    { name: "twitter:image:alt", content: "Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" },
+    // optionally add: { name: "twitter:site", content: "@yourhandle" }
   ];
 
   // Add robots meta tag based on ALLOW_INDEXING env variable
@@ -90,7 +97,6 @@ export const meta: MetaFunction = () => {
 };
 
 function generateStructuredData(pathname: string) {
-  const baseUrl = "https://www.chiryo-energie.fr";
   const schemas: object[] = [];
   const today = new Date().toISOString().split("T")[0];
 

@@ -4,6 +4,10 @@ import { contactInfo } from "../../src/data/content";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loader(_args: LoaderFunctionArgs) {
+  const baseUrl =
+    (typeof process !== "undefined" && process.env.BASE_URL) ||
+    "https://cheryo-energy.sevend.io";
+
   const summary = `Chiryo Energie - Services de bien-être holistique
 
 Localisation: Joué-Les-Tours, Tours, Indre-et-Loire, Centre-Val de Loire, France
@@ -11,7 +15,7 @@ Localisation: Joué-Les-Tours, Tours, Indre-et-Loire, Centre-Val de Loire, Franc
 Coordonnées:
 - Téléphone: ${contactInfo.phone}
 - Email: ${contactInfo.email}
-- Site web: https://www.chiryo-energie.fr
+- Site web: ${baseUrl}
 
 Services proposés:
 

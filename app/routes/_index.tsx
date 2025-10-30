@@ -9,8 +9,11 @@ import FAQs from "../../src/components/FAQs";
 import ScrollAnimation from "../../src/components/ScrollAnimation";
 import Layout from "../../src/components/Layout";
 
+const baseUrl =
+  (typeof process !== "undefined" && process.env.BASE_URL) ||
+  "https://cheryo-energy.sevend.io";
+
 export const links: LinksFunction = () => {
-  const baseUrl = "https://www.chiryo-energie.fr";
   const canonical = `${baseUrl}/`;
 
   return [{ rel: "canonical", href: canonical }];
@@ -46,7 +49,7 @@ export const meta: MetaFunction = () => [
   },
   {
     property: "og:url",
-    content: "https://www.chiryo-energie.fr/",
+    content: `${baseUrl}/`,
   },
   {
     name: "twitter:title",

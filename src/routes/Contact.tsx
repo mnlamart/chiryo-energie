@@ -6,6 +6,10 @@ import MetaTags from '../components/MetaTags';
 import FormField from '../components/FormField';
 import { contactInfo } from '../data/content';
 
+const baseUrl =
+  (typeof process !== 'undefined' && process.env.BASE_URL) ||
+  'https://cheryo-energy.sevend.io';
+
 interface FormErrors {
   name?: string;
   email?: string;
@@ -102,7 +106,7 @@ export default function Contact() {
       <MetaTags 
         title="Contact - Chiryo Energie"
         description="Contactez Chiryo Energie pour prendre rendez-vous. Téléphone: 06.61.86.94.01, Email: chiryoenergie@gmail.com. Services à Joué-Les-Tours, France."
-        url="https://www.chiryo-energie.fr/contact"
+        url={`${baseUrl}/contact`}
       />
       <div className="py-20 bg-gray-50">
         <Container>
