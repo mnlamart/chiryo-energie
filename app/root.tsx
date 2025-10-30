@@ -638,16 +638,14 @@ export const middleware = honeypotMiddleware;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function loader(_args: LoaderFunctionArgs) {
   const honeypotInputProps = await getHoneypotInputProps();
-  return data({ honeypotInputProps });
+  const allowIndexing = process.env.ALLOW_INDEXING === "true";
+  return data({ honeypotInputProps, allowIndexing });
 }
 
 export default function Root() {
   const location = useLocation();
   const schemas = generateStructuredData(location.pathname);
-  const { honeypotInputProps } = useLoaderData<typeof loader>();
-
-  // Check if indexing is allowed
-  const allowIndexing = import.meta.env.VITE_ALLOW_INDEXING === "true";
+  const { honeypotInputProps, allowIndexing } = useLoaderData<typeof loader>();
 
   return (
     <html lang="fr">
