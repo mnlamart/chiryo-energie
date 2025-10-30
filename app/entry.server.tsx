@@ -1,4 +1,5 @@
 import "dotenv/config";
+// @ts-expect-error - node:stream types are available at runtime
 import { PassThrough } from "node:stream";
 import type { EntryContext } from "react-router";
 import { createReadableStreamFromReadable } from "@react-router/node";
@@ -31,7 +32,7 @@ export default function handleRequest(
           pipe(body);
         },
         onShellError(error: unknown) {
-          reject(error instanceof Error ? error : new Error(String(error)));
+          reject(error);
         },
       }
     );

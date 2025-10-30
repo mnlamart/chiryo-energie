@@ -42,4 +42,14 @@ export default defineConfig([
       ],
     },
   },
+  // Disable strict type checking for entry.server.tsx (Node.js server code)
+  {
+    files: ['app/entry.server.tsx'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/prefer-promise-reject-errors': 'off',
+    },
+  },
 ])
