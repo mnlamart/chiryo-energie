@@ -7,19 +7,26 @@ import {
   useLoaderData,
 } from "react-router";
 import type { LinksFunction, LoaderFunctionArgs } from "react-router";
-import { contactInfo } from "../src/data/content";
-import { services } from "../src/data/services";
-import { testimonials } from "../src/data/testimonials";
-import { generalFAQs, serviceFAQs } from "../src/data/faqs";
+import { contactInfo } from "./data/content";
+import { services } from "./data/services";
+import { testimonials } from "./data/testimonials";
+import { generalFAQs, serviceFAQs } from "./data/faqs";
 import { useLocation } from "react-router";
 import { honeypotMiddleware, getHoneypotInputProps } from "./middleware/honeypot";
 import { HoneypotProvider } from "remix-utils/honeypot/react";
 import * as Toast from "@radix-ui/react-toast";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import SkipToContent from "./components/SkipToContent";
+import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
+import FloatingActionButton from "./components/FloatingActionButton";
 
-import rootStylesheetUrl from "../src/index.css?url";
+import rootStylesheetUrl from "./styles/index.css?url";
 
 export const links: LinksFunction = () => {
   return [
+    // Load full CSS normally - critical CSS inline provides instant render
     { rel: "stylesheet", href: rootStylesheetUrl },
     { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
     { rel: "manifest", href: "/manifest.json" },
@@ -671,6 +678,7 @@ export default function Root() {
         <meta name="twitter:image:alt" content="Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" />
         <meta name="google-site-verification" content="MOpUQdR_qghmbFNNNyThogjUCisgAKht_yDRRClwKyM" />
         <link rel="canonical" href={baseUrl + location.pathname} />
+
         <Links />
         {schemas.map((schema, index) => (
           <script
@@ -683,7 +691,17 @@ export default function Root() {
       <body>
         <Toast.Provider swipeDirection="right">
           <HoneypotProvider {...honeypotInputProps}>
-            <Outlet />
+            <div className="flex flex-col min-h-screen">
+              <SkipToContent />
+              <ScrollToTopOnRouteChange />
+              <Header />
+              <main id="main-content" className="flex-grow">
+                <Outlet />
+              </main>
+              <Footer />
+              <ScrollToTop />
+              <FloatingActionButton />
+            </div>
           </HoneypotProvider>
           <Toast.Viewport className="fixed bottom-0 right-0 z-100 flex flex-col p-6 gap-2 w-full max-w-[420px] m-0 list-none outline-none" />
         </Toast.Provider>

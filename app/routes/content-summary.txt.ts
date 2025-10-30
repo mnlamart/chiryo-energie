@@ -1,6 +1,6 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { services } from "../../src/data/services";
-import { contactInfo } from "../../src/data/content";
+import { services } from "../data/services";
+import { contactInfo } from "../data/content";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loader(_args: LoaderFunctionArgs) {

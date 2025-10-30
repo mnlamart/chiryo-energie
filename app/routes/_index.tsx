@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router";
-import Hero from "../../src/components/Hero";
-import Services from "../../src/components/Services";
-import About from "../../src/components/About";
-import TestimonialsCarousel from "../../src/components/TestimonialsCarousel";
-import FAQs from "../../src/components/FAQs";
-import ScrollAnimation from "../../src/components/ScrollAnimation";
-import Layout from "../../src/components/Layout";
-
-const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
+import { useLocation, useRouteLoaderData } from "react-router";
+import Hero from "../components/Hero";
+import Services from "../components/Services";
+import About from "../components/About";
+import TestimonialsCarousel from "../components/TestimonialsCarousel";
+import FAQs from "../components/FAQs";
+import ScrollAnimation from "../components/ScrollAnimation";
+import type { loader as rootLoader } from "../root";
 
 export default function Index() {
   const location = useLocation();
+  const rootData = useRouteLoaderData<typeof rootLoader>("root");
+  const baseUrl = rootData?.baseUrl || "https://cheryo-energy.sevend.io";
 
   // Handle hash scrolling when page loads or hash changes
   useEffect(() => {
@@ -42,21 +42,19 @@ export default function Index() {
       <meta property="og:url" content={`${baseUrl}/`} />
       <meta name="twitter:title" content="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours" />
       <meta name="twitter:description" content="Services holistiques de bien-être : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité." />
-      <Layout>
-        <Hero />
-        <ScrollAnimation>
-          <Services />
-        </ScrollAnimation>
-        <ScrollAnimation delay={100}>
-          <About />
-        </ScrollAnimation>
-        <ScrollAnimation delay={200}>
-          <FAQs />
-        </ScrollAnimation>
-        <ScrollAnimation delay={300}>
-          <TestimonialsCarousel />
-        </ScrollAnimation>
-      </Layout>
+      <Hero />
+      <ScrollAnimation>
+        <Services />
+      </ScrollAnimation>
+      <ScrollAnimation delay={100}>
+        <About />
+      </ScrollAnimation>
+      <ScrollAnimation delay={200}>
+        <FAQs />
+      </ScrollAnimation>
+      <ScrollAnimation delay={300}>
+        <TestimonialsCarousel />
+      </ScrollAnimation>
     </>
   );
 }

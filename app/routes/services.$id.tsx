@@ -1,38 +1,36 @@
 import * as Accordion from '@radix-ui/react-accordion';
-import { useParams, Link } from "react-router";
-import Container from "../../src/components/Container";
-import Button from "../../src/components/Button";
-import FAQ from "../../src/components/FAQ";
-import Breadcrumbs from "../../src/components/Breadcrumbs";
-import { services } from "../../src/data/services";
-import { serviceFAQs } from "../../src/data/faqs";
-import Layout from "../../src/components/Layout";
-
-const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
+import { useParams, Link, useRouteLoaderData } from "react-router";
+import Container from "../components/Container";
+import Button from "../components/Button";
+import FAQ from "../components/FAQ";
+import Breadcrumbs from "../components/Breadcrumbs";
+import { services } from "../data/services";
+import { serviceFAQs } from "../data/faqs";
+import type { loader as rootLoader } from "../root";
 
 export default function Service() {
   const { id } = useParams<{ id: string }>();
   const service = services.find((s) => s.id === id);
+  const rootData = useRouteLoaderData<typeof rootLoader>("root");
+  const baseUrl = rootData?.baseUrl || "https://cheryo-energy.sevend.io";
 
   if (!service) {
     return (
       <>
         <title>Service non trouvé - Chiryo Energie</title>
         <meta name="description" content="Le service demandé n'existe pas." />
-        <Layout>
-          <div className="py-20">
-            <Container>
-              <div className="text-center">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                  Service non trouvé
-                </h1>
-                <Link to="/" className="text-primary-600 hover:text-primary-700">
-                  Retour à l'accueil
-                </Link>
-              </div>
-            </Container>
-          </div>
-        </Layout>
+        <div className="py-20">
+          <Container>
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                Service non trouvé
+              </h1>
+              <Link to="/" className="text-primary-600 hover:text-primary-700">
+                Retour à l'accueil
+              </Link>
+            </div>
+          </Container>
+        </div>
       </>
     );
   }
@@ -53,7 +51,6 @@ export default function Service() {
       <meta property="og:url" content={`${baseUrl}/services/${service.id}`} />
       <meta name="twitter:title" content={`${service.title} à Joué-Les-Tours | Chiryo Energie`} />
       <meta name="twitter:description" content={description} />
-      <Layout>
       <div className="py-20 bg-white">
         <Container>
           <Breadcrumbs
@@ -67,21 +64,42 @@ export default function Service() {
           <article className="max-w-4xl mx-auto">
             {/* Service Header */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              {service.image && (
-                <div>
-                  <img
-                    src={service.image}
-                    srcSet={`${service.image.replace('w=800', 'w=400')} 400w, ${service.image.replace('w=800', 'w=800')} 800w, ${service.image.replace('w=800', 'w=1200')} 1200w`}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
-                    className="w-full rounded-lg shadow-lg object-cover aspect-square"
-                    width={800}
-                    height={800}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              )}
+              {service.image && (() => {
+                const imageName = service.image.split('/').pop()?.replace(/\.(jpg|jpeg|png|webp)$/i, '').replace(/-\d+w$/, '') || '';
+                const imageDir = service.image.substring(0, service.image.lastIndexOf('/'));
+                
+                return (
+                  <div>
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcSet={`${imageDir}/${imageName}-sq-400w.webp 400w,
+                                ${imageDir}/${imageName}-sq-640w.webp 640w,
+                                ${imageDir}/${imageName}-sq-800w.webp 800w,
+                                ${imageDir}/${imageName}-sq-1200w.webp 1200w`}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <source
+                        type="image/jpeg"
+                        srcSet={`${imageDir}/${imageName}-sq-400w.jpg 400w,
+                                ${imageDir}/${imageName}-sq-640w.jpg 640w,
+                                ${imageDir}/${imageName}-sq-800w.jpg 800w,
+                                ${imageDir}/${imageName}-sq-1200w.jpg 1200w`}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <img
+                        src={`${imageDir}/${imageName}-sq-800w.jpg`}
+                        alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
+                        className="w-full rounded-lg shadow-lg object-cover aspect-square"
+                        width={800}
+                        height={800}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                );
+              })()}
 
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -191,7 +209,6 @@ export default function Service() {
           </article>
         </Container>
       </div>
-      </Layout>
     </>
   );
 }

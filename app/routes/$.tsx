@@ -1,7 +1,6 @@
 import { Link } from "react-router";
-import Container from "../../src/components/Container";
-import Button from "../../src/components/Button";
-import Layout from "../../src/components/Layout";
+import Container from "../components/Container";
+import Button from "../components/Button";
 
 export default function NotFound() {
   return (
@@ -11,7 +10,6 @@ export default function NotFound() {
       <meta property="og:title" content="Page non trouvée - 404" />
       <meta property="og:description" content="La page que vous recherchez n'existe pas ou a été déplacée." />
       <meta httpEquiv="refresh" content="0; url=/" />
-      <Layout>
       <div className="py-20 bg-gray-50 min-h-screen flex items-center">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
@@ -35,7 +33,6 @@ export default function NotFound() {
           </div>
         </Container>
       </div>
-      </Layout>
     </>
   );
 }

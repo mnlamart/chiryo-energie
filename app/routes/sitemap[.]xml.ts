@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { services } from "../../src/data/services";
+import { services } from "../data/services";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loader(_args: LoaderFunctionArgs) {

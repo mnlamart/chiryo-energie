@@ -1,18 +1,16 @@
 import { useForm, getInputProps, getTextareaProps } from "@conform-to/react";
 import { parseWithZod, getZodConstraint } from "@conform-to/zod/v4";
-import { useActionData, data } from "react-router";
+import { useActionData, data, useRouteLoaderData } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
 import { z } from "zod";
 import { HoneypotInputs } from "remix-utils/honeypot/react";
 import * as Toast from "@radix-ui/react-toast";
-import Container from "../../src/components/Container";
-import Button from "../../src/components/Button";
-import { contactInfo } from "../../src/data/content";
-import Layout from "../../src/components/Layout";
+import Container from "../components/Container";
+import Button from "../components/Button";
+import { contactInfo } from "../data/content";
 import { sendContactEmail } from "../utils/email.server";
 import { useEffect, useState, useCallback } from "react";
-
-const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
+import type { loader as rootLoader } from "../root";
 
 // Zod v4 schema for contact form validation
 const contactSchema = z.object({
@@ -276,6 +274,9 @@ export default function Contact() {
     }
   }, [lastResult]);
 
+  const rootData = useRouteLoaderData<typeof rootLoader>("root");
+  const baseUrl = rootData?.baseUrl || "https://cheryo-energy.sevend.io";
+
   return (
     <>
       <title>Contact - Chiryo Energie</title>
@@ -287,8 +288,7 @@ export default function Contact() {
       <meta property="og:url" content={`${baseUrl}/contact`} />
       <meta name="twitter:title" content="Contact - Chiryo Energie" />
       <meta name="twitter:description" content="Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, France." />
-      <Layout>
-        <article className="py-20 bg-gray-50">
+      <article className="py-20 bg-gray-50">
         <Container>
           <div className="max-w-4xl mx-auto">
             <ContactHeader />
@@ -442,7 +442,6 @@ export default function Contact() {
           </div>
         </Container>
       </article>
-      </Layout>
 
       <Toast.Root
         className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg shadow-lg data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=end]:animate-swipeOut"
