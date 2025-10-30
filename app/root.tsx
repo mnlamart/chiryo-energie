@@ -1,13 +1,12 @@
 import {
   Links,
-  Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
   data,
   useLoaderData,
 } from "react-router";
-import type { LinksFunction, MetaFunction, LoaderFunctionArgs } from "react-router";
+import type { LinksFunction, LoaderFunctionArgs } from "react-router";
 import { contactInfo } from "../src/data/content";
 import { services } from "../src/data/services";
 import { testimonials } from "../src/data/testimonials";
@@ -21,18 +20,7 @@ import rootStylesheetUrl from "../src/index.css?url";
 
 const baseUrl = (typeof process !== "undefined" && process.env.BASE_URL) || "https://cheryo-energy.sevend.io";
 
-export const links: LinksFunction = ({ request }: { request?: Request } = {}) => {
-  // Use BASE_URL env:
-  let canonical = `${baseUrl}/`;
-  if (request) {
-    try {
-      const urlObj = new URL(request.url);
-      canonical = `${baseUrl}${urlObj.pathname}`;
-    } catch {
-      // Fallback to default canonical URL if parsing fails
-    }
-  }
-
+export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: rootStylesheetUrl },
     { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
@@ -41,60 +29,9 @@ export const links: LinksFunction = ({ request }: { request?: Request } = {}) =>
     { rel: "preconnect", href: "https://i.pravatar.cc" },
     { rel: "dns-prefetch", href: "https://i.pravatar.cc" },
     { rel: "manifest", href: "/manifest.json" },
-    { rel: "canonical", href: canonical },
   ];
 };
 
-export const meta: MetaFunction = () => {
-  // Access environment variable - meta runs on both server and client
-  // On server: process.env is available
-  // On client: process is undefined, safe to check - defaults to false (block indexing)
-  const allowIndexing = 
-    typeof process !== "undefined" && 
-    process.env?.ALLOW_INDEXING === "true";
-  
-  const metaTags = [
-    { title: "Chiryo Energie - Psycho énergéticienne" },
-    {
-      name: "description",
-      content:
-        "Votre énergie, votre chemin, l'équilibre à portée de mains. Chiryo Energie offre des services holistiques pour votre bien-être.",
-    },
-    {
-      name: "summary",
-      content:
-        "Chiryo Energie: Psycho énergéticienne offrant Reiki, Sophro-relaxation, Réflexologie, Magnétisme et Médiumnité à Joué-Les-Tours, Tours (Indre-et-Loire). Consultations en présentiel ou à distance. Maître enseignante en Reiki.",
-    },
-    {
-      name: "keywords",
-      content:
-        "Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité, bien-être holistique, Joué-Les-Tours, Tours, Indre-et-Loire, énergéticien, coupeuse de feu, voyance",
-    },
-    { name: "theme-color", content: "#8B4513" },
-    { name: "apple-mobile-web-app-capable", content: "yes" },
-    { name: "author", content: "Chiryo Energie" },
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "Chiryo Energie" },
-    { property: "og:url", content: baseUrl },
-    { property: "og:image", content: `${baseUrl}/og-image.jpg` },
-    { property: "og:image:alt", content: "Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:image", content: `${baseUrl}/og-image.jpg` },
-    { name: "twitter:image:alt", content: "Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" },
-    // optionally add: { name: "twitter:site", content: "@yourhandle" }
-  ];
-
-  // Add robots meta tag based on ALLOW_INDEXING env variable
-  // If allowIndexing is false or not set, add noindex, nofollow
-  if (!allowIndexing) {
-    metaTags.push({ name: "robots", content: "noindex, nofollow" });
-  }
-  // If allowIndexing is true, don't add any robots tag (null behavior)
-
-  return metaTags;
-};
 
 function generateStructuredData(pathname: string) {
   const schemas: object[] = [];
@@ -712,12 +649,35 @@ export default function Root() {
   const schemas = generateStructuredData(location.pathname);
   const { honeypotInputProps } = useLoaderData<typeof loader>();
 
+  // Check if indexing is allowed
+  const allowIndexing = 
+    typeof process !== "undefined" && 
+    process.env?.ALLOW_INDEXING === "true";
+
   return (
     <html lang="fr">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
+        <title>Chiryo Energie - Psycho énergéticienne</title>
+        <meta name="description" content="Votre énergie, votre chemin, l'équilibre à portée de mains. Chiryo Energie offre des services holistiques pour votre bien-être." />
+        <meta name="summary" content="Chiryo Energie: Psycho énergéticienne offrant Reiki, Sophro-relaxation, Réflexologie, Magnétisme et Médiumnité à Joué-Les-Tours, Tours (Indre-et-Loire). Consultations en présentiel ou à distance. Maître enseignante en Reiki." />
+        <meta name="keywords" content="Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité, bien-être holistique, Joué-Les-Tours, Tours, Indre-et-Loire, énergéticien, coupeuse de feu, voyance" />
+        <meta name="theme-color" content="#8B4513" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="author" content="Chiryo Energie" />
+        {!allowIndexing && <meta name="robots" content="noindex, nofollow" />}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Chiryo Energie" />
+        <meta property="og:url" content={baseUrl} />
+        <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+        <meta property="og:image:alt" content="Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={`${baseUrl}/og-image.jpg`} />
+        <meta name="twitter:image:alt" content="Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" />
+        <link rel="canonical" href={baseUrl + location.pathname} />
         <Links />
         {schemas.map((schema, index) => (
           <script

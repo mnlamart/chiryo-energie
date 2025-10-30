@@ -1,6 +1,5 @@
 import * as Accordion from '@radix-ui/react-accordion';
 import { useParams, Link } from "react-router";
-import type { LinksFunction, MetaFunction } from "react-router";
 import Container from "../../src/components/Container";
 import Button from "../../src/components/Button";
 import FAQ from "../../src/components/FAQ";
@@ -13,101 +12,50 @@ const baseUrl =
   (typeof process !== "undefined" && process.env.BASE_URL) ||
   "https://cheryo-energy.sevend.io";
 
-export const links: LinksFunction = ({ params } = { params: undefined }) => {
-  let canonical = `${baseUrl}/services/unknown`;
-  
-  if (params?.id) {
-    canonical = `${baseUrl}/services/${params.id}`;
-  }
-
-  return [{ rel: "canonical", href: canonical }];
-};
-
-export const meta: MetaFunction = ({ params }) => {
-  const service = services.find((s) => s.id === params.id);
-
-  if (!service) {
-    return [
-      { title: "Service non trouvé - Chiryo Energie" },
-      {
-        name: "description",
-        content: "Le service demandé n'existe pas.",
-      },
-    ];
-  }
-
-  const description = `${service.description.substring(0, 120)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Consultation à Joué-Les-Tours, Tours (Indre-et-Loire) ou à distance. Prise de rendez-vous.`;
-
-  const summary = `${service.title} par Chiryo Energie à Joué-Les-Tours, Tours (Indre-et-Loire). ${service.description} Tarif : ${service.price}. ${service.duration ? `Durée : ${service.duration}.` : ""} Consultation en présentiel, à domicile ou à distance selon le service.`;
-  
-  const keywords = `${service.title}, ${service.title} Joué-Les-Tours, ${service.title} Tours, ${service.title} Indre-et-Loire, bien-être ${service.title?.toLowerCase()}, énergéticien ${service.title?.toLowerCase()}`;
-
-  return [
-    {
-      title: `${service.title} à Joué-Les-Tours | Chiryo Energie`,
-    },
-    {
-      name: "description",
-      content: description,
-    },
-    {
-      name: "summary",
-      content: summary,
-    },
-    {
-      name: "keywords",
-      content: keywords,
-    },
-    {
-      property: "og:title",
-      content: `${service.title} à Joué-Les-Tours | Chiryo Energie`,
-    },
-    {
-      property: "og:description",
-      content: description,
-    },
-    {
-      property: "og:url",
-      content: `${baseUrl}/services/${service.id}`,
-    },
-    {
-      name: "twitter:title",
-      content: `${service.title} à Joué-Les-Tours | Chiryo Energie`,
-    },
-    {
-      name: "twitter:description",
-      content: description,
-    },
-  ];
-};
-
 export default function Service() {
   const { id } = useParams<{ id: string }>();
   const service = services.find((s) => s.id === id);
 
   if (!service) {
     return (
-      <Layout>
-        <div className="py-20">
-          <Container>
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Service non trouvé
-              </h1>
-              <Link to="/" className="text-primary-600 hover:text-primary-700">
-                Retour à l'accueil
-              </Link>
-            </div>
-          </Container>
-        </div>
-      </Layout>
+      <>
+        <title>Service non trouvé - Chiryo Energie</title>
+        <meta name="description" content="Le service demandé n'existe pas." />
+        <Layout>
+          <div className="py-20">
+            <Container>
+              <div className="text-center">
+                <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                  Service non trouvé
+                </h1>
+                <Link to="/" className="text-primary-600 hover:text-primary-700">
+                  Retour à l'accueil
+                </Link>
+              </div>
+            </Container>
+          </div>
+        </Layout>
+      </>
     );
   }
 
+  const description = `${service.description.substring(0, 120)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Consultation à Joué-Les-Tours, Tours (Indre-et-Loire) ou à distance. Prise de rendez-vous.`;
+  const summary = `${service.title} par Chiryo Energie à Joué-Les-Tours, Tours (Indre-et-Loire). ${service.description} Tarif : ${service.price}. ${service.duration ? `Durée : ${service.duration}.` : ""} Consultation en présentiel, à domicile ou à distance selon le service.`;
+  const keywords = `${service.title}, ${service.title} Joué-Les-Tours, ${service.title} Tours, ${service.title} Indre-et-Loire, bien-être ${service.title?.toLowerCase()}, énergéticien ${service.title?.toLowerCase()}`;
   const faqs = serviceFAQs[service.id] || [];
 
   return (
-    <Layout>
+    <>
+      <title>{service.title} à Joué-Les-Tours | Chiryo Energie</title>
+      <meta name="description" content={description} />
+      <meta name="summary" content={summary} />
+      <meta name="keywords" content={keywords} />
+      <meta property="og:title" content={`${service.title} à Joué-Les-Tours | Chiryo Energie`} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={`${baseUrl}/services/${service.id}`} />
+      <meta name="twitter:title" content={`${service.title} à Joué-Les-Tours | Chiryo Energie`} />
+      <meta name="twitter:description" content={description} />
+      <Layout>
       <div className="py-20 bg-white">
         <Container>
           <Breadcrumbs
@@ -245,7 +193,8 @@ export default function Service() {
           </article>
         </Container>
       </div>
-    </Layout>
+      </Layout>
+    </>
   );
 }
 

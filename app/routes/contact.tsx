@@ -1,7 +1,7 @@
 import { useForm, getInputProps, getTextareaProps } from "@conform-to/react";
 import { parseWithZod, getZodConstraint } from "@conform-to/zod/v4";
 import { useActionData, data } from "react-router";
-import type { LinksFunction, MetaFunction, ActionFunctionArgs } from "react-router";
+import type { ActionFunctionArgs } from "react-router";
 import { z } from "zod";
 import { HoneypotInputs } from "remix-utils/honeypot/react";
 import * as Toast from "@radix-ui/react-toast";
@@ -15,47 +15,6 @@ import { useEffect, useState, useCallback } from "react";
 const baseUrl =
   (typeof process !== "undefined" && process.env.BASE_URL) ||
   "https://cheryo-energy.sevend.io";
-
-export const links: LinksFunction = () => {
-  const canonical = `${baseUrl}/contact`;
-
-  return [{ rel: "canonical", href: canonical }];
-};
-
-export const meta: MetaFunction = () => [
-  { title: "Contact - Chiryo Energie" },
-  {
-    name: "description",
-    content:
-      "Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, Tours (Indre-et-Loire). Téléphone: 06.61.86.94.01. Email: chiryoenergie@gmail.com. Services de bien-être disponibles.",
-  },
-  {
-    name: "summary",
-    content:
-      "Contactez Chiryo Energie, Psycho énergéticienne à Joué-Les-Tours et Tours (Indre-et-Loire). Téléphone : 06.61.86.94.01. Email : chiryoenergie@gmail.com. Prenez rendez-vous pour Reiki, Sophro-relaxation, Réflexologie, Magnétisme ou Médiumnité.",
-  },
-  {
-    name: "keywords",
-    content:
-      "contact énergéticien Joué-Les-Tours, prendre rendez-vous Tours, contact Chiryo Energie, téléphone énergéticien Indre-et-Loire",
-  },
-  { property: "og:title", content: "Contact - Chiryo Energie" },
-  {
-    property: "og:description",
-    content:
-      "Contactez Chiryo Energie pour prendre rendez-vous. Téléphone: 06.61.86.94.01, Email: chiryoenergie@gmail.com.",
-  },
-  {
-    property: "og:url",
-    content: `${baseUrl}/contact`,
-  },
-  { name: "twitter:title", content: "Contact - Chiryo Energie" },
-  {
-    name: "twitter:description",
-    content:
-      "Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, France.",
-  },
-];
 
 // Zod v4 schema for contact form validation
 const contactSchema = z.object({
@@ -321,8 +280,17 @@ export default function Contact() {
 
   return (
     <>
-    <Layout>
-      <article className="py-20 bg-gray-50">
+      <title>Contact - Chiryo Energie</title>
+      <meta name="description" content="Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, Tours (Indre-et-Loire). Téléphone: 06.61.86.94.01. Email: chiryoenergie@gmail.com. Services de bien-être disponibles." />
+      <meta name="summary" content="Contactez Chiryo Energie, Psycho énergéticienne à Joué-Les-Tours et Tours (Indre-et-Loire). Téléphone : 06.61.86.94.01. Email : chiryoenergie@gmail.com. Prenez rendez-vous pour Reiki, Sophro-relaxation, Réflexologie, Magnétisme ou Médiumnité." />
+      <meta name="keywords" content="contact énergéticien Joué-Les-Tours, prendre rendez-vous Tours, contact Chiryo Energie, téléphone énergéticien Indre-et-Loire" />
+      <meta property="og:title" content="Contact - Chiryo Energie" />
+      <meta property="og:description" content="Contactez Chiryo Energie pour prendre rendez-vous. Téléphone: 06.61.86.94.01, Email: chiryoenergie@gmail.com." />
+      <meta property="og:url" content={`${baseUrl}/contact`} />
+      <meta name="twitter:title" content="Contact - Chiryo Energie" />
+      <meta name="twitter:description" content="Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, France." />
+      <Layout>
+        <article className="py-20 bg-gray-50">
         <Container>
           <div className="max-w-4xl mx-auto">
             <ContactHeader />
@@ -476,7 +444,7 @@ export default function Contact() {
           </div>
         </Container>
       </article>
-    </Layout>
+      </Layout>
 
       <Toast.Root
         className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg shadow-lg data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=end]:animate-swipeOut"

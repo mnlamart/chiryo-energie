@@ -9,6 +9,7 @@ declare module "*.css?url" {
 declare namespace NodeJS {
   interface ProcessEnv {
     ALLOW_INDEXING?: string;
+    BASE_URL?: string;
     [key: string]: string | undefined;
   }
 }
