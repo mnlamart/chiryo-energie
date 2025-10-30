@@ -23,6 +23,7 @@
     "@react-router/express": "^7.9.5",
     "@react-router/node": "^7.9.5",
     "compression": "^1.8.1",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

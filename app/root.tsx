@@ -18,7 +18,7 @@ import * as Toast from "@radix-ui/react-toast";
 
 import rootStylesheetUrl from "../src/index.css?url";
 
-const baseUrl = (typeof process !== "undefined" && process.env.BASE_URL) || "https://cheryo-energy.sevend.io";
+const baseUrl = import.meta.env.VITE_BASE_URL || "https://cheryo-energy.sevend.io";
 
 export const links: LinksFunction = () => {
   return [
@@ -650,9 +650,7 @@ export default function Root() {
   const { honeypotInputProps } = useLoaderData<typeof loader>();
 
   // Check if indexing is allowed
-  const allowIndexing = 
-    typeof process !== "undefined" && 
-    process.env?.ALLOW_INDEXING === "true";
+  const allowIndexing = import.meta.env.VITE_ALLOW_INDEXING === "true";
 
   return (
     <html lang="fr">

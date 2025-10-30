@@ -8,9 +8,7 @@ import { services } from "../../src/data/services";
 import { serviceFAQs } from "../../src/data/faqs";
 import Layout from "../../src/components/Layout";
 
-const baseUrl =
-  (typeof process !== "undefined" && process.env.BASE_URL) ||
-  "https://cheryo-energy.sevend.io";
+const baseUrl = import.meta.env.VITE_BASE_URL || "https://cheryo-energy.sevend.io";
 
 export default function Service() {
   const { id } = useParams<{ id: string }>();
