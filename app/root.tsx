@@ -31,7 +31,6 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: rootStylesheetUrl },
     { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
     { rel: "manifest", href: "/manifest.json" },
-    { rel: "preload", as: "image", href: "/images/hero/hero-meditation-1920w.webp", type: "image/webp" },
   ];
 };
 
@@ -679,6 +678,15 @@ export default function Root() {
         <meta name="twitter:image:alt" content="Chiryo Energie: Votre énergie, votre chemin, l'équilibre à portée de mains" />
         <meta name="google-site-verification" content="MOpUQdR_qghmbFNNNyThogjUCisgAKht_yDRRClwKyM" />
         <link rel="canonical" href={baseUrl + location.pathname} />
+
+        {/* Progressive image preloads for hero (Chromium supports imagesrcset/imagesizes) */}
+        <link
+          rel="preload"
+          as="image"
+          imageSrcSet="/images/hero/hero-meditation-640w.avif 640w, /images/hero/hero-meditation-960w.avif 960w, /images/hero/hero-meditation-1280w.avif 1280w, /images/hero/hero-meditation-1920w.avif 1920w"
+          imageSizes="100vw"
+          type="image/avif"
+        />
 
         <Links />
         {schemas.map((schema, index) => (
