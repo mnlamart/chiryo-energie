@@ -65,7 +65,7 @@ export default function Hero() {
                     /images/hero/hero-meditation-1920w.jpg 1920w"
             sizes="100vw"
           />
-          <img 
+            <img
             src="/images/hero/hero-meditation-1920w.jpg" 
             alt="Bien-être et relaxation - Services holistiques à Joué-Les-Tours" 
             className="w-full h-full object-cover"
@@ -73,7 +73,6 @@ export default function Hero() {
             height={1080}
             loading="eager"
             fetchPriority="high"
-            decoding="async"
           />
         </picture>
       </div>

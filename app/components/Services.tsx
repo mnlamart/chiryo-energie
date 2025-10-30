@@ -17,7 +17,9 @@ export default function Services() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
           {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <div key={service.id} role="listitem">
+              <ServiceCard service={service} />
+            </div>
           ))}
         </div>
       </Container>
