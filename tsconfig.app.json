@@ -25,5 +25,11 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "app", "vite-env.d.ts", ".react-router/types/**/*", "**/*.ts", "**/*.tsx"]
+  "include": [
+    "src/**/*", 
+    "app/**/*", 
+    "app/routes/.well-known/**/*",
+    "vite-env.d.ts", 
+    ".react-router/types/**/*"
+  ]
 }

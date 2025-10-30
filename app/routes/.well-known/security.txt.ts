@@ -2,9 +2,7 @@ import type { LoaderFunctionArgs } from "react-router";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loader(_args: LoaderFunctionArgs) {
-  const baseUrl =
-    (typeof process !== "undefined" && process.env.BASE_URL) ||
-    "https://cheryo-energy.sevend.io";
+  const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
 
   const securityTxt = `Contact: mailto:chiryoenergie@gmail.com
 Expires: 2026-12-31T23:59:59.000Z
