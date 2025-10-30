@@ -74,11 +74,15 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
         withoutEnlargement: true
       });
       
+      // Compression settings (more aggressive for hero to improve LCP)
+      const webpQuality = isHero ? 60 : 75;
+      const jpegQuality = isHero ? 70 : 80;
+
       // Generate WebP version
       const webpPath = join(outputDir, `${name}-${size}w.webp`);
       await image
         .clone()
-        .webp({ quality: 85, effort: 6 })
+        .webp({ quality: webpQuality, effort: 6 })
         .toFile(webpPath);
       
       const webpStats = await sharp(webpPath).metadata();
@@ -88,7 +92,7 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
       const jpegPath = join(outputDir, `${name}-${size}w.jpg`);
       await image
         .clone()
-        .jpeg({ quality: 85, progressive: true, mozjpeg: true })
+        .jpeg({ quality: jpegQuality, progressive: true, mozjpeg: true })
         .toFile(jpegPath);
       
       const jpegStats = await sharp(jpegPath).metadata();
