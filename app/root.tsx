@@ -13,14 +13,15 @@ import { testimonials } from "./data/testimonials";
 import { generalFAQs, serviceFAQs } from "./data/faqs";
 import { useLocation } from "react-router";
 import { honeypotMiddleware, getHoneypotInputProps } from "./middleware/honeypot";
+import { lazy, Suspense } from "react";
 import { HoneypotProvider } from "remix-utils/honeypot/react";
 import * as Toast from "@radix-ui/react-toast";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SkipToContent from "./components/SkipToContent";
-import ScrollToTop from "./components/ScrollToTop";
-import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
-import FloatingActionButton from "./components/FloatingActionButton";
+const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
+const ScrollToTopOnRouteChange = lazy(() => import("./components/ScrollToTopOnRouteChange"));
+const FloatingActionButton = lazy(() => import("./components/FloatingActionButton"));
 
 import rootStylesheetUrl from "./styles/index.css?url";
 
@@ -693,14 +694,20 @@ export default function Root() {
           <HoneypotProvider {...honeypotInputProps}>
             <div className="flex flex-col min-h-screen">
               <SkipToContent />
-              <ScrollToTopOnRouteChange />
+              <Suspense fallback={null}>
+                <ScrollToTopOnRouteChange />
+              </Suspense>
               <Header />
-              <main id="main-content" className="flex-grow">
+              <main id="main-content" className="grow">
                 <Outlet />
               </main>
               <Footer />
-              <ScrollToTop />
-              <FloatingActionButton />
+              <Suspense fallback={null}>
+                <ScrollToTop />
+              </Suspense>
+              <Suspense fallback={null}>
+                <FloatingActionButton />
+              </Suspense>
             </div>
           </HoneypotProvider>
           <Toast.Viewport className="fixed bottom-0 right-0 z-100 flex flex-col p-6 gap-2 w-full max-w-[420px] m-0 list-none outline-none" />
