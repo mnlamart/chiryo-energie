@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import sharp from 'sharp';
-import { readdir, mkdir } from 'fs/promises';
+import { readdir, mkdir, stat } from 'fs/promises';
 import { join, parse } from 'path';
 import { existsSync } from 'fs';
 
@@ -75,7 +75,7 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
       });
       
       // Compression settings (more aggressive for hero to improve LCP)
-      const avifQuality = isHero ? 45 : 55; // AVIF quality (0-100) ~ lower yields small sizes
+      const avifQuality = isHero ? 45 : 55; // AVIF quality (0-100)
       const webpQuality = isHero ? 60 : 70;
       const jpegQuality = isHero ? 70 : 75;
 
@@ -83,8 +83,10 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
       const avifPath = join(outputDir, `${name}-${size}w.avif`);
       await image
         .clone()
-        .avif({ quality: avifQuality, effort: 6 })
+        .avif({ quality: avifQuality, effort: 9 })
         .toFile(avifPath);
+      const avifBytes = (await stat(avifPath)).size;
+      console.log(`  ✓ ${name}-${size}w.avif (${Math.round(avifBytes / 1024)}KB)`);
 
       // Generate WebP version
       const webpPath = join(outputDir, `${name}-${size}w.webp`);
@@ -92,9 +94,8 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
         .clone()
         .webp({ quality: webpQuality, effort: 6 })
         .toFile(webpPath);
-      
-      const webpStats = await sharp(webpPath).metadata();
-      console.log(`  ✓ ${name}-${size}w.webp (${Math.round(webpStats.size / 1024)}KB)`);
+      const webpBytes = (await stat(webpPath)).size;
+      console.log(`  ✓ ${name}-${size}w.webp (${Math.round(webpBytes / 1024)}KB)`);
       
       // Generate optimized JPEG version
       const jpegPath = join(outputDir, `${name}-${size}w.jpg`);
@@ -102,9 +103,8 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
         .clone()
         .jpeg({ quality: jpegQuality, progressive: true, mozjpeg: true })
         .toFile(jpegPath);
-      
-      const jpegStats = await sharp(jpegPath).metadata();
-      console.log(`  ✓ ${name}-${size}w.jpg (${Math.round(jpegStats.size / 1024)}KB)`);
+      const jpegBytes = (await stat(jpegPath)).size;
+      console.log(`  ✓ ${name}-${size}w.jpg (${Math.round(jpegBytes / 1024)}KB)`);
       
     } catch (error) {
       console.error(`  ✗ Error processing ${filename} at ${size}w:`, error.message);
@@ -127,10 +127,18 @@ async function optimizeServiceImage(inputPath, outputDir, filename, sizes) {
       // Square variant
       {
         const sq = base.clone().resize(size, size, { fit: 'cover', position: 'entropy' });
+        const avifPath = join(outputDir, `${baseName}-sq-${size}w.avif`);
+        await sq.clone().avif({ quality: 55, effort: 9 }).toFile(avifPath);
+        const avifBytes = (await stat(avifPath)).size;
+        console.log(`  ✓ ${baseName}-sq-${size}w.avif (${Math.round(avifBytes / 1024)}KB)`);
         const webpPath = join(outputDir, `${baseName}-sq-${size}w.webp`);
-        await sq.clone().webp({ quality: 85, effort: 6 }).toFile(webpPath);
+        await sq.clone().webp({ quality: 70, effort: 6 }).toFile(webpPath);
+        const webpBytes = (await stat(webpPath)).size;
+        console.log(`  ✓ ${baseName}-sq-${size}w.webp (${Math.round(webpBytes / 1024)}KB)`);
         const jpegPath = join(outputDir, `${baseName}-sq-${size}w.jpg`);
-        await sq.clone().jpeg({ quality: 85, progressive: true, mozjpeg: true }).toFile(jpegPath);
+        await sq.clone().jpeg({ quality: 75, progressive: true, mozjpeg: true }).toFile(jpegPath);
+        const jpegBytes = (await stat(jpegPath)).size;
+        console.log(`  ✓ ${baseName}-sq-${size}w.jpg (${Math.round(jpegBytes / 1024)}KB)`);
         console.log(`  ✓ ${baseName}-sq-${size}w.(webp|jpg)`);
       }
 
@@ -138,10 +146,18 @@ async function optimizeServiceImage(inputPath, outputDir, filename, sizes) {
       {
         const targetHeight = Math.round(size * 3 / 4);
         const horiz = base.clone().resize(size, targetHeight, { fit: 'cover', position: 'entropy' });
+        const avifPath = join(outputDir, `${baseName}-h-${size}w.avif`);
+        await horiz.clone().avif({ quality: 55, effort: 9 }).toFile(avifPath);
+        const avifBytesH = (await stat(avifPath)).size;
+        console.log(`  ✓ ${baseName}-h-${size}w.avif (${Math.round(avifBytesH / 1024)}KB)`);
         const webpPath = join(outputDir, `${baseName}-h-${size}w.webp`);
-        await horiz.clone().webp({ quality: 85, effort: 6 }).toFile(webpPath);
+        await horiz.clone().webp({ quality: 70, effort: 6 }).toFile(webpPath);
+        const webpBytesH = (await stat(webpPath)).size;
+        console.log(`  ✓ ${baseName}-h-${size}w.webp (${Math.round(webpBytesH / 1024)}KB)`);
         const jpegPath = join(outputDir, `${baseName}-h-${size}w.jpg`);
-        await horiz.clone().jpeg({ quality: 85, progressive: true, mozjpeg: true }).toFile(jpegPath);
+        await horiz.clone().jpeg({ quality: 75, progressive: true, mozjpeg: true }).toFile(jpegPath);
+        const jpegBytesH = (await stat(jpegPath)).size;
+        console.log(`  ✓ ${baseName}-h-${size}w.jpg (${Math.round(jpegBytesH / 1024)}KB)`);
         console.log(`  ✓ ${baseName}-h-${size}w.(webp|jpg)`);
       }
 
