@@ -3,7 +3,7 @@ import { services } from "../data/services";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loader(_args: LoaderFunctionArgs) {
-  const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
+  const baseUrl = process.env.BASE_URL || "https://chiryo-energie.sevend.io";
   const currentDate = new Date().toISOString().split("T")[0];
 
   const urls = [

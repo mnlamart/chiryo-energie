@@ -275,7 +275,7 @@ export default function Contact() {
   }, [lastResult]);
 
   const rootData = useRouteLoaderData<typeof rootLoader>("root");
-  const baseUrl = rootData?.baseUrl || "https://cheryo-energy.sevend.io";
+  const baseUrl = rootData?.baseUrl || "https://chiryo-energie.sevend.io";
 
   return (
     <>

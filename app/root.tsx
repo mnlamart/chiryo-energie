@@ -645,7 +645,7 @@ export const middleware = honeypotMiddleware;
 export async function loader(_args: LoaderFunctionArgs) {
   const honeypotInputProps = await getHoneypotInputProps();
   const allowIndexing = process.env.ALLOW_INDEXING === "true";
-  const baseUrl = process.env.BASE_URL || "https://cheryo-energy.sevend.io";
+  const baseUrl = process.env.BASE_URL || "https://chiryo-energie.sevend.io";
   return data({ honeypotInputProps, allowIndexing, baseUrl });
 }
 

@@ -22,12 +22,12 @@ Create a `.env` file in the root directory with the following variables:
 ### Contact Form Email Configuration
 - `CONTACT_EMAIL_FROM` (optional)
   - Verified sender email address (must be verified with Resend)
-  - Should be a domain you own (e.g., `contact@cheryo-energy.sevend.io`)
-  - Defaults to `contact@cheryo-energy.sevend.io` if not set
+  - Should be a domain you own (e.g., `contact@chiryo-energie.sevend.io`)
+  - Defaults to `contact@chiryo-energie.sevend.io` if not set
 
 - `CONTACT_EMAIL_TO` (optional)
   - Email address where contact form submissions are delivered
-  - Defaults to `contact@cheryo-energy.sevend.io` if not set
+  - Defaults to `contact@chiryo-energie.sevend.io` if not set
 
 ### Security
 - `HONEYPOT_ENCRYPTION_SEED` (optional)

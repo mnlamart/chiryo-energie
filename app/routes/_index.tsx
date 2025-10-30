@@ -11,7 +11,7 @@ import type { loader as rootLoader } from "../root";
 export default function Index() {
   const location = useLocation();
   const rootData = useRouteLoaderData<typeof rootLoader>("root");
-  const baseUrl = rootData?.baseUrl || "https://cheryo-energy.sevend.io";
+  const baseUrl = rootData?.baseUrl || "https://chiryo-energie.sevend.io";
 
   // Handle hash scrolling when page loads or hash changes
   useEffect(() => {

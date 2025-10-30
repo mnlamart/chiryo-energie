@@ -12,7 +12,7 @@ export default function Service() {
   const { id } = useParams<{ id: string }>();
   const service = services.find((s) => s.id === id);
   const rootData = useRouteLoaderData<typeof rootLoader>("root");
-  const baseUrl = rootData?.baseUrl || "https://cheryo-energy.sevend.io";
+  const baseUrl = rootData?.baseUrl || "https://chiryo-energie.sevend.io";
 
   if (!service) {
     return (
