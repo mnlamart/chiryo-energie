@@ -25,6 +25,7 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: rootStylesheetUrl },
     { rel: "icon", type: "image/svg+xml", href: "/vite.svg" },
     { rel: "manifest", href: "/manifest.json" },
+    { rel: "preload", as: "image", href: "/images/hero/hero-meditation.jpg" },
   ];
 };
 

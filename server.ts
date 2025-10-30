@@ -14,19 +14,44 @@ const app = express();
 // compress responses
 app.use(compression());
 
-// Remix fingerprints its assets so we can cache forever.
+// Long-term cache for images (1 year, immutable)
+app.use(
+  "/images",
+  express.static("build/client/images", {
+    immutable: true,
+    maxAge: "1y",
+    setHeaders: (res) => {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    },
+  })
+);
+
+// Fingerprinted assets (1 year, immutable)
 app.use(
   "/assets",
   express.static("build/client/assets", {
     immutable: true,
     maxAge: "1y",
     fallthrough: false,
+    setHeaders: (res) => {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    },
   })
 );
 
-// Everything else (like favicon.ico) is cached for an hour. You may want to be
-// more aggressive with this caching.
-app.use(express.static("build/client", { maxAge: "1h" }));
+// Other static files (24 hours for most, 5 minutes for HTML)
+app.use(
+  express.static("build/client", { 
+    maxAge: "1d",
+    setHeaders: (res, path) => {
+      if (path.endsWith('.html')) {
+        res.setHeader("Cache-Control", "public, max-age=300, must-revalidate");
+      } else {
+        res.setHeader("Cache-Control", "public, max-age=86400");
+      }
+    },
+  })
+);
 
 // handle React Router requests (catch-all)
 const requestHandler = createRequestHandler({
