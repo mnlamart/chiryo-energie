@@ -14,6 +14,12 @@ export default function About() {
             <div className="md:col-span-1">
               <picture>
                 <source
+                  type="image/avif"
+                  srcSet="/images/hero/about-wellness-640w.avif 640w,
+                          /images/hero/about-wellness-960w.avif 960w"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <source
                   type="image/webp"
                   srcSet="/images/hero/about-wellness-640w.webp 640w,
                           /images/hero/about-wellness-960w.webp 960w"

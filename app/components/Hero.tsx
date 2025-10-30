@@ -49,6 +49,14 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 opacity-30" aria-hidden="true">
         <picture>
+            <source
+              type="image/avif"
+              srcSet="/images/hero/hero-meditation-640w.avif 640w,
+                      /images/hero/hero-meditation-960w.avif 960w,
+                      /images/hero/hero-meditation-1280w.avif 1280w,
+                      /images/hero/hero-meditation-1920w.avif 1920w"
+              sizes="100vw"
+            />
           <source
             type="image/webp"
             srcSet="/images/hero/hero-meditation-640w.webp 640w,

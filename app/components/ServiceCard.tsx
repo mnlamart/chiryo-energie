@@ -17,6 +17,14 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         <Link to={`/services/${service.id}`} className="mb-4 -mx-6 -mt-6 block">
           <picture>
             <source
+              type="image/avif"
+              srcSet={`${imageDir}/${imageName}-h-400w.avif 400w,
+                      ${imageDir}/${imageName}-h-640w.avif 640w,
+                      ${imageDir}/${imageName}-h-800w.avif 800w,
+                      ${imageDir}/${imageName}-h-1200w.avif 1200w`}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+            <source
               type="image/webp"
               srcSet={`${imageDir}/${imageName}-h-400w.webp 400w,
                       ${imageDir}/${imageName}-h-640w.webp 640w,

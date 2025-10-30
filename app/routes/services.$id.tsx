@@ -72,6 +72,14 @@ export default function Service() {
                   <div>
                     <picture>
                       <source
+                        type="image/avif"
+                        srcSet={`${imageDir}/${imageName}-sq-400w.avif 400w,
+                                ${imageDir}/${imageName}-sq-640w.avif 640w,
+                                ${imageDir}/${imageName}-sq-800w.avif 800w,
+                                ${imageDir}/${imageName}-sq-1200w.avif 1200w`}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <source
                         type="image/webp"
                         srcSet={`${imageDir}/${imageName}-sq-400w.webp 400w,
                                 ${imageDir}/${imageName}-sq-640w.webp 640w,

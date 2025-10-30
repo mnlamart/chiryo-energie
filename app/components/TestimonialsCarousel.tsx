@@ -69,7 +69,11 @@ export default function TestimonialsCarousel() {
             <div className="bg-gradient-to-br from-primary-50 to-warm-50 rounded-lg p-8 shadow-lg border border-primary-100 min-h-[300px] flex flex-col justify-center transition-opacity duration-500">
               <div className="flex items-start gap-6 mb-6">
                 {testimonials[currentIndex].avatar && (
-                  <picture>
+      <picture>
+        <source
+          type="image/avif"
+          srcSet={testimonials[currentIndex].avatar.replace(/\.(jpg|jpeg|png|webp)$/i, '-150w.avif')}
+        />
                     <source
                       type="image/webp"
                       srcSet={testimonials[currentIndex].avatar.replace(/\.(jpg|jpeg|png)$/i, '-150w.webp')}

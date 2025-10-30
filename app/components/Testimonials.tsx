@@ -22,7 +22,11 @@ export default function Testimonials() {
             >
               <div className="flex items-start gap-4 mb-4">
                 {testimonial.avatar && (
-                  <picture>
+      <picture>
+        <source
+          type="image/avif"
+          srcSet={testimonial.avatar.replace(/\.(jpg|jpeg|png|webp)$/i, '-150w.avif')}
+        />
                     <source
                       type="image/webp"
                       srcSet={testimonial.avatar.replace(/\.(jpg|jpeg|png)$/i, '-150w.webp')}

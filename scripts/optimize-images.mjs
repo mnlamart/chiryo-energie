@@ -75,8 +75,16 @@ async function optimizeImage(inputPath, outputDir, filename, sizes, options = {}
       });
       
       // Compression settings (more aggressive for hero to improve LCP)
+      const avifQuality = isHero ? 45 : 55; // AVIF quality (0-100) ~ lower yields small sizes
       const webpQuality = isHero ? 60 : 70;
       const jpegQuality = isHero ? 70 : 75;
+
+      // Generate AVIF version (preferred modern format)
+      const avifPath = join(outputDir, `${name}-${size}w.avif`);
+      await image
+        .clone()
+        .avif({ quality: avifQuality, effort: 6 })
+        .toFile(avifPath);
 
       // Generate WebP version
       const webpPath = join(outputDir, `${name}-${size}w.webp`);
