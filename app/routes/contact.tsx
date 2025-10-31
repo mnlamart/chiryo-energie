@@ -105,15 +105,15 @@ const ContactHeader = () => (
 );
 
 const ContactInfo = () => (
-  <div className="space-y-6">
+  <div className="space-y-8">
     <div>
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
         Informations de contact
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 mb-8">
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-full bg-brand-hover/30 flex items-center justify-center shrink-0">
             <svg
               className="w-5 h-5 text-primary-600"
               fill="none"
@@ -140,7 +140,7 @@ const ContactInfo = () => (
         </div>
 
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-full bg-brand-hover/30 flex items-center justify-center shrink-0">
             <svg
               className="w-5 h-5 text-primary-600"
               fill="none"
@@ -167,7 +167,7 @@ const ContactInfo = () => (
         </div>
 
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-full bg-brand-hover/30 flex items-center justify-center shrink-0">
             <svg
               className="w-5 h-5 text-primary-600"
               fill="none"
@@ -190,29 +190,87 @@ const ContactInfo = () => (
           </div>
           <div>
             <p className="font-semibold text-gray-900">
-              Localisation
+              Adresse
             </p>
             <p className="text-gray-700">
-              101 Rue de Saint-Léger
-              <br />
-              {contactInfo.location}
+              {contactInfo.address}
             </p>
           </div>
         </div>
+
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full bg-brand-hover/30 flex items-center justify-center shrink-0">
+            <svg
+              className="w-5 h-5 text-primary-600"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <div>
+            <p className="font-semibold text-gray-900">Réseaux sociaux</p>
+            <a
+              href="https://www.facebook.com/profile.php?id=61577552733494"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-600 hover:text-primary-700 transition-colors"
+            >
+              Facebook - Chiryo Energie
+            </a>
+          </div>
+        </div>
+
+        <div className="pt-4 border-t border-white/60">
+          <p className="text-sm text-gray-700 mb-2">
+            <strong>Horaires de consultation:</strong>
+          </p>
+          <p className="text-sm text-gray-600 italic">
+            Séances en présentiel ou à distance • Sur rendez-vous
+          </p>
+        </div>
       </div>
+    </div>
+
+    {/* Google Map - Desktop only (inside ContactInfo) */}
+    <div className="hidden md:block">
+      <p className="text-gray-600 mb-4">
+        {contactInfo.address || contactInfo.location}
+      </p>
+      <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-white/40">
+        <iframe
+          src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Localisation de Chiryo Energie à Joué-Les-Tours"
+          aria-label="Carte Google Maps montrant la localisation de Chiryo Energie à Joué-Les-Tours"
+        />
+      </div>
+      <p className="text-center text-sm text-gray-500 mt-4">
+        <a
+          href="https://www.google.com/maps/search/101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary-600 hover:text-primary-700 underline"
+        >
+          Ouvrir dans Google Maps
+        </a>
+      </p>
     </div>
   </div>
 );
 
-const ContactMap = () => (
-  <div className="mt-16">
-    <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-      Localisation
-    </h2>
-    <p className="text-center text-gray-600 mb-8">
-      Chiryo Energie - {contactInfo.address || contactInfo.location}
+// Google Map component - Mobile only (shown below form)
+const GoogleMap = () => (
+  <div className="md:hidden order-3">
+    <p className="text-gray-600 mb-4">
+      {contactInfo.address || contactInfo.location}
     </p>
-    <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-gray-200">
+    <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-white/40">
       <iframe
         src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
         width="100%"
@@ -288,15 +346,14 @@ export default function Contact() {
       <meta property="og:url" content={`${baseUrl}/contact`} />
       <meta name="twitter:title" content="Contact - Chiryo Energie" />
       <meta name="twitter:description" content="Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, France." />
-      <article className="py-20 bg-gray-50">
+      <article className="py-20 bg-brand-bg">
         <Container>
           <div className="max-w-4xl mx-auto">
             <ContactHeader />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <ContactInfo />
-
-              {/* Contact Form */}
-              <div>
+            <div className="bg-brand-card p-6 md:p-8 shadow-lg border border-white/40">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                {/* Contact Form - First on mobile, right column on desktop */}
+                <div className="order-1 md:order-2 space-y-12">
                 <form
                   id={form.id}
                   method="post"
@@ -305,7 +362,7 @@ export default function Contact() {
                   noValidate={form.noValidate}
                 >
                   {form.errors && form.errors.length > 0 && (
-                    <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                    <div className="bg-red-100/80 border border-red-300 text-red-900 px-4 py-3 rounded-lg">
                       {form.errors.map((error, index) => (
                         <div key={index}>{error}</div>
                       ))}
@@ -324,7 +381,7 @@ export default function Contact() {
                     </label>
                     <input
                       {...getInputProps(fields.name, { type: "text" })}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors border-gray-300"
+                      className="w-full px-4 py-2 bg-white border border-white/60 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
                       aria-invalid={fields.name.errors ? "true" : "false"}
                       aria-describedby={
                         fields.name.errors ? `${fields.name.id}-error` : undefined
@@ -351,7 +408,7 @@ export default function Contact() {
                     </label>
                     <input
                       {...getInputProps(fields.email, { type: "email" })}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors border-gray-300"
+                      className="w-full px-4 py-2 bg-white border border-white/60 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
                       aria-invalid={fields.email.errors ? "true" : "false"}
                       aria-describedby={
                         fields.email.errors ? `${fields.email.id}-error` : undefined
@@ -381,7 +438,7 @@ export default function Contact() {
                         type: "tel",
                       })}
                       placeholder="06 12 34 56 78"
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors border-gray-300"
+                      className="w-full px-4 py-2 bg-white border border-white/60 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
                       aria-invalid={fields.phone.errors ? "true" : "false"}
                       aria-describedby={
                         fields.phone.errors ? `${fields.phone.id}-error` : undefined
@@ -409,7 +466,7 @@ export default function Contact() {
                     <textarea
                       {...getTextareaProps(fields.message)}
                       rows={5}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors resize-none border-gray-300"
+                      className="w-full px-4 py-2 bg-white border border-white/60 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors resize-none"
                       aria-invalid={fields.message.errors ? "true" : "false"}
                       aria-describedby={
                         fields.message.errors
@@ -435,16 +492,24 @@ export default function Contact() {
                       : "Envoyer le message"}
                   </Button>
                 </form>
+
+                {/* Google Map - Mobile only (directly below form) */}
+                <GoogleMap />
+                </div>
+
+                {/* Contact Info - Second on mobile, left column on desktop */}
+                <div className="order-2 md:order-1">
+                  <ContactInfo />
+                </div>
               </div>
             </div>
 
-            <ContactMap />
           </div>
         </Container>
       </article>
 
       <Toast.Root
-        className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg shadow-lg data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=end]:animate-swipeOut"
+        className="bg-green-100/90 border border-green-300 text-green-900 px-4 py-3 rounded-lg shadow-lg data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=end]:animate-swipeOut"
         open={open}
         onOpenChange={setOpen}
       >

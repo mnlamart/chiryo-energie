@@ -5,7 +5,7 @@ import { generalFAQs } from '../data/faqs';
 
 export default function FAQs() {
   return (
-    <section className="py-20 bg-gray-50" aria-labelledby="faq-heading">
+    <section className="py-20 bg-brand-bg" aria-labelledby="faq-heading">
       <Container>
         <div className="max-w-4xl mx-auto">
           <header className="text-center mb-12">
@@ -17,20 +17,29 @@ export default function FAQs() {
             </p>
           </header>
           
-          <Accordion.Root 
-            type="single" 
-            collapsible 
-            className="space-y-4"
-          >
-            {generalFAQs.map((faq, index) => (
-              <FAQ 
-                key={index}
-                value={`faq-${index}`}
-                question={faq.question}
-                answer={faq.answer}
-              />
+          <div className="space-y-12">
+            {generalFAQs.map((category, categoryIndex) => (
+              <div key={categoryIndex} className="space-y-4">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">
+                  {category.title}
+                </h3>
+                <Accordion.Root 
+                  type="single" 
+                  collapsible 
+                  className="space-y-4"
+                >
+                  {category.faqs.map((faq, faqIndex) => (
+                    <FAQ 
+                      key={faqIndex}
+                      value={`category-${categoryIndex}-faq-${faqIndex}`}
+                      question={faq.question}
+                      answer={faq.answer}
+                    />
+                  ))}
+                </Accordion.Root>
+              </div>
             ))}
-          </Accordion.Root>
+          </div>
         </div>
       </Container>
     </section>

@@ -1,48 +1,82 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #f5f1e8;
-  --color-primary-100: #e8ddd0;
-  --color-primary-200: #d4c1a8;
-  --color-primary-300: #ba9d7a;
-  --color-primary-400: #a17e59;
-  --color-primary-500: #8b6644;
-  --color-primary-600: #72533a;
-  --color-primary-700: #5c4231;
-  --color-primary-800: #4d372b;
-  --color-primary-900: #423027;
-  
-  --color-accent-50: #f0f7f4;
-  --color-accent-100: #dceee6;
-  --color-accent-200: #bcddcd;
-  --color-accent-300: #90c4ad;
-  --color-accent-400: #5fa587;
-  --color-accent-500: #3d856a;
-  --color-accent-600: #2d6b55;
-  --color-accent-700: #265646;
-  --color-accent-800: #21463a;
-  --color-accent-900: #1d3b32;
-  
-  --color-warm-50: #fef7f0;
-  --color-warm-100: #feede0;
-  --color-warm-200: #fcd8bf;
-  --color-warm-300: #f9bd94;
-  --color-warm-400: #f5975e;
-  --color-warm-500: #f27738;
-  --color-warm-600: #e3591a;
-  --color-warm-700: #bc4514;
-  --color-warm-800: #973818;
-  --color-warm-900: #7a3016;
+  /* Border radius - all squared except full */
+  --radius: 0px;
+  --radius-none: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 50%;
+
+  --color-primary-50: #faf8f5;
+  --color-primary-100: #f4f0e8;
+  --color-primary-200: #e8ddd0;
+  --color-primary-300: #d4c1a8;
+  --color-primary-400: #ba9d7a;
+  --color-primary-500: #a17e59;
+  --color-primary-600: #8b6644;
+  --color-primary-700: #72533a;
+  --color-primary-800: #5c4231;
+  --color-primary-900: #4d372b;
+
+  --color-accent-50: #f5f7f6;
+  --color-accent-100: #e5eae8;
+  --color-accent-200: #cbd5d1;
+  --color-accent-300: #a5b5ae;
+  --color-accent-400: #789088;
+  --color-accent-500: #5d746c;
+  --color-accent-600: #4a5e57;
+  --color-accent-700: #3e4f49;
+  --color-accent-800: #36423d;
+  --color-accent-900: #2f3834;
+
+  --color-warm-50: #fff8f5;
+  --color-warm-100: #ffede0;
+  --color-warm-200: #ffd8bf;
+  --color-warm-300: #ffbd94;
+  --color-warm-400: #ff9d5e;
+  --color-warm-500: #ff8538;
+  --color-warm-600: #e66d1a;
+  --color-warm-700: #bc5814;
+  --color-warm-800: #964718;
+  --color-warm-900: #7a3c16;
+
+  /* Brand colors */
+  --color-brand-bg: #f6e0d2;
+  --color-brand-card: #f9e9df;
+  --color-brand-header: #f6d2d2;
+  --color-brand-accent: #F2BDBD;
+  --color-brand-hover: #eea7a7;
+  --color-brand-text: #706964;
 }
 
 @layer base {
+  * {
+    border-radius: 0 !important;
+  }
+  
+  /* Keep round buttons and avatars circular */
+  .rounded-full,
+  [class*="rounded-full"],
+  button.rounded-full,
+  a.rounded-full {
+    border-radius: 9999px !important;
+  }
+
   body {
-    @apply text-gray-900 bg-white;
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-text);
+    overflow-x: hidden;
   }
   
   /* Smooth scrolling for anchor links */
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   /* Screen reader only class */
@@ -148,4 +182,75 @@
   .animate-swipeOut {
     animation: swipeOut 100ms ease-out;
   }
+
+  /* Hover Card animations */
+  @keyframes slideUpAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideRightAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideDownAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideLeftAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slideUpAndFade {
+    animation: slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-slideRightAndFade {
+    animation: slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-slideDownAndFade {
+    animation: slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-slideLeftAndFade {
+    animation: slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
+

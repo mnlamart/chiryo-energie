@@ -1,5 +1,7 @@
 export const aboutContent = {
   title: 'Qui suis-je?',
+  name: 'Noëlla Angignard',
+  intro: 'Psycho énergéticienne à Joué-Les-Tours, je suis Magnétiseuse coupeuse de feu, Maître enseignante en Reiki et Sophro relaxologue. Héritière d\'un patrimoine familial en énergétique, j\'accompagne chacun vers son équilibre et son bien-être.',
   paragraphs: [
     'Magnétiseuse coupeuse de feu, voyante et médium, j\'ai hérité d\'un véritable packaging familial: une arrière grand-mère qui coupait le feu, un grand-père radiesthésiste et des oncles médiums et cartomanciens. J\'ai donc évolué dans un univers familial où pendule, tarot de Marseille et coton magnétisé faisaient partie du quotidien.',
     'J\'ai souvent eu l\'impression depuis toute petite que je n\'étais pas "comme tout le monde", mon hypersensibilité à mon environnement, aux gens, aux lieux que je croisais ne faisait que s\'accroître au fil du temps jusqu\'à devenir pressante. Il me fallait donc mettre cette sensibilité au service des gens.',
@@ -11,11 +13,7 @@ export const aboutContent = {
 
 export const heroContent = {
   title: 'Votre énergie, votre chemin, l\'équilibre à portée de mains',
-  subtitle: 'Je suis ravie de vous accueillir là où débute votre histoire.',
-  subtitle2: 'Rejoignez-moi pour atteindre votre plein potentiel, ensemble!',
-  description: 'Parce que votre bien-être n\'attend pas, je vous propose plusieurs approches holistiques afin de prendre en charge l\'esprit, le corps et l\'énergie et ainsi vous aider à favoriser la libération des blocages.',
-  description2: 'En stimulant la circulation et en apaisant les tensions émotionnelles, les séances énergétiques vous aident à retrouver une sensation d\'harmonie profonde encourageant le processus d\'auto-guérison.',
-  description3: 'Découvrez dès à présent les différents services personnalisés et comment vous aider à atteindre votre propre équilibre intérieur.'
+  subtitle: 'Services holistiques de bien-être pour prendre en charge l\'esprit, le corps et l\'énergie. Découvrez comment retrouver votre harmonie et atteindre votre équilibre intérieur.'
 };
 
 export const contactInfo = {

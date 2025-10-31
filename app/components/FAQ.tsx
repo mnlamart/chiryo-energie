@@ -10,10 +10,10 @@ export default function FAQ({ value, question, answer }: FAQProps) {
   return (
     <Accordion.Item
       value={value}
-      className="bg-gradient-to-r from-primary-50 to-warm-50 rounded-lg border border-primary-100 overflow-hidden focus-within:relative focus-within:z-10"
+      className="bg-brand-card rounded-lg border border-white/40 overflow-hidden focus-within:relative focus-within:z-10"
     >
       <Accordion.Header className="flex">
-        <Accordion.Trigger className="group w-full text-left p-6 flex items-center justify-between hover:bg-primary-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer data-[state=open]:bg-primary-100">
+        <Accordion.Trigger className="group w-full text-left p-6 flex items-center justify-between hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer data-[state=open]:bg-white/30">
           <h3 className="font-bold text-gray-900 text-lg pr-4">
             {question}
           </h3>

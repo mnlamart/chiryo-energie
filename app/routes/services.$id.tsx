@@ -51,7 +51,7 @@ export default function Service() {
       <meta property="og:url" content={`${baseUrl}/services/${service.id}`} />
       <meta name="twitter:title" content={`${service.title} à Joué-Les-Tours | Chiryo Energie`} />
       <meta name="twitter:description" content={description} />
-      <div className="py-20 bg-white">
+      <div className="py-20 bg-brand-bg">
         <Container>
           <Breadcrumbs
             items={[
@@ -74,7 +74,6 @@ export default function Service() {
                       <source
                         type="image/avif"
                         srcSet={`${imageDir}/${imageName}-sq-400w.avif 400w,
-                                ${imageDir}/${imageName}-sq-640w.avif 640w,
                                 ${imageDir}/${imageName}-sq-800w.avif 800w,
                                 ${imageDir}/${imageName}-sq-1200w.avif 1200w`}
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -82,7 +81,6 @@ export default function Service() {
                       <source
                         type="image/webp"
                         srcSet={`${imageDir}/${imageName}-sq-400w.webp 400w,
-                                ${imageDir}/${imageName}-sq-640w.webp 640w,
                                 ${imageDir}/${imageName}-sq-800w.webp 800w,
                                 ${imageDir}/${imageName}-sq-1200w.webp 1200w`}
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -90,7 +88,6 @@ export default function Service() {
                       <source
                         type="image/jpeg"
                         srcSet={`${imageDir}/${imageName}-sq-400w.jpg 400w,
-                                ${imageDir}/${imageName}-sq-640w.jpg 640w,
                                 ${imageDir}/${imageName}-sq-800w.jpg 800w,
                                 ${imageDir}/${imageName}-sq-1200w.jpg 1200w`}
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -137,7 +134,7 @@ export default function Service() {
                   </p>
 
                   {service.notes && (
-                    <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-primary-500">
+                    <div className="bg-brand-card rounded-lg p-4 border-l-4 border-primary-500">
                       <p className="text-gray-700 italic">{service.notes}</p>
                     </div>
                   )}
@@ -186,7 +183,7 @@ export default function Service() {
                     <Link
                       key={relatedService.id}
                       to={`/services/${relatedService.id}`}
-                      className="block p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200"
+                      className="block p-4 bg-brand-card rounded-lg shadow-md hover:shadow-lg transition-shadow border border-white/40"
                     >
                       <h3 className="text-lg font-semibold text-primary-600 mb-2 hover:text-primary-700">
                         {relatedService.title}

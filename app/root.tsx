@@ -43,13 +43,15 @@ function generateStructuredData(pathname: string, baseUrl: string) {
     (s) => pathname === `/services/${s.id}`
   );
 
-  // 1. FAQPage Schema (for home page)
-  if (pathname === "/") {
+  // 1. FAQPage Schema (for FAQs page)
+  if (pathname === "/faqs") {
+    // Flatten categories to get all FAQs
+    const allFAQs = generalFAQs.flatMap((category) => category.faqs);
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       lastReviewed: today,
-      mainEntity: generalFAQs.map((faq) => ({
+      mainEntity: allFAQs.map((faq) => ({
         "@type": "Question",
         name: faq.question,
         acceptedAnswer: {

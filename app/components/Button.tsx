@@ -13,8 +13,8 @@ export default function Button({
 }: ButtonProps) {
   const baseClasses = 'px-6 py-3 rounded-lg font-medium transition-colors duration-200 cursor-pointer';
   const variantClasses = {
-    primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
-    secondary: 'bg-warm-100 text-gray-900 hover:bg-warm-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2'
+    primary: 'bg-brand-header text-gray-900 hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-brand-hover focus:ring-offset-2',
+    secondary: 'bg-brand-header text-gray-900 hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-brand-hover focus:ring-offset-2'
   };
 
   return (

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useLocation, useRouteLoaderData } from "react-router";
 import Hero from "../components/Hero";
+import AboutIntro from "../components/AboutIntro";
 import Services from "../components/Services";
-import About from "../components/About";
-import TestimonialsCarousel from "../components/TestimonialsCarousel";
-import FAQs from "../components/FAQs";
+import QuiSuisJe from "../components/QuiSuisJe";
+import Testimonials from "../components/Testimonials";
 import ScrollAnimation from "../components/ScrollAnimation";
 import type { loader as rootLoader } from "../root";
 
@@ -35,7 +35,7 @@ export default function Index() {
     <>
       <title>Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours</title>
       <meta name="description" content="Services holistiques de bien-être à Joué-Les-Tours : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Maître enseignante en Reiki. Consultations à Tours, Indre-et-Loire ou à distance. Prenez rendez-vous." />
-      <meta name="summary" content="Chiryo Energie offre 8 services de bien-être holistique à Joué-Les-Tours et Tours (Indre-et-Loire) : Reiki (60€), Sophro-relaxation (60€ adulte, 45€ enfant), Réflexologie (50€), Relaxation énergétique (35€), Harmonisation lymphatique (60€), Shiatsu sevrage (50€), Magnétisme (sur mesure), Médiumnité (60€). Consultations en présentiel, à domicile ou à distance." />
+      <meta name="summary" content="Chiryo Energie offre des services de bien-être holistique à Joué-Les-Tours et Tours (Indre-et-Loire) : Reiki, Sophro-relaxation, Réflexologie, Magnétisme et Médiumnité. Consultations en présentiel, à domicile ou à distance." />
       <meta name="keywords" content="Reiki Joué-Les-Tours, Sophro-relaxation Tours, Réflexologie Indre-et-Loire, Magnétiseur Tours, Médiumnité Joué-Les-Tours, bien-être holistique Centre-Val de Loire, énergéticien Tours, coupeuse de feu" />
       <meta property="og:title" content="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours" />
       <meta property="og:description" content="Services holistiques de bien-être : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Prenez rendez-vous à Joué-Les-Tours, France." />
@@ -43,17 +43,15 @@ export default function Index() {
       <meta name="twitter:title" content="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours" />
       <meta name="twitter:description" content="Services holistiques de bien-être : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité." />
       <Hero />
+      <AboutIntro />
       <ScrollAnimation>
         <Services />
       </ScrollAnimation>
-      <ScrollAnimation delay={100}>
-        <About />
+      <ScrollAnimation>
+        <QuiSuisJe />
       </ScrollAnimation>
-      <ScrollAnimation delay={200}>
-        <FAQs />
-      </ScrollAnimation>
-      <ScrollAnimation delay={300}>
-        <TestimonialsCarousel />
+      <ScrollAnimation>
+        <Testimonials />
       </ScrollAnimation>
     </>
   );

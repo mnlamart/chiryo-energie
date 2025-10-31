@@ -4,22 +4,22 @@ import { services } from '../data/services';
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-white" aria-labelledby="services-heading">
+    <section id="services" className="py-12 md:py-16 bg-brand-bg" aria-labelledby="services-heading">
       <Container>
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 id="services-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Prestations de service
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Découvrez nos services de bien-être holistique à Joué-Les-Tours, près de Tours (Indre-et-Loire). Consultations en présentiel ou à distance.
+          <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Découvrez nos services de bien-être holistique à Joué-Les-Tours, près de Tours (Indre-et-Loire). 
+            Consultations en présentiel ou à distance.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+        {/* Services in a 6-column grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
           {services.map((service) => (
-            <div key={service.id} role="listitem">
-              <ServiceCard service={service} />
-            </div>
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </Container>

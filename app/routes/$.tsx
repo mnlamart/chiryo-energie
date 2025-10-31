@@ -10,7 +10,7 @@ export default function NotFound() {
       <meta property="og:title" content="Page non trouvée - 404" />
       <meta property="og:description" content="La page que vous recherchez n'existe pas ou a été déplacée." />
       <meta httpEquiv="refresh" content="0; url=/" />
-      <div className="py-20 bg-gray-50 min-h-screen flex items-center">
+      <div className="py-20 bg-brand-bg min-h-screen flex items-center">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <h1 className="text-6xl md:text-8xl font-bold text-primary-600 mb-4">

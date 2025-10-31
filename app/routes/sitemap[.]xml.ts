@@ -14,10 +14,22 @@ export function loader(_args: LoaderFunctionArgs) {
       priority: "1.0",
     },
     {
+      loc: `${baseUrl}/a-propos`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: "0.8",
+    },
+    {
       loc: `${baseUrl}/contact`,
       lastmod: currentDate,
       changefreq: "monthly",
       priority: "0.8",
+    },
+    {
+      loc: `${baseUrl}/faqs`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: "0.7",
     },
     ...services.map((service) => ({
       loc: `${baseUrl}/services/${service.id}`,

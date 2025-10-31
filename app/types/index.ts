@@ -13,5 +13,7 @@ export interface Testimonial {
   author: string;
   text: string;
   avatar?: string;
+  rating?: number;
+  role?: string;
 }
 
