@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import type { Service } from '../types';
+import ResponsiveImage from './ResponsiveImage';
+import { getBaseImageName } from '../utils/images';
 
 interface ServiceCardProps {
   service: Service;
 }
 
 export default function ServiceCard({ service }: ServiceCardProps) {
-  // Extract base filename from image path
-  const imageName = service.image ? service.image.split('/').pop()?.replace(/\.(jpg|jpeg|png|webp)$/i, '').replace(/-\d+w$/, '') : '';
-  const imageDir = service.image?.substring(0, service.image.lastIndexOf('/')) || '';
+  // Extract base image name from service image path
+  const imageName = service.image ? getBaseImageName(service.image) : null;
   
   return (
     <Link 
@@ -19,51 +20,20 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         {/* Image */}
         {service.image && imageName && (
           <div className="relative w-full aspect-square overflow-hidden bg-gray-100 flex-shrink-0">
-            <picture>
-              <source
-                type="image/avif"
-                srcSet={`${imageDir}/${imageName}-sq-96w.avif 96w,
-                        ${imageDir}/${imageName}-sq-192w.avif 192w,
-                        ${imageDir}/${imageName}-sq-300w.avif 300w,
-                        ${imageDir}/${imageName}-sq-400w.avif 400w,
-                        ${imageDir}/${imageName}-sq-500w.avif 500w`}
-                sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
-              />
-              <source
-                type="image/webp"
-                srcSet={`${imageDir}/${imageName}-sq-96w.webp 96w,
-                        ${imageDir}/${imageName}-sq-192w.webp 192w,
-                        ${imageDir}/${imageName}-sq-300w.webp 300w,
-                        ${imageDir}/${imageName}-sq-400w.webp 400w,
-                        ${imageDir}/${imageName}-sq-500w.webp 500w`}
-                sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
-              />
-              <source
-                type="image/jpeg"
-                srcSet={`${imageDir}/${imageName}-sq-96w.jpg 96w,
-                        ${imageDir}/${imageName}-sq-192w.jpg 192w,
-                        ${imageDir}/${imageName}-sq-300w.jpg 300w,
-                        ${imageDir}/${imageName}-sq-400w.jpg 400w,
-                        ${imageDir}/${imageName}-sq-500w.jpg 500w`}
-                sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
-              />
-              <img 
-                src={`${imageDir}/${imageName}-sq-400w.jpg`}
-                alt={`${service.title} - Chiryo Energie`}
-                className="w-full h-full object-cover"
-                width={400}
-                height={400}
-                loading="lazy"
-                decoding="async"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  if (!target.src.includes('.webp')) {
-                    target.src = target.src.replace('.jpg', '.webp');
-                  }
-                }}
-              />
-              <div className="absolute inset-0 bg-primary-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-            </picture>
+            <ResponsiveImage
+              src={imageName}
+              category="services"
+              variant="sq"
+              alt={`${service.title} - Chiryo Energie`}
+              className="w-full h-full object-cover"
+              sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
+              width={400}
+              height={400}
+              loading="lazy"
+              decoding="async"
+              customSizes={[96, 192, 300, 400, 500]}
+            />
+            <div className="absolute inset-0 bg-primary-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
           </div>
         )}
         

@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import Container from './Container';
 import Button from './Button';
+import ResponsiveImage from './ResponsiveImage';
 import { heroContent } from '../data/content';
 
 export default function Hero() {
@@ -51,41 +52,17 @@ export default function Hero() {
           <div className="relative max-h-[200px] overflow-hidden rounded-t-lg mb-8 md:mb-12">
             {/* Background Image - constrained within container */}
             <div className="absolute inset-0 rounded-t-lg overflow-hidden" aria-hidden="true">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcSet="/images/hero/hero-new-640w.avif 640w,
-                          /images/hero/hero-new-960w.avif 960w,
-                          /images/hero/hero-new-1280w.avif 1280w,
-                          /images/hero/hero-new-1920w.avif 1920w"
-                  sizes="(max-width: 768px) 100vw, 1152px"
-                />
-                <source
-                  type="image/webp"
-                  srcSet="/images/hero/hero-new-640w.webp 640w,
-                          /images/hero/hero-new-960w.webp 960w,
-                          /images/hero/hero-new-1280w.webp 1280w,
-                          /images/hero/hero-new-1920w.webp 1920w"
-                  sizes="(max-width: 768px) 100vw, 1152px"
-                />
-                <source
-                  type="image/jpeg"
-                  srcSet="/images/hero/hero-new-640w.jpg 640w,
-                          /images/hero/hero-new-960w.jpg 960w,
-                          /images/hero/hero-new-1280w.jpg 1280w,
-                          /images/hero/hero-new-1920w.jpg 1920w"
-                  sizes="(max-width: 768px) 100vw, 1152px"
-                />
-                <img
-                  src="/images/hero/hero-new-1920w.jpg"
-                  alt="Bien-être et relaxation - Services holistiques à Joué-Les-Tours"
-                  className="w-full h-full object-cover"
-                  width={1920}
-                  height={1080}
-                  loading="eager"
-                  fetchPriority="high"
-                />
-              </picture>
+              <ResponsiveImage
+                src="hero-new"
+                category="hero"
+                alt="Bien-être et relaxation - Services holistiques à Joué-Les-Tours"
+                className="w-full h-full object-cover"
+                sizes="(max-width: 768px) 100vw, 1152px"
+                width={1920}
+                height={1080}
+                loading="eager"
+                fetchPriority="high"
+              />
               {/* Black opacity overlay for better text readability */}
               <div className="absolute inset-0 bg-black/50"></div>
             </div>
@@ -118,32 +95,19 @@ export default function Hero() {
 
               {/* Logo */}
               <div className="flex justify-center md:justify-start">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcSet="/images/logos/logo-noella-high-400w.avif 400w"
-                    sizes="400px"
-                  />
-                  <source
-                    type="image/webp"
-                    srcSet="/images/logos/logo-noella-high-400w.webp 400w"
-                    sizes="400px"
-                  />
-                  <source
-                    type="image/jpeg"
-                    srcSet="/images/logos/logo-noella-high-400w.jpg 400w"
-                    sizes="400px"
-                  />
-                  <img 
-                    src="/images/logos/logo-noella-high-400w.jpg" 
-                    alt="Chiryo Energie Logo" 
-                    className="w-[400px] h-[400px] object-contain"
-                    width={400}
-                    height={400}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
+                <ResponsiveImage
+                  src="logo-noella-high"
+                  category="logos"
+                  alt="Chiryo Energie Logo"
+                  className="w-[400px] h-[400px] object-contain"
+                  sizes="400px"
+                  width={400}
+                  height={400}
+                  loading="lazy"
+                  decoding="async"
+                  objectFit="contain"
+                  customSizes={[400]}
+                />
               </div>
 
               {/* Description Text */}
@@ -165,40 +129,16 @@ export default function Hero() {
             <div className="order-last md:order-last w-full">
               {/* Full original image - same format for mobile and desktop */}
               <div className="relative w-full overflow-hidden">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcSet="/images/about/about-image-400w.avif 400w,
-                            /images/about/about-image-600w.avif 600w,
-                            /images/about/about-image-800w.avif 800w,
-                            /images/about/about-image-1000w.avif 1000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <source
-                    type="image/webp"
-                    srcSet="/images/about/about-image-400w.webp 400w,
-                            /images/about/about-image-600w.webp 600w,
-                            /images/about/about-image-800w.webp 800w,
-                            /images/about/about-image-1000w.webp 1000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <source
-                    type="image/jpeg"
-                    srcSet="/images/about/about-image-400w.jpg 400w,
-                            /images/about/about-image-600w.jpg 600w,
-                            /images/about/about-image-800w.jpg 800w,
-                            /images/about/about-image-1000w.jpg 1000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <img 
-                    src="/images/about/about-image-800w.jpg" 
-                    alt="Chiryo Energie - Bien-être et harmonie" 
-                    className="w-full h-full max-h-[350px] md:max-h-none object-contain md:object-cover"
-                    width={800}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
+                <ResponsiveImage
+                  src="about-image"
+                  category="about"
+                  alt="Chiryo Energie - Bien-être et harmonie"
+                  className="w-full h-full max-h-[350px] md:max-h-none object-contain md:object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  width={800}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>

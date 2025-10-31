@@ -4,8 +4,10 @@ import Container from "../components/Container";
 import Button from "../components/Button";
 import FAQ from "../components/FAQ";
 import Breadcrumbs from "../components/Breadcrumbs";
+import ResponsiveImage from "../components/ResponsiveImage";
 import { services } from "../data/services";
 import { serviceFAQs } from "../data/faqs";
+import { getBaseImageName } from "../utils/images";
 import type { loader as rootLoader } from "../root";
 
 export default function Service() {
@@ -65,43 +67,23 @@ export default function Service() {
             {/* Service Header */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {service.image && (() => {
-                const imageName = service.image.split('/').pop()?.replace(/\.(jpg|jpeg|png|webp)$/i, '').replace(/-\d+w$/, '') || '';
-                const imageDir = service.image.substring(0, service.image.lastIndexOf('/'));
+                const imageName = getBaseImageName(service.image);
                 
                 return (
                   <div>
-                    <picture>
-                      <source
-                        type="image/avif"
-                        srcSet={`${imageDir}/${imageName}-sq-400w.avif 400w,
-                                ${imageDir}/${imageName}-sq-800w.avif 800w,
-                                ${imageDir}/${imageName}-sq-1200w.avif 1200w`}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                      <source
-                        type="image/webp"
-                        srcSet={`${imageDir}/${imageName}-sq-400w.webp 400w,
-                                ${imageDir}/${imageName}-sq-800w.webp 800w,
-                                ${imageDir}/${imageName}-sq-1200w.webp 1200w`}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                      <source
-                        type="image/jpeg"
-                        srcSet={`${imageDir}/${imageName}-sq-400w.jpg 400w,
-                                ${imageDir}/${imageName}-sq-800w.jpg 800w,
-                                ${imageDir}/${imageName}-sq-1200w.jpg 1200w`}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                      <img
-                        src={`${imageDir}/${imageName}-sq-800w.jpg`}
-                        alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
-                        className="w-full rounded-lg shadow-lg object-cover aspect-square"
-                        width={800}
-                        height={800}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </picture>
+                    <ResponsiveImage
+                      src={imageName}
+                      category="services"
+                      variant="sq"
+                      alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
+                      className="w-full rounded-lg shadow-lg object-cover aspect-square"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      width={800}
+                      height={800}
+                      loading="lazy"
+                      decoding="async"
+                      customSizes={[400, 800, 1200]}
+                    />
                   </div>
                 );
               })()}

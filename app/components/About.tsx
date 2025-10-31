@@ -1,4 +1,5 @@
 import Container from './Container';
+import ResponsiveImage from './ResponsiveImage';
 import { aboutContent } from '../data/content';
 
 export default function About() {
@@ -10,38 +11,19 @@ export default function About() {
           <div className="text-center mb-12 md:mb-16">
             {/* Logo */}
             <div className="flex justify-center mb-6">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcSet="/images/logos/logo-noella-high-200w.avif 200w,
-                          /images/logos/logo-noella-high-300w.avif 300w,
-                          /images/logos/logo-noella-high-400w.avif 400w"
-                  sizes="(max-width: 768px) 250px, 350px"
-                />
-                <source
-                  type="image/webp"
-                  srcSet="/images/logos/logo-noella-high-200w.webp 200w,
-                          /images/logos/logo-noella-high-300w.webp 300w,
-                          /images/logos/logo-noella-high-400w.webp 400w"
-                  sizes="(max-width: 768px) 250px, 350px"
-                />
-                <source
-                  type="image/jpeg"
-                  srcSet="/images/logos/logo-noella-high-200w.jpg 200w,
-                          /images/logos/logo-noella-high-300w.jpg 300w,
-                          /images/logos/logo-noella-high-400w.jpg 400w"
-                  sizes="(max-width: 768px) 250px, 350px"
-                />
-                <img 
-                  src="/images/logos/logo-noella-high-300w.jpg" 
-                  alt="Chiryo Energie Logo" 
-                  className="h-40 md:h-56 w-auto object-contain"
-                  width={350}
-                  height={140}
-                  loading="eager"
-                  decoding="async"
-                />
-              </picture>
+              <ResponsiveImage
+                src="logo-noella-high"
+                category="logos"
+                alt="Chiryo Energie Logo"
+                className="h-40 md:h-56 w-auto object-contain"
+                sizes="(max-width: 768px) 250px, 350px"
+                width={350}
+                height={140}
+                loading="eager"
+                decoding="async"
+                objectFit="contain"
+                customSizes={[200, 300, 400]}
+              />
             </div>
 
             {/* Name */}
@@ -62,79 +44,32 @@ export default function About() {
               <div className="w-full">
                 {/* Mobile: Horizontal cropped image (4:3) - shows more of original */}
                 <div className="relative aspect-[4/3] lg:hidden w-full overflow-hidden">
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcSet="/images/about/about-image-h-400w.avif 400w,
-                              /images/about/about-image-h-600w.avif 600w,
-                              /images/about/about-image-h-800w.avif 800w,
-                              /images/about/about-image-h-1000w.avif 1000w"
-                      sizes="100vw"
-                    />
-                    <source
-                      type="image/webp"
-                      srcSet="/images/about/about-image-h-400w.webp 400w,
-                              /images/about/about-image-h-600w.webp 600w,
-                              /images/about/about-image-h-800w.webp 800w,
-                              /images/about/about-image-h-1000w.webp 1000w"
-                      sizes="100vw"
-                    />
-                    <source
-                      type="image/jpeg"
-                      srcSet="/images/about/about-image-h-400w.jpg 400w,
-                              /images/about/about-image-h-600w.jpg 600w,
-                              /images/about/about-image-h-800w.jpg 800w,
-                              /images/about/about-image-h-1000w.jpg 1000w"
-                      sizes="100vw"
-                    />
-                    <img 
-                      src="/images/about/about-image-h-800w.jpg" 
-                      alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium" 
-                      className="w-full h-full object-cover"
-                      width={800}
-                      height={600}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
+                  <ResponsiveImage
+                    src="about-image"
+                    category="about"
+                    variant="h"
+                    alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium"
+                    className="w-full h-full object-cover"
+                    sizes="100vw"
+                    width={800}
+                    height={600}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
 
                 {/* Desktop: Full original image */}
                 <div className="relative hidden lg:block w-full h-full overflow-hidden">
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcSet="/images/about/about-image-400w.avif 400w,
-                              /images/about/about-image-600w.avif 600w,
-                              /images/about/about-image-800w.avif 800w,
-                              /images/about/about-image-1000w.avif 1000w"
-                      sizes="50vw"
-                    />
-                    <source
-                      type="image/webp"
-                      srcSet="/images/about/about-image-400w.webp 400w,
-                              /images/about/about-image-600w.webp 600w,
-                              /images/about/about-image-800w.webp 800w,
-                              /images/about/about-image-1000w.webp 1000w"
-                      sizes="50vw"
-                    />
-                    <source
-                      type="image/jpeg"
-                      srcSet="/images/about/about-image-400w.jpg 400w,
-                              /images/about/about-image-600w.jpg 600w,
-                              /images/about/about-image-800w.jpg 800w,
-                              /images/about/about-image-1000w.jpg 1000w"
-                      sizes="50vw"
-                    />
-                    <img 
-                      src="/images/about/about-image-800w.jpg" 
-                      alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium" 
-                      className="w-full h-full object-cover"
-                      width={800}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
+                  <ResponsiveImage
+                    src="about-image"
+                    category="about"
+                    alt="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours, magnétiseuse coupeuse de feu, voyante et médium"
+                    className="w-full h-full object-cover"
+                    sizes="50vw"
+                    width={800}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
 

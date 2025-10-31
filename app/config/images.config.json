@@ -1,0 +1,80 @@
+{
+  "sizes": {
+    "hero": [640, 960, 1280, 1920],
+    "services": [80, 96, 192, 200, 300, 400, 500, 800, 1200],
+    "testimonials": [150],
+    "about": [400, 600, 800, 1000],
+    "logos": [100, 150, 200, 300, 400],
+    "qui-suis-je": [400, 600, 800, 1000]
+  },
+  "variants": {
+    "services": ["sq", "h"],
+    "about": ["h"],
+    "qui-suis-je": ["h"]
+  },
+  "heroTarget": {
+    "width": 1920,
+    "height": 1080
+  },
+  "qualitySettings": {
+    "default": {
+      "avif": { "quality": 55, "effort": 9 },
+      "webp": { "quality": 70, "effort": 6 },
+      "jpeg": { "quality": 75, "progressive": true, "mozjpeg": true }
+    },
+    "hero": {
+      "avif": { "quality": 45, "effort": 9 },
+      "webp": { "quality": 60, "effort": 6 },
+      "jpeg": { "quality": 70, "progressive": true, "mozjpeg": true }
+    }
+  },
+  "variantConfigs": {
+    "sq": {
+      "type": "square",
+      "aspectRatio": "1:1"
+    },
+    "h": {
+      "type": "horizontal",
+      "aspectRatio": "4:3"
+    }
+  },
+  "categoryConfigs": {
+    "hero": {
+      "variants": null,
+      "quality": "hero",
+      "needsCrop": true,
+      "generateBaseVariant": false
+    },
+    "services": {
+      "variants": ["sq", "h"],
+      "quality": "default",
+      "needsCrop": false,
+      "generateBaseVariant": false
+    },
+    "testimonials": {
+      "variants": null,
+      "quality": "default",
+      "needsCrop": false,
+      "generateBaseVariant": false
+    },
+    "about": {
+      "variants": ["h"],
+      "quality": "default",
+      "needsCrop": false,
+      "generateBaseVariant": true
+    },
+    "logos": {
+      "variants": null,
+      "quality": "default",
+      "needsCrop": false,
+      "generateBaseVariant": false
+    },
+    "qui-suis-je": {
+      "variants": ["h"],
+      "quality": "default",
+      "needsCrop": false,
+      "generateBaseVariant": true
+    }
+  }
+}
+

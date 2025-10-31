@@ -1,4 +1,5 @@
 import Container from './Container';
+import ResponsiveImage from './ResponsiveImage';
 import { aboutContent } from '../data/content';
 
 export default function QuiSuisJe() {
@@ -12,79 +13,33 @@ export default function QuiSuisJe() {
               <div className="order-1 lg:order-1">
                 {/* Mobile: Horizontal cropped image (4:3) - shows more of original */}
                 <div className="relative aspect-[4/3] lg:hidden rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl">
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcSet="/images/qui-suis-je/qui-suis-je-image-h-400w.avif 400w,
-                              /images/qui-suis-je/qui-suis-je-image-h-600w.avif 600w,
-                              /images/qui-suis-je/qui-suis-je-image-h-800w.avif 800w,
-                              /images/qui-suis-je/qui-suis-je-image-h-1000w.avif 1000w"
-                      sizes="100vw"
-                    />
-                    <source
-                      type="image/webp"
-                      srcSet="/images/qui-suis-je/qui-suis-je-image-h-400w.webp 400w,
-                              /images/qui-suis-je/qui-suis-je-image-h-600w.webp 600w,
-                              /images/qui-suis-je/qui-suis-je-image-h-800w.webp 800w,
-                              /images/qui-suis-je/qui-suis-je-image-h-1000w.webp 1000w"
-                      sizes="100vw"
-                    />
-                    <source
-                      type="image/jpeg"
-                      srcSet="/images/qui-suis-je/qui-suis-je-image-h-400w.jpg 400w,
-                              /images/qui-suis-je/qui-suis-je-image-h-600w.jpg 600w,
-                              /images/qui-suis-je/qui-suis-je-image-h-800w.jpg 800w,
-                              /images/qui-suis-je/qui-suis-je-image-h-1000w.jpg 1000w"
-                      sizes="100vw"
-                    />
-                    <img
-                      src="/images/qui-suis-je/qui-suis-je-image-h-800w.jpg"
-                      alt="Chiryo Energie - Magnétiseuse coupeuse de feu, voyante et médium"
-                      className="w-full h-full object-cover"
-                      width={800}
-                      height={600}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
+                  <ResponsiveImage
+                    src="qui-suis-je-image"
+                    category="qui-suis-je"
+                    variant="h"
+                    alt="Chiryo Energie - Magnétiseuse coupeuse de feu, voyante et médium"
+                    className="w-full h-full object-cover"
+                    sizes="100vw"
+                    width={800}
+                    height={600}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
 
                 {/* Desktop: Full original image */}
                 <div className="relative hidden lg:block rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl">
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcSet="/images/qui-suis-je/qui-suis-je-image-400w.avif 400w,
-                              /images/qui-suis-je/qui-suis-je-image-600w.avif 600w,
-                              /images/qui-suis-je/qui-suis-je-image-800w.avif 800w,
-                              /images/qui-suis-je/qui-suis-je-image-1000w.avif 1000w"
-                      sizes="640px"
-                    />
-                    <source
-                      type="image/webp"
-                      srcSet="/images/qui-suis-je/qui-suis-je-image-400w.webp 400w,
-                              /images/qui-suis-je/qui-suis-je-image-600w.webp 600w,
-                              /images/qui-suis-je/qui-suis-je-image-800w.webp 800w,
-                              /images/qui-suis-je/qui-suis-je-image-1000w.webp 1000w"
-                      sizes="640px"
-                    />
-                    <source
-                      type="image/jpeg"
-                      srcSet="/images/qui-suis-je/qui-suis-je-image-400w.jpg 400w,
-                              /images/qui-suis-je/qui-suis-je-image-600w.jpg 600w,
-                              /images/qui-suis-je/qui-suis-je-image-800w.jpg 800w,
-                              /images/qui-suis-je/qui-suis-je-image-1000w.jpg 1000w"
-                      sizes="640px"
-                    />
-                    <img
-                      src="/images/qui-suis-je/qui-suis-je-image-800w.jpg"
-                      alt="Chiryo Energie - Magnétiseuse coupeuse de feu, voyante et médium"
-                      className="w-full h-auto object-contain"
-                      width={800}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
+                  <ResponsiveImage
+                    src="qui-suis-je-image"
+                    category="qui-suis-je"
+                    alt="Chiryo Energie - Magnétiseuse coupeuse de feu, voyante et médium"
+                    className="w-full h-auto object-contain"
+                    sizes="640px"
+                    width={800}
+                    loading="lazy"
+                    decoding="async"
+                    objectFit="contain"
+                  />
                 </div>
               </div>
 
