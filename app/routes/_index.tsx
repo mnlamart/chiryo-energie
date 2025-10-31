@@ -19,7 +19,7 @@ export default function Index() {
     if (location.hash === "#services") {
       const servicesSection = document.getElementById("services");
       if (servicesSection) {
-        const headerOffset = 80;
+        const headerOffset = 100;
         const elementPosition = servicesSection.getBoundingClientRect().top;
         const offsetPosition =
           elementPosition + window.pageYOffset - headerOffset;

@@ -708,7 +708,7 @@ export default function Root() {
                 <ScrollToTopOnRouteChange />
               </Suspense>
               <Header />
-              <main id="main-content" className="grow">
+              <main id="main-content" className="grow pt-[100px]">
                 <Outlet />
               </main>
               <Footer />

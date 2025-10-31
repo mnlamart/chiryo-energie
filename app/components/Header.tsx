@@ -64,6 +64,7 @@ const services = [
 
 export default function Header() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => {
@@ -76,8 +77,9 @@ export default function Header() {
     return location.pathname === path || location.pathname.startsWith(path);
   };
 
-  // Close mobile services submenu when route changes
+  // Close mobile menu and services submenu when route changes
   useEffect(() => {
+    setMobileMenuOpen(false);
     setMobileServicesOpen(false);
   }, [location.pathname]);
 
@@ -95,7 +97,7 @@ export default function Header() {
   };
 
   return (
-    <div className="sticky top-0 z-50 w-full">
+    <div className="fixed top-0 z-50 w-full">
       {/* 20px line above header */}
       <div className="w-full" style={{ height: '20px', backgroundColor: 'rgb(242, 189, 189)' }}></div>
       <nav className="w-full" style={{ backgroundColor: 'rgb(246, 210, 210)' }}>
@@ -172,7 +174,7 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
@@ -192,6 +194,7 @@ export default function Header() {
                 <div className="mt-6 flex flex-col gap-2 px-6 pb-6">
                   <Link
                     to="/"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="block rounded-md bg-white px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-[#F5E8E9] font-medium"
                   >
                     Accueil
@@ -200,7 +203,7 @@ export default function Header() {
                   <div className="flex flex-col">
                     <button
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className="flex items-center justify-between rounded-md bg-[#F5E8E9] px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-[#D4A5A9] font-medium"
+                      className="flex items-center justify-between rounded-md bg-white px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-[#F5E8E9] font-medium"
                     >
                       Services
                       <ChevronDown
@@ -220,6 +223,7 @@ export default function Header() {
                             onClick={(e) => {
                               handleHashLink(e, service.href);
                               setMobileServicesOpen(false);
+                              setMobileMenuOpen(false);
                             }}
                             className="block rounded-md bg-white/50 px-4 py-2 text-[#6B4B4E] transition-colors hover:bg-white"
                           >
@@ -233,6 +237,7 @@ export default function Header() {
 
                   <Link
                     to="/contact"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="block rounded-md bg-white px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-[#F5E8E9] font-medium"
                   >
                     Contact

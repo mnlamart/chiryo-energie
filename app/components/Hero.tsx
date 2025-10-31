@@ -17,7 +17,7 @@ export default function Hero() {
       void setTimeout(() => {
         const servicesSection = document.getElementById('services');
         if (servicesSection) {
-          const headerOffset = 80;
+          const headerOffset = 100;
           const elementPosition = servicesSection.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
