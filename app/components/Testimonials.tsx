@@ -47,10 +47,10 @@ export default function Testimonials() {
       <Container>
         {/* Header */}
         <header className="text-center mb-16 px-4">
-          <h2 id="testimonials-heading" className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 id="testimonials-heading" className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#2C1B1D' }}>
             Témoignages de transformation
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#6B4B4E' }}>
                 Découvrez comment Chiryo Energie a aidé d'autres personnes à
                 Joué-Les-Tours à transformer leur vie et à atteindre un
             bien-être durable. Laissez-vous inspirer par leurs histoires et
@@ -77,8 +77,6 @@ export default function Testimonials() {
                 // Use modulo to get the actual testimonial index for active state and display
                 const actualIndex = index % testimonials.length;
                 const isActive = actualIndex === selectedIndex;
-                const rating = testimonial.rating || 5;
-                const role = testimonial.role || "Client Chiryo Energie";
 
                 return (
                   <CarouselItem key={`${testimonial.id}-${index}`} className="pl-4 md:basis-1/2 lg:basis-1/3">
@@ -89,7 +87,7 @@ export default function Testimonials() {
                         }`}
                       >
                         {/* Gradient Top Border */}
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 via-rose-400 to-pink-400"></div>
+                        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(to right, rgb(249, 232, 233), #F5E8E9, rgb(249, 232, 233))' }}></div>
 
                         {/* Stars */}
                         <div className="flex gap-1 mb-6">
@@ -97,8 +95,11 @@ export default function Testimonials() {
                             <div key={i}>
                               <svg
                                 className={`w-5 h-5 ${
-                                  i < rating ? "text-orange-400" : "text-gray-200"
+                                  i < (testimonial.rating ?? 5) ? "" : "text-[#F5E8E9]"
                                 }`}
+                                style={{
+                                  color: i < (testimonial.rating ?? 5) ? 'rgb(246, 210, 210)' : undefined
+                                }}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -111,64 +112,20 @@ export default function Testimonials() {
                         {/* Testimonial Text with Quote */}
                         <div className="relative mb-6 grow">
                           <span
-                            className="absolute -top-2 -left-2 text-5xl text-orange-100 select-none"
-                            style={{ fontFamily: "Georgia, serif" }}
+                            className="absolute -top-2 -left-2 text-5xl select-none"
+                            style={{ fontFamily: "Georgia, serif", color: '#D4A5A9' }}
                           >
                             "
                           </span>
-                          <p className="text-gray-700 leading-relaxed relative z-10 italic">
+                          <p className="text-[#6B4B4E] leading-relaxed relative z-10 italic">
                             {testimonial.text}
                           </p>
                         </div>
 
                         {/* Author */}
-                        <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                          {testimonial.avatar ? (() => {
-                            // Extract base filename without extension
-                            const basePath = testimonial.avatar.replace(/\.(jpg|jpeg|png|webp)$/i, '');
-                            const imageName = basePath.split('/').pop();
-                            const imageDir = basePath.substring(0, basePath.lastIndexOf('/'));
-                            
-                            return (
-                              <picture>
-                                <source
-                                  type="image/avif"
-                                  srcSet={`${imageDir}/${imageName}-150w.avif`}
-                                />
-                                <source
-                                  type="image/webp"
-                                  srcSet={`${imageDir}/${imageName}-150w.webp`}
-                                />
-                                <img
-                                  src={`${imageDir}/${imageName}-150w.jpg`}
-                                  alt={testimonial.author}
-                                  className="w-12 h-12 rounded-full object-cover ring-2 ring-orange-100"
-                                  width={150}
-                                  height={150}
-                                  loading="lazy"
-                                  decoding="async"
-                                  onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    if (!target.src.includes('.webp')) {
-                                      target.src = target.src.replace('.jpg', '.webp');
-                                    } else if (!target.src.includes('placeholder')) {
-                                      target.src = '/images/testimonials/placeholder.jpg';
-                                    }
-                                  }}
-                                />
-                              </picture>
-                            );
-                          })() : (
-                            <div className="w-12 h-12 rounded-full bg-gray-200 ring-2 ring-orange-100 flex items-center justify-center">
-                              <span className="text-gray-400 text-lg font-semibold">
-                                {testimonial.author.charAt(0).toUpperCase()}
-                              </span>
-                            </div>
-                          )}
-                          <div>
-                            <p className="text-gray-900 font-medium">{testimonial.author}</p>
-                            <p className="text-gray-500 text-sm">{role}</p>
-                          </div>
+                        <div className="pt-4 border-t" style={{ borderColor: 'rgb(246, 210, 210)' }}>
+                          <p className="text-[#2C1B1D] font-medium">{testimonial.author}</p>
+                          <p className="text-[#6B4B4E] text-sm">{testimonial.role ?? "Client Chiryo Energie"}</p>
                         </div>
                       </div>
                     </div>
@@ -180,19 +137,25 @@ export default function Testimonials() {
             {/* Navigation Buttons */}
             <button
               onClick={() => api?.scrollPrev()}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: 'rgb(246, 210, 210)' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D4A5A9'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgb(246, 210, 210)'}
               aria-label="Previous testimonial"
               disabled={false}
             >
-              <ChevronLeft className="w-6 h-6 text-gray-800" />
+              <ChevronLeft className="w-6 h-6" style={{ color: '#6B4B4E' }} />
             </button>
             <button
               onClick={() => api?.scrollNext()}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: 'rgb(246, 210, 210)' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D4A5A9'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgb(246, 210, 210)'}
               aria-label="Next testimonial"
               disabled={false}
             >
-              <ChevronRight className="w-6 h-6 text-gray-800" />
+              <ChevronRight className="w-6 h-6" style={{ color: '#6B4B4E' }} />
             </button>
           </Carousel>
 
@@ -204,14 +167,15 @@ export default function Testimonials() {
                   <div
                     key={i}
                     className={`h-1 rounded-full transition-all duration-300 ${
-                      i === current - 1
-                        ? "w-8 bg-pink-400"
-                        : "w-1 bg-pink-200"
+                      i === current - 1 ? "w-8" : "w-1"
                     }`}
+                    style={{
+                      backgroundColor: i === current - 1 ? '#D4A5A9' : 'rgb(246, 210, 210)'
+                    }}
                   />
                 ))}
               </div>
-              <div className="mt-3 text-gray-600">
+              <div className="mt-3 text-[#6B4B4E]">
                 {current} / {count}
               </div>
             </div>

@@ -163,47 +163,8 @@ export default function Hero() {
 
             {/* Right Side - About Image */}
             <div className="order-last md:order-last w-full">
-              {/* Mobile: Horizontal cropped image (4:3) - content-aware, shows more of original */}
-              <div className="relative aspect-[4/3] md:hidden w-full overflow-hidden rounded-lg shadow-xl">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcSet="/images/about/about-image-h-400w.avif 400w,
-                            /images/about/about-image-h-600w.avif 600w,
-                            /images/about/about-image-h-800w.avif 800w,
-                            /images/about/about-image-h-1000w.avif 1000w"
-                    sizes="100vw"
-                  />
-                  <source
-                    type="image/webp"
-                    srcSet="/images/about/about-image-h-400w.webp 400w,
-                            /images/about/about-image-h-600w.webp 600w,
-                            /images/about/about-image-h-800w.webp 800w,
-                            /images/about/about-image-h-1000w.webp 1000w"
-                    sizes="100vw"
-                  />
-                  <source
-                    type="image/jpeg"
-                    srcSet="/images/about/about-image-h-400w.jpg 400w,
-                            /images/about/about-image-h-600w.jpg 600w,
-                            /images/about/about-image-h-800w.jpg 800w,
-                            /images/about/about-image-h-1000w.jpg 1000w"
-                    sizes="100vw"
-                  />
-                  <img 
-                    src="/images/about/about-image-h-800w.jpg" 
-                    alt="Chiryo Energie - Bien-être et harmonie" 
-                    className="w-full h-full object-cover"
-                    width={800}
-                    height={600}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-
-              {/* Desktop: Full original image */}
-              <div className="relative hidden md:block w-full overflow-hidden rounded-lg shadow-xl">
+              {/* Full original image - same format for mobile and desktop */}
+              <div className="relative w-full overflow-hidden">
                 <picture>
                   <source
                     type="image/avif"
@@ -211,7 +172,7 @@ export default function Hero() {
                             /images/about/about-image-600w.avif 600w,
                             /images/about/about-image-800w.avif 800w,
                             /images/about/about-image-1000w.avif 1000w"
-                    sizes="50vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <source
                     type="image/webp"
@@ -219,7 +180,7 @@ export default function Hero() {
                             /images/about/about-image-600w.webp 600w,
                             /images/about/about-image-800w.webp 800w,
                             /images/about/about-image-1000w.webp 1000w"
-                    sizes="50vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <source
                     type="image/jpeg"
@@ -227,12 +188,12 @@ export default function Hero() {
                             /images/about/about-image-600w.jpg 600w,
                             /images/about/about-image-800w.jpg 800w,
                             /images/about/about-image-1000w.jpg 1000w"
-                    sizes="50vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <img 
                     src="/images/about/about-image-800w.jpg" 
                     alt="Chiryo Energie - Bien-être et harmonie" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full max-h-[350px] md:max-h-none object-contain md:object-cover"
                     width={800}
                     loading="lazy"
                     decoding="async"
