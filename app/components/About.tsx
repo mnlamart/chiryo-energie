@@ -146,7 +146,7 @@ export default function About() {
                     if (paragraph.includes('à distance, en présentiel, à domicile')) {
                       return (
                         <p key={index} className="text-base md:text-lg mb-5 md:mb-6 last:mb-0">
-                          {paragraph} Mes consultations sont disponibles à Joué-Les-Tours, Tours et dans tout le département d'Indre-et-Loire (région Centre-Val de Loire).
+                          {paragraph} Mes consultations sont disponibles à Joué-Les-Tours et dans tout le département d'Indre-et-Loire (région Centre-Val de Loire).
                         </p>
                       );
                     }

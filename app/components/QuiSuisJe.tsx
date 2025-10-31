@@ -1,4 +1,5 @@
 import Container from './Container';
+import { aboutContent } from '../data/content';
 
 export default function QuiSuisJe() {
   return (
@@ -89,9 +90,14 @@ export default function QuiSuisJe() {
 
               {/* Right Side - Text Content */}
               <div className="order-2 lg:order-2 space-y-4 md:space-y-8 px-2 md:px-0">
-                <h2 id="qui-suis-je-heading" className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6 text-center md:text-left">
-                  Qui suis-je?
-                </h2>
+                <div className="text-center md:text-left">
+                  <h2 id="qui-suis-je-heading" className="text-2xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-3">
+                    Qui suis-je?
+                  </h2>
+                  <p className="text-xl md:text-2xl font-semibold text-gray-800">
+                    {aboutContent.name}
+                  </p>
+                </div>
 
                 <div className="space-y-4 md:space-y-6 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-lg">

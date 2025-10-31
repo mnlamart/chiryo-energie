@@ -18,7 +18,7 @@ export const generalFAQs: FAQCategory[] = [
       },
       {
         question: "Faites-vous des séances à domicile ?",
-        answer: "Oui, je me déplace à domicile selon le service demandé et votre localisation dans la région de Tours et Indre-et-Loire. Contactez-moi directement pour discuter de vos besoins et de la disponibilité."
+        answer: "Oui, je me déplace à domicile selon le service demandé et votre localisation dans la région de Joué-Les-Tours et Indre-et-Loire. Contactez-moi directement pour discuter de vos besoins et de la disponibilité."
       },
       {
         question: "Les séances peuvent-elles se faire à distance ?",

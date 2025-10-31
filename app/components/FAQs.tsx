@@ -7,7 +7,7 @@ export default function FAQs() {
   return (
     <section className="py-20 bg-brand-bg" aria-labelledby="faq-heading">
       <Container>
-        <div className="max-w-4xl mx-auto">
+        <div>
           <header className="text-center mb-12">
             <h2 id="faq-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Questions fréquentes

@@ -51,8 +51,8 @@ export default function Testimonials() {
             Témoignages de transformation
           </h2>
           <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Découvrez comment Chiryo Energie a aidé d'autres personnes à
-            Joué-Les-Tours et Tours à transformer leur vie et à atteindre un
+                Découvrez comment Chiryo Energie a aidé d'autres personnes à
+                Joué-Les-Tours à transformer leur vie et à atteindre un
             bien-être durable. Laissez-vous inspirer par leurs histoires et
             imaginez votre propre succès.
           </p>

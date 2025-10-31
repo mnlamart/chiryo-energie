@@ -6,7 +6,6 @@ import {
 export default [
   route("/", "routes/_index.tsx"),
   route("contact", "routes/contact.tsx"),
-  route("a-propos", "routes/a-propos.tsx"),
   route("faqs", "routes/faqs.tsx"),
   route("services/:id", "routes/services.$id.tsx"),
   route("sitemap.xml", "routes/sitemap[.]xml.ts"),

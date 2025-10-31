@@ -11,7 +11,7 @@ export default function Services() {
             Prestations de service
           </h2>
           <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Découvrez nos services de bien-être holistique à Joué-Les-Tours, près de Tours (Indre-et-Loire). 
+              Découvrez nos services de bien-être holistique à Joué-Les-Tours (Indre-et-Loire).
             Consultations en présentiel ou à distance.
           </p>
         </div>

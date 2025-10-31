@@ -21,11 +21,6 @@ import { cn } from '../utils/cn';
 
 const services = [
   {
-    title: 'Tous les services',
-    description: 'Découvrez tous nos services de bien-être holistique',
-    href: '/#services',
-  },
-  {
     title: 'Magnétiseuse / Coupeuse de feu',
     description: 'Soins énergétiques par magnétisme',
     href: '/services/magnetiseuse',
@@ -100,11 +95,15 @@ export default function Header() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-[#E5B8BC] border-[#D4A5A9]">
+    <div className="sticky top-0 z-50 w-full">
+      {/* 20px line above header */}
+      <div className="w-full" style={{ height: '20px', backgroundColor: 'rgb(242, 189, 189)' }}></div>
+      <nav className="w-full" style={{ backgroundColor: 'rgb(246, 210, 210)' }}>
       <div className="mx-auto px-4 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex h-20 items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex-shrink min-w-0 flex-1">
+          <div className="flex-shrink-0 min-w-0">
             <Link to="/" className="text-[#6B4B4E] tracking-wide hover:text-[#4A3638] transition-colors block">
               <h1 className="text-sm sm:text-base lg:text-xl xl:text-2xl font-medium uppercase truncate">
                 Chiryo Energie Psycho Energeticienne
@@ -113,7 +112,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-1">
+          <div className="hidden lg:flex lg:items-center lg:gap-1 lg:flex-shrink-0">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -131,11 +130,11 @@ export default function Header() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent hover:bg-[#D4A5A9] text-[#6B4B4E] data-[state=open]:bg-[#D4A5A9]">
+                  <NavigationMenuTrigger className="h-10 min-h-0 px-4 py-2 bg-transparent hover:bg-[#D4A5A9] hover:text-[#4A3638] text-[#6B4B4E] data-[state=open]:bg-[#D4A5A9] data-[state=open]:text-[#4A3638]">
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[600px] gap-3 p-6 md:grid-cols-2 bg-white">
+                    <div className="grid w-[90vw] max-w-[600px] gap-3 p-6 md:grid-cols-2 bg-white">
                       {services.map((service) => (
                         <Link
                           key={service.title}
@@ -153,33 +152,6 @@ export default function Header() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/a-propos"
-                      className={cn(
-                        "inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 transition-colors hover:bg-[#D4A5A9] hover:text-[#4A3638] focus:bg-[#D4A5A9] focus:text-[#4A3638] focus:outline-none text-[#6B4B4E]",
-                        isActive('/a-propos') && 'bg-[#D4A5A9] text-[#4A3638]'
-                      )}
-                    >
-                      À propos
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/faqs"
-                      className={cn(
-                        "inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 transition-colors hover:bg-[#D4A5A9] hover:text-[#4A3638] focus:bg-[#D4A5A9] focus:text-[#4A3638] focus:outline-none text-[#6B4B4E]",
-                        isActive('/faqs') && 'bg-[#D4A5A9] text-[#4A3638]'
-                      )}
-                    >
-                      Questions fréquentes
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
 
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
@@ -211,7 +183,7 @@ export default function Header() {
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="top" className="bg-[#E5B8BC] border-[#D4A5A9] p-0">
+              <SheetContent side="top" className="border-[#D4A5A9] p-0" style={{ backgroundColor: 'rgb(246, 210, 210)' }}>
                 <SheetHeader className="px-6 pt-6 pb-4 border-b border-[#D4A5A9]">
                   <SheetTitle className="text-[#6B4B4E] tracking-wide uppercase text-left text-lg">
                     CHIRYO ENERGIE PSYCHO ENERGETICIENNE
@@ -258,20 +230,6 @@ export default function Header() {
                       </div>
                     )}
                   </div>
-                  
-                  <Link
-                    to="/a-propos"
-                    className="block rounded-md bg-white px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-[#F5E8E9] font-medium"
-                  >
-                    À propos
-                  </Link>
-
-                  <Link
-                    to="/faqs"
-                    className="block rounded-md bg-white px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-[#F5E8E9] font-medium"
-                  >
-                    Questions fréquentes
-                  </Link>
 
                   <Link
                     to="/contact"
@@ -284,7 +242,9 @@ export default function Header() {
             </Sheet>
           </div>
         </div>
+        </div>
       </div>
     </nav>
+    </div>
   );
 }

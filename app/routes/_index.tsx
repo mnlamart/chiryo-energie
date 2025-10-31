@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useLocation, useRouteLoaderData } from "react-router";
 import Hero from "../components/Hero";
-import AboutIntro from "../components/AboutIntro";
 import Services from "../components/Services";
 import QuiSuisJe from "../components/QuiSuisJe";
 import Testimonials from "../components/Testimonials";
+import Contact from "../components/Contact";
+import FAQs from "../components/FAQs";
 import ScrollAnimation from "../components/ScrollAnimation";
 import type { loader as rootLoader } from "../root";
 
@@ -43,7 +44,6 @@ export default function Index() {
       <meta name="twitter:title" content="Chiryo Energie - Psycho énergéticienne à Joué-Les-Tours" />
       <meta name="twitter:description" content="Services holistiques de bien-être : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité." />
       <Hero />
-      <AboutIntro />
       <ScrollAnimation>
         <Services />
       </ScrollAnimation>
@@ -52,6 +52,12 @@ export default function Index() {
       </ScrollAnimation>
       <ScrollAnimation>
         <Testimonials />
+      </ScrollAnimation>
+      <ScrollAnimation>
+        <Contact />
+      </ScrollAnimation>
+      <ScrollAnimation>
+        <FAQs />
       </ScrollAnimation>
     </>
   );

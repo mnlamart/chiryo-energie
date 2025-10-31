@@ -35,9 +35,9 @@ export default function Service() {
     );
   }
 
-  const description = `${service.description.substring(0, 120)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Consultation à Joué-Les-Tours, Tours (Indre-et-Loire) ou à distance. Prise de rendez-vous.`;
-  const summary = `${service.title} par Chiryo Energie à Joué-Les-Tours, Tours (Indre-et-Loire). ${service.description} Tarif : ${service.price}. ${service.duration ? `Durée : ${service.duration}.` : ""} Consultation en présentiel, à domicile ou à distance selon le service.`;
-  const keywords = `${service.title}, ${service.title} Joué-Les-Tours, ${service.title} Tours, ${service.title} Indre-et-Loire, bien-être ${service.title?.toLowerCase()}, énergéticien ${service.title?.toLowerCase()}`;
+  const description = `${service.description.substring(0, 120)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Consultation à Joué-Les-Tours (Indre-et-Loire) ou à distance. Prise de rendez-vous.`;
+  const summary = `${service.title} par Chiryo Energie à Joué-Les-Tours (Indre-et-Loire). ${service.description} Tarif : ${service.price}. ${service.duration ? `Durée : ${service.duration}.` : ""} Consultation en présentiel, à domicile ou à distance selon le service.`;
+  const keywords = `${service.title}, ${service.title} Joué-Les-Tours, ${service.title} Indre-et-Loire, bien-être ${service.title?.toLowerCase()}, énergéticien ${service.title?.toLowerCase()}`;
   const faqs = serviceFAQs[service.id] || [];
 
   return (
@@ -61,7 +61,7 @@ export default function Service() {
             ]}
           />
 
-          <article className="max-w-4xl mx-auto">
+          <article>
             {/* Service Header */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {service.image && (() => {
@@ -205,7 +205,7 @@ export default function Service() {
                 Prêt à commencer votre parcours de bien-être ?
               </h2>
               <p className="text-gray-700 mb-6">
-                Contactez-moi dès aujourd'hui pour prendre rendez-vous à Joué-Les-Tours, Tours ou en ligne
+                Contactez-moi dès aujourd'hui pour prendre rendez-vous à Joué-Les-Tours ou en ligne
               </p>
               <Link to="/contact">
                 <Button>Me contacter</Button>

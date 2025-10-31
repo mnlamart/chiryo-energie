@@ -99,7 +99,7 @@ const ContactHeader = () => (
     </h1>
     <p className="text-lg text-gray-600">
       N'hésitez pas à me contacter pour toute question ou pour prendre
-      rendez-vous à Joué-Les-Tours, Tours ou pour une consultation à distance
+      rendez-vous à Joué-Les-Tours ou pour une consultation à distance
     </p>
   </header>
 );
@@ -348,7 +348,7 @@ export default function Contact() {
       <meta name="twitter:description" content="Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, France." />
       <article className="py-20 bg-brand-bg">
         <Container>
-          <div className="max-w-4xl mx-auto">
+          <div>
             <ContactHeader />
             <div className="bg-brand-card p-6 md:p-8 shadow-lg border border-white/40">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -503,7 +503,6 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
           </div>
         </Container>
       </article>

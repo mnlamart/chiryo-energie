@@ -14,12 +14,6 @@ export function loader(_args: LoaderFunctionArgs) {
       priority: "1.0",
     },
     {
-      loc: `${baseUrl}/a-propos`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: "0.8",
-    },
-    {
       loc: `${baseUrl}/contact`,
       lastmod: currentDate,
       changefreq: "monthly",
