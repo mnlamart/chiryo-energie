@@ -2,6 +2,14 @@
 
 Website for Chiryo Energie, built with React Router v7, TypeScript, and Vite.
 
+## Documentation
+
+📚 **[Architecture Documentation](docs/architecture-documentation.md)** - Comprehensive guide covering the entire architecture, patterns, and best practices. Essential reading for:
+- Understanding how the system works
+- Reusing patterns for similar showcase websites
+- Learning about performance optimization strategies
+- SEO implementation details
+
 ## Features
 
 - **Contact Form** - Secure POST-based form with honeypot spam protection and email integration
