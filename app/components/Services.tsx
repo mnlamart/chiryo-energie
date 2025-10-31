@@ -16,8 +16,8 @@ export default function Services() {
           </p>
         </div>
         
-        {/* Services in a 6-column grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+        {/* Services in a 4-column grid max */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-md sm:max-w-none mx-auto sm:mx-0">
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

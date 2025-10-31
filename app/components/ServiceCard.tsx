@@ -24,29 +24,35 @@ export default function ServiceCard({ service }: ServiceCardProps) {
                 type="image/avif"
                 srcSet={`${imageDir}/${imageName}-sq-96w.avif 96w,
                         ${imageDir}/${imageName}-sq-192w.avif 192w,
-                        ${imageDir}/${imageName}-sq-300w.avif 300w`}
-                sizes="(max-width: 640px) 120px, 150px"
+                        ${imageDir}/${imageName}-sq-300w.avif 300w,
+                        ${imageDir}/${imageName}-sq-400w.avif 400w,
+                        ${imageDir}/${imageName}-sq-500w.avif 500w`}
+                sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
               />
               <source
                 type="image/webp"
                 srcSet={`${imageDir}/${imageName}-sq-96w.webp 96w,
                         ${imageDir}/${imageName}-sq-192w.webp 192w,
-                        ${imageDir}/${imageName}-sq-300w.webp 300w`}
-                sizes="(max-width: 640px) 120px, 150px"
+                        ${imageDir}/${imageName}-sq-300w.webp 300w,
+                        ${imageDir}/${imageName}-sq-400w.webp 400w,
+                        ${imageDir}/${imageName}-sq-500w.webp 500w`}
+                sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
               />
               <source
                 type="image/jpeg"
                 srcSet={`${imageDir}/${imageName}-sq-96w.jpg 96w,
                         ${imageDir}/${imageName}-sq-192w.jpg 192w,
-                        ${imageDir}/${imageName}-sq-300w.jpg 300w`}
-                sizes="(max-width: 640px) 120px, 150px"
+                        ${imageDir}/${imageName}-sq-300w.jpg 300w,
+                        ${imageDir}/${imageName}-sq-400w.jpg 400w,
+                        ${imageDir}/${imageName}-sq-500w.jpg 500w`}
+                sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
               />
               <img 
-                src={`${imageDir}/${imageName}-sq-192w.jpg`}
+                src={`${imageDir}/${imageName}-sq-400w.jpg`}
                 alt={`${service.title} - Chiryo Energie`}
                 className="w-full h-full object-cover"
-                width={192}
-                height={192}
+                width={400}
+                height={400}
                 loading="lazy"
                 decoding="async"
                 onError={(e) => {
@@ -62,14 +68,14 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         )}
         
         {/* Content */}
-        <div className="p-2 md:p-3 flex-1 flex flex-col min-w-0">
-          <h3 className="text-xs md:text-sm font-bold text-gray-900 mb-1.5 leading-tight group-hover:text-primary-600 transition-colors line-clamp-2 text-center">
+        <div className="p-3 md:p-3 flex-1 flex flex-col min-w-0">
+          <h3 className="text-sm md:text-base font-bold text-gray-900 mb-2 leading-tight group-hover:text-primary-600 transition-colors line-clamp-2 text-center">
             {service.title}
           </h3>
           
           {/* Description */}
           {service.description && (
-            <p className="text-[10px] md:text-xs text-gray-600 mb-2.5 leading-relaxed text-center flex-grow">
+            <p className="text-xs md:text-sm text-gray-600 mb-3 leading-relaxed text-center flex-grow">
               {service.description}
             </p>
           )}
@@ -77,11 +83,11 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           {/* Price */}
           {service.price && (
             <div className="mt-auto text-center">
-              <div className="text-xs md:text-sm font-bold text-primary-700">
+              <div className="text-sm md:text-base font-bold text-primary-700">
                 {service.price}
               </div>
               {service.duration && (
-                <div className="text-[10px] text-gray-500 mt-0.5">
+                <div className="text-xs text-gray-500 mt-1">
                   {service.duration}
                 </div>
               )}

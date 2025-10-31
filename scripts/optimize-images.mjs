@@ -14,10 +14,10 @@ const SIZES = {
   hero: [640, 960, 1280, 1920],
   // Service images: 
   // - Small cards (compact): 80, 96, 192
-  // - Home page cards: 200, 300, 400 (for sizes: 50vw mobile, 25vw tablet, 200px desktop)
+  // - Home page cards: 200, 300, 400, 500 (for sizes: mobile up to 400px, tablet 200px, desktop 150px)
   // - Service detail pages: 400, 800, 1200 (for sizes: 100vw mobile, 50vw desktop)
   // - Hover cards: 400
-  services: [80, 96, 192, 200, 300, 400, 800, 1200],
+  services: [80, 96, 192, 200, 300, 400, 500, 800, 1200],
   testimonials: [150], // Keep original size, just convert format
   about: [400, 600, 800, 1000],
   // Logo sizes: header/footer (small), about page (medium), large display (large)
