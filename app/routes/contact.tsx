@@ -190,10 +190,10 @@ const ContactInfo = () => (
           </div>
           <div>
             <p className="font-semibold text-gray-900">
-              Adresse
+              Localisation
             </p>
             <p className="text-gray-700">
-              {contactInfo.address}
+              {contactInfo.location}
             </p>
           </div>
         </div>
@@ -235,11 +235,11 @@ const ContactInfo = () => (
     {/* Google Map - Desktop only (inside ContactInfo) */}
     <div className="hidden md:block">
       <p className="text-gray-600 mb-4">
-        {contactInfo.address || contactInfo.location}
+        {contactInfo.location}
       </p>
       <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-white/40">
         <iframe
-          src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
+          src="https://www.google.com/maps?q=Joué-lès-Tours,+37300+France&hl=fr&t=m&z=13&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -252,7 +252,7 @@ const ContactInfo = () => (
       </div>
       <p className="text-center text-sm text-gray-500 mt-4">
         <a
-          href="https://www.google.com/maps/search/101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France"
+          href="https://www.google.com/maps/search/Joué-lès-Tours,+37300+France"
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary-600 hover:text-primary-700 underline"
@@ -268,11 +268,11 @@ const ContactInfo = () => (
 const GoogleMap = () => (
   <div className="md:hidden order-3">
     <p className="text-gray-600 mb-4">
-      {contactInfo.address || contactInfo.location}
+      {contactInfo.location}
     </p>
     <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-white/40">
       <iframe
-        src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
+        src="https://www.google.com/maps?q=Joué-lès-Tours,+37300+France&hl=fr&t=m&z=13&output=embed"
         width="100%"
         height="100%"
         style={{ border: 0 }}
@@ -285,7 +285,7 @@ const GoogleMap = () => (
     </div>
     <p className="text-center text-sm text-gray-500 mt-4">
       <a
-        href="https://www.google.com/maps/search/101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France"
+        href="https://www.google.com/maps/search/Joué-lès-Tours,+37300+France"
         target="_blank"
         rel="noopener noreferrer"
         className="text-primary-600 hover:text-primary-700 underline"

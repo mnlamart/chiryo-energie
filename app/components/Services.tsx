@@ -3,6 +3,15 @@ import ServiceCard from './ServiceCard';
 import { services } from '../data/services';
 
 export default function Services() {
+  // Categorize services
+  const guidanceSpirituelle = services.filter(service => 
+    service.id === 'magnetiseuse' || service.id === 'mediumnite'
+  );
+  
+  const soinsEnergetiqueCorps = services.filter(service => 
+    service.id !== 'magnetiseuse' && service.id !== 'mediumnite'
+  );
+
   return (
     <section id="services" className="py-12 md:py-16 bg-brand-bg" aria-labelledby="services-heading">
       <Container>
@@ -16,11 +25,28 @@ export default function Services() {
           </p>
         </div>
         
-        {/* Services in a 4-column grid max */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-md sm:max-w-none mx-auto sm:mx-0">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
+        {/* Guidance spirituelle */}
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
+            Guidance spirituelle
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-md sm:max-w-none mx-auto sm:mx-0">
+            {guidanceSpirituelle.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </div>
+        </div>
+
+        {/* Soins énergetique corps */}
+        <div>
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
+            Soins énergetique corps
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-md sm:max-w-none mx-auto sm:mx-0">
+            {soinsEnergetiqueCorps.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </div>
         </div>
       </Container>
     </section>

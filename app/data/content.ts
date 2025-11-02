@@ -19,7 +19,6 @@ export const heroContent = {
 export const contactInfo = {
   phone: '06.61.86.94.01',
   email: 'chiryoenergie@gmail.com',
-  location: 'Joué-Les-Tours, France',
-  address: '101 Rue de Saint-Léger, 37300 Joué-Les-Tours, France'
+  location: 'Joué-Les-Tours, France'
 };
 

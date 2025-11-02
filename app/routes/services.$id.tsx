@@ -42,6 +42,24 @@ export default function Service() {
   const keywords = `${service.title}, ${service.title} Joué-Les-Tours, ${service.title} Indre-et-Loire, bien-être ${service.title?.toLowerCase()}, énergéticien ${service.title?.toLowerCase()}`;
   const faqs = serviceFAQs[service.id] || [];
 
+  // Determine if a service is in "Guidance spirituelle" category
+  const isGuidanceSpirituelle = (serviceId: string) => {
+    return serviceId === "magnetiseuse" || serviceId === "mediumnite";
+  };
+
+  // Get related services from the same category
+  const relatedServices = services
+    .filter((s) => {
+      // Exclude current service
+      if (s.id === service.id) return false;
+      
+      // Filter by same category
+      const currentIsGuidance = isGuidanceSpirituelle(service.id);
+      const otherIsGuidance = isGuidanceSpirituelle(s.id);
+      
+      return currentIsGuidance === otherIsGuidance;
+    });
+
   return (
     <>
       <title>{service.title} à Joué-Les-Tours | Chiryo Energie</title>
@@ -153,36 +171,35 @@ export default function Service() {
             )}
 
             {/* Related Services */}
-            <section className="mt-16" aria-labelledby="related-services-heading">
-              <h2 id="related-services-heading" className="text-2xl font-bold text-gray-900 mb-6">
-                Autres services disponibles
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services
-                  .filter((s) => s.id !== service.id)
-                  .slice(0, 3)
-                  .map((relatedService) => (
+            {relatedServices.length > 0 && (
+              <section className="mt-16" aria-labelledby="related-services-heading">
+                <h2 id="related-services-heading" className="text-2xl font-bold text-gray-900 mb-6">
+                  Autres services disponibles
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {relatedServices.map((relatedService) => (
                     <Link
                       key={relatedService.id}
                       to={`/services/${relatedService.id}`}
-                      className="block p-4 bg-brand-card rounded-lg shadow-md hover:shadow-lg transition-shadow border border-white/40"
+                      className="block p-4 bg-brand-card rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-400"
                     >
-                      <h3 className="text-lg font-semibold text-primary-600 mb-2 hover:text-primary-700">
+                      <h3 className="text-lg font-semibold text-primary-800 mb-2 hover:text-primary-900">
                         {relatedService.title}
                       </h3>
-                      <p className="text-sm text-gray-600 line-clamp-2">
+                      <p className="text-sm text-gray-800 line-clamp-2">
                         {relatedService.description}
                       </p>
-                      <span className="inline-block mt-2 text-sm text-primary-600 font-medium">
+                      <span className="inline-block mt-2 text-sm text-primary-800 font-medium">
                         En savoir plus →
                       </span>
                     </Link>
                   ))}
-              </div>
-            </section>
+                </div>
+              </section>
+            )}
 
             {/* Call to Action */}
-            <div className="mt-16 bg-linear-to-br from-primary-50 to-warm-50 rounded-lg p-8 text-center">
+            <div className="mt-16 bg-brand-card rounded-lg border border-gray-400 p-8 text-center">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 Prêt à commencer votre parcours de bien-être ?
               </h2>

@@ -103,9 +103,9 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">Adresse</p>
+                    <p className="font-semibold text-gray-900">Localisation</p>
                     <p className="text-gray-700">
-                      {contactInfo.address}
+                      {contactInfo.location}
                     </p>
                   </div>
                 </div>
@@ -147,11 +147,11 @@ export default function Contact() {
             {/* Google Map */}
             <div>
               <p className="text-gray-600 mb-4">
-                {contactInfo.address || contactInfo.location}
+                {contactInfo.location}
               </p>
               <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-white/40">
                 <iframe
-                  src="https://www.google.com/maps?q=101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France&hl=fr&t=m&z=15&output=embed"
+                  src="https://www.google.com/maps?q=Joué-lès-Tours,+37300+France&hl=fr&t=m&z=13&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -164,7 +164,7 @@ export default function Contact() {
               </div>
               <p className="text-center text-sm text-gray-500 mt-4">
                 <a
-                  href="https://www.google.com/maps/search/101+Rue+de+Saint-Léger,+Joué-lès-Tours,+37300+France"
+                  href="https://www.google.com/maps/search/Joué-lès-Tours,+37300+France"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-600 hover:text-primary-700 underline"

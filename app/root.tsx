@@ -97,7 +97,6 @@ function generateStructuredData(pathname: string, baseUrl: string) {
     image: `${baseUrl}/og-image.jpg`,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "101 Rue de Saint-Léger",
       addressLocality: "Joué-Les-Tours",
       addressRegion: "Centre-Val de Loire",
       postalCode: "37300",
@@ -457,7 +456,6 @@ Contactez Chiryo Energie au 06.61.86.94.01 ou par email à chiryoenergie@gmail.c
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: "101 Rue de Saint-Léger",
       addressLocality: "Joué-Les-Tours",
       postalCode: "37300",
       addressCountry: "FR",
@@ -665,7 +663,7 @@ export default function Root() {
         <meta name="summary" content="Chiryo Energie: Psycho énergéticienne offrant Reiki, Sophro-relaxation, Réflexologie, Magnétisme et Médiumnité à Joué-Les-Tours, Tours (Indre-et-Loire). Consultations en présentiel ou à distance. Maître enseignante en Reiki." />
         <meta name="keywords" content="Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité, bien-être holistique, Joué-Les-Tours, Tours, Indre-et-Loire, énergéticien, coupeuse de feu, voyance" />
         <meta name="theme-color" content="#8B4513" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="author" content="Chiryo Energie" />
         {!allowIndexing && <meta name="robots" content="noindex, nofollow" />}
         <meta property="og:type" content="website" />
