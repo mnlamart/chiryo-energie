@@ -100,13 +100,13 @@ export default function TestimonialsCarousel() {
               {/* Author Info */}
               <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/60">
                 {testimonials[currentIndex].avatar && (() => {
-                  const avatarName = getBaseImageName(testimonials[currentIndex].avatar!);
+                  const avatarName = getBaseImageName(testimonials[currentIndex].avatar);
                   return (
                     <ResponsiveImage
                       src={avatarName}
                       category="testimonials"
                       alt={testimonials[currentIndex].author}
-                      className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover flex-shrink-0 border-2 border-white/60"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover shrink-0 border-2 border-white/60"
                       sizes="56px"
                       width={150}
                       height={150}
