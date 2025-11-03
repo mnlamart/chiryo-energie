@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import vitest from '@vitest/eslint-plugin'
 
 export default defineConfig([
   globalIgnores(['dist', 'build/**']),
@@ -14,7 +15,7 @@ export default defineConfig([
   // Type-aware linting for project files
   {
     files: ['**/*.{ts,tsx}'],
-    ignores: ['build/**', 'node_modules/**'],
+    ignores: ['build/**', 'node_modules/**', 'vitest.config.ts'],
     extends: [
       js.configs.recommended,
       // Enable type-aware linting rules
@@ -50,6 +51,36 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
+    },
+  },
+  // Test files configuration with Vitest support
+  {
+    files: ['**/__tests__/**/*.{ts,tsx}', '**/*.test.{ts,tsx}', 'tests/**/*.ts'],
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.node,
+        ...globals.vitest,
+      },
+      parserOptions: {
+        project: ['./tsconfig.test.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    plugins: {
+      vitest,
+    },
+    rules: {
+      // Relax strict type checking for test files
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
   },
 ])
