@@ -19,6 +19,7 @@ import * as Toast from "@radix-ui/react-toast";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SkipToContent from "./components/SkipToContent";
+import { getImageServiceUrl } from "./utils/images";
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
 const ScrollToTopOnRouteChange = lazy(() => import("./components/ScrollToTopOnRouteChange"));
 const FloatingActionButton = lazy(() => import("./components/FloatingActionButton"));
@@ -679,14 +680,56 @@ export default function Root() {
         <meta name="google-site-verification" content="MOpUQdR_qghmbFNNNyThogjUCisgAKht_yDRRClwKyM" />
         <link rel="canonical" href={baseUrl + location.pathname} />
 
-        {/* Progressive image preloads for hero (Chromium supports imagesrcset/imagesizes) */}
-        <link
-          rel="preload"
-          as="image"
-          imageSrcSet="/images/hero/hero-meditation-640w.avif 640w, /images/hero/hero-meditation-960w.avif 960w, /images/hero/hero-meditation-1280w.avif 1280w, /images/hero/hero-meditation-1920w.avif 1920w"
-          imageSizes="100vw"
-          type="image/avif"
-        />
+        {/* Conditional image preloads based on route (Chromium supports imagesrcset/imagesizes) */}
+        {(() => {
+          // Homepage: preload hero image
+          if (location.pathname === "/") {
+            return (
+              <link
+                rel="preload"
+                as="image"
+                imageSrcSet="/api/images/hero/hero-new?w=640&f=avif 640w, /api/images/hero/hero-new?w=960&f=avif 960w, /api/images/hero/hero-new?w=1280&f=avif 1280w, /api/images/hero/hero-new?w=1920&f=avif 1920w"
+                imageSizes="100vw"
+                type="image/avif"
+              />
+            );
+          }
+
+          // Service pages: preload service-specific image
+          const serviceMatch = location.pathname.match(/^\/services\/([^/]+)$/);
+          if (serviceMatch) {
+            const serviceId = serviceMatch[1];
+            const service = services.find((s) => s.id === serviceId);
+            
+            if (service && service.image) {
+              // Generate preload srcset for service image (square variant, common sizes)
+              const serviceImageName = typeof service.image === 'string' 
+                ? service.image.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '').replace(/^.*\//, '')
+                : service.image;
+              
+              const sizes = [400, 800, 1200]; // Common sizes for service images
+              const srcSet = sizes
+                .map((size) => {
+                  const url = getImageServiceUrl(serviceImageName, 'services', size, 'avif', 'sq');
+                  return `${url} ${size}w`;
+                })
+                .join(', ');
+
+              return (
+                <link
+                  rel="preload"
+                  as="image"
+                  imageSrcSet={srcSet}
+                  imageSizes="(max-width: 768px) 100vw, 50vw"
+                  type="image/avif"
+                />
+              );
+            }
+          }
+
+          // Other pages: no preload (or could preload logo if needed)
+          return null;
+        })()}
 
         <Links />
         {schemas.map((schema, index) => (

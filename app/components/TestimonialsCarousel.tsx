@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Container from './Container';
-import ResponsiveImage from './ResponsiveImage';
 import { testimonials } from '../data/testimonials';
-import { getBaseImageName } from '../utils/images';
 
 export default function TestimonialsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -99,21 +97,11 @@ export default function TestimonialsCarousel() {
 
               {/* Author Info */}
               <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/60">
-                {testimonials[currentIndex].avatar && (() => {
-                  const avatarName = getBaseImageName(testimonials[currentIndex].avatar);
-                  return (
-                    <ResponsiveImage
-                      src={avatarName}
-                      category="testimonials"
-                      alt={testimonials[currentIndex].author}
-                      className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover shrink-0 border-2 border-white/60"
-                      sizes="56px"
-                      width={150}
-                      height={150}
-                      loading="lazy"
-                    />
-                  );
-                })()}
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-200 shrink-0 border-2 border-white/60 flex items-center justify-center">
+                  <span className="text-gray-400 text-lg md:text-xl font-semibold">
+                    {testimonials[currentIndex].author.charAt(0).toUpperCase()}
+                  </span>
+                </div>
                 <div className="text-center md:text-left">
                   <p className="font-bold text-primary-600 text-sm md:text-base">
                     {testimonials[currentIndex].author}

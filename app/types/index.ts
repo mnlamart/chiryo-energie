@@ -24,12 +24,6 @@ export interface Testimonial {
   id: string;
   author: string;
   text: string;
-  /**
-   * Avatar image reference - can be:
-   * - Full path: "/images/testimonials/avatar-chantal.jpg"
-   * - Base name: "avatar-chantal"
-   */
-  avatar?: string;
   rating?: number;
   role?: string;
 }

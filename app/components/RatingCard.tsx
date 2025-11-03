@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 interface RatingCardProps {
   rating?: number;
   review: string;
-  avatarUrl?: string;
   clientName: string;
   clientRole?: string;
 }
@@ -11,7 +10,6 @@ interface RatingCardProps {
 export function RatingCard({
   rating = 5,
   review,
-  avatarUrl,
   clientName,
   clientRole = "Client Chiryo Energie",
 }: RatingCardProps) {
@@ -54,7 +52,7 @@ export function RatingCard({
       </div>
 
       {/* Review Text with quotation styling */}
-      <div className="relative mb-6 flex-grow">
+      <div className="relative mb-6 grow">
         <span className="absolute -top-2 -left-2 text-5xl text-orange-100 select-none" style={{ fontFamily: 'Georgia, serif' }}>"</span>
         <p className="text-gray-700 leading-relaxed relative z-10 italic">
           {review}
@@ -63,32 +61,11 @@ export function RatingCard({
 
       {/* Client Info */}
       <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-        {avatarUrl ? (
-          <picture>
-            <source
-              type="image/avif"
-              srcSet={avatarUrl.replace(/\.(jpg|jpeg|png|webp)$/i, '-150w.avif')}
-            />
-            <source
-              type="image/webp"
-              srcSet={avatarUrl.replace(/\.(jpg|jpeg|png)$/i, '-150w.webp')}
-            />
-            <img
-              src={avatarUrl.replace(/\.(jpg|jpeg|png)$/i, '-150w.jpg')}
-              alt={clientName}
-              className="w-12 h-12 rounded-full object-cover ring-2 ring-orange-100"
-              width={150}
-              height={150}
-              loading="lazy"
-            />
-          </picture>
-        ) : (
-          <div className="w-12 h-12 rounded-full bg-gray-200 ring-2 ring-orange-100 flex items-center justify-center">
-            <span className="text-gray-400 text-lg font-semibold">
-              {clientName.charAt(0).toUpperCase()}
-            </span>
-          </div>
-        )}
+        <div className="w-12 h-12 rounded-full bg-gray-200 ring-2 ring-orange-100 flex items-center justify-center">
+          <span className="text-gray-400 text-lg font-semibold">
+            {clientName.charAt(0).toUpperCase()}
+          </span>
+        </div>
         <div>
           <p className="text-gray-900 font-medium">{clientName}</p>
           <p className="text-gray-500 text-sm">{clientRole}</p>
