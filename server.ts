@@ -14,10 +14,10 @@ const app = express();
 // compress responses
 app.use(compression());
 
-// Long-term cache for images (1 year, immutable)
+// Long-term cache for on-demand transformed images (1 year, immutable)
 app.use(
-  "/images",
-  express.static("build/client/images", {
+  "/cache/images",
+  express.static("build/cache/images", {
     immutable: true,
     maxAge: "1y",
     setHeaders: (res) => {
@@ -72,7 +72,8 @@ app.use((req, res, next) => {
 });
 
 const port = process.env.PORT || 3000;
+const host = process.env.HOST || '0.0.0.0';
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(port, host, () => {
+  console.log(`Server running at http://${host}:${port}`);
 });

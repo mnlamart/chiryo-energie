@@ -5,7 +5,6 @@ import type {
 } from '../config/images';
 import {
   IMAGE_CONFIG,
-  getImageCategoryPath,
   isValidCategory,
   isValidVariant,
 } from '../config/images';
@@ -53,7 +52,8 @@ export function generateImageFilename(
 }
 
 /**
- * Generate a full image path
+ * Generate a full image path (now uses on-demand API)
+ * @deprecated Use getImageServiceUrl instead for direct API access
  */
 export function getImagePath(
   baseName: string,
@@ -62,16 +62,15 @@ export function getImagePath(
   format: ImageFormat,
   variant: ImageVariant = null
 ): string {
-  const filename = generateImageFilename(baseName, size, format, variant);
-  const categoryPath = getImageCategoryPath(category);
-  return `${categoryPath}/${filename}`;
+  // Use on-demand image service API
+  return getImageServiceUrl(baseName, category, size, format, variant);
 }
 
 /**
- * Generate a srcset string for a specific format
+ * Generate a srcset string for a specific format using on-demand image API
  * 
  * Example output:
- * "/images/services/reiki-sq-96w.avif 96w, /images/services/reiki-sq-192w.avif 192w, ..."
+ * "/api/images/services/reiki?w=96&f=avif&v=sq 96w, /api/images/services/reiki?w=192&f=avif&v=sq 192w, ..."
  */
 export function getImageSrcSet(
   baseName: string,
@@ -82,18 +81,17 @@ export function getImageSrcSet(
 ): string {
   const config = IMAGE_CONFIG[category];
   const sizesToUse = sizes || config.sizes;
-  const categoryPath = getImageCategoryPath(category);
   
   return sizesToUse
     .map((size) => {
-      const filename = generateImageFilename(baseName, size, format, variant);
-      return `${categoryPath}/${filename} ${size}w`;
+      const url = getImageServiceUrl(baseName, category, size, format, variant);
+      return `${url} ${size}w`;
     })
     .join(', ');
 }
 
 /**
- * Get the default/fallback image path (typically the largest JPEG)
+ * Get the default/fallback image path using on-demand image API (typically the largest JPEG)
  */
 export function getDefaultImagePath(
   baseName: string,
@@ -102,7 +100,7 @@ export function getDefaultImagePath(
 ): string {
   const config = IMAGE_CONFIG[category];
   const largestSize = config.sizes[config.sizes.length - 1];
-  return getImagePath(baseName, category, largestSize, 'jpeg', variant);
+  return getImageServiceUrl(baseName, category, largestSize, 'jpeg', variant);
 }
 
 /**
@@ -151,5 +149,35 @@ export function validateCategory(category: string): asserts category is ImageCat
       `Invalid image category: ${category}. Valid categories are: ${Object.keys(IMAGE_CONFIG).join(', ')}`
     );
   }
+}
+
+/**
+ * Generate an on-demand image service URL
+ * Format: /api/images/{category}/{baseName}?w={size}&f={format}&v={variant}
+ * 
+ * Example:
+ * - category: "services", baseName: "reiki", size: 400, format: "webp", variant: "sq"
+ * - Returns: "/api/images/services/reiki?w=400&f=webp&v=sq"
+ */
+export function getImageServiceUrl(
+  baseName: string,
+  category: ImageCategory,
+  size: number,
+  format: ImageFormat,
+  variant: ImageVariant = null
+): string {
+  // Sanitize base name to prevent issues
+  const sanitizedName = baseName.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '');
+  
+  const params = new URLSearchParams({
+    w: size.toString(),
+    f: format,
+  });
+  
+  if (variant) {
+    params.set('v', variant);
+  }
+  
+  return `/api/images/${category}/${sanitizedName}?${params.toString()}`;
 }
 

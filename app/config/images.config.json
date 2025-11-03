@@ -18,12 +18,12 @@
   },
   "qualitySettings": {
     "default": {
-      "avif": { "quality": 55, "effort": 9 },
+      "avif": { "quality": 55, "effort": 4 },
       "webp": { "quality": 70, "effort": 6 },
       "jpeg": { "quality": 75, "progressive": true, "mozjpeg": true }
     },
     "hero": {
-      "avif": { "quality": 45, "effort": 9 },
+      "avif": { "quality": 45, "effort": 4 },
       "webp": { "quality": 60, "effort": 6 },
       "jpeg": { "quality": 70, "progressive": true, "mozjpeg": true }
     }
