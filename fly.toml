@@ -13,10 +13,34 @@ primary_region = 'cdg'
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 0
+  min_machines_running = 2
   processes = ['app']
 
+  # Health check configuration
+  # Checks /health endpoint to determine if machine is ready to receive traffic
+  # Fly.io will wait for grace_period after machine starts before checking health
+  # Increased timeout to 10s to handle heavy load during image generation
+  [[http_service.checks]]
+    grace_period = "30s"
+    interval = "15s"
+    method = "GET"
+    timeout = "10s"
+    path = "/health"
+
 [[vm]]
-  memory = '512mb'
+  memory = '1024mb'
   cpu_kind = 'shared'
   cpus = 1
+  # Note: To temporarily scale up for image generation, use:
+  # fly scale vm performance-4x (4 CPUs, 8GB RAM)
+  # fly scale vm shared-cpu-1x (to scale back down)
+
+# Persistent volume for image cache
+# Volumes are automatically created on first deploy if they don't exist
+# Each machine will get its own volume automatically
+# 1GB per volume = 2GB total, which fits within Fly.io's free allowance (3GB free per organization)
+[[mounts]]
+  source = "image_cache"
+  destination = "/app/build/cache/images"
+  initial_size = "1gb"
+  processes = ["app"]

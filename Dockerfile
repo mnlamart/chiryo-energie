@@ -28,6 +28,9 @@ WORKDIR /app
 # Set NODE_ENV for production
 ENV NODE_ENV=production
 
+# Install curl for health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 # Don't run as root
 # The node image may already have a nodejs group, so try to create it or use existing
 RUN groupadd --system --gid 1001 nodejs 2>/dev/null || true
@@ -44,10 +47,20 @@ COPY --from=builder --chown=nodejs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nodejs:nodejs /app/build ./build
 COPY --from=builder --chown=nodejs:nodejs /app/server.ts ./server.ts
 
+# Copy source images for on-demand transformation
+COPY --from=builder --chown=nodejs:nodejs /app/assets ./assets
+
+# Copy scripts and config for pre-generation (used to warm cache on each machine)
+COPY --from=builder --chown=nodejs:nodejs /app/scripts ./scripts
+COPY --from=builder --chown=nodejs:nodejs /app/app/config ./app/config
+
+# Make entrypoint script executable
+RUN chmod +x /app/scripts/entrypoint.sh
+
 USER nodejs
 
 EXPOSE 3000
 
 ENV PORT=3000
 
-CMD ["npx", "tsx", "server.ts"]
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]
