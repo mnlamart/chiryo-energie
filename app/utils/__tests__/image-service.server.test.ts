@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import sharp from 'sharp';
-import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync, readFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import { getTransformedImage, type TransformParams } from '../image-service.server';
 import type { ImageFormat } from '../../config/images';
@@ -242,6 +242,29 @@ describe('image-service.server', () => {
       // This test verifies the function works correctly
       const secondResult = await getTransformedImage(params);
       expect(secondResult).toBeInstanceOf(Buffer);
+    });
+  });
+
+  afterEach(() => {
+    // Clean up test images created during tests
+    const testImages = [
+      join(process.cwd(), 'assets', 'images-raw', 'services', 'test-image.jpg'),
+      join(process.cwd(), 'assets', 'images-raw', 'services', 'test-service.jpg'),
+      join(process.cwd(), 'assets', 'images-raw', 'services', 'test-service-h.jpg'),
+      join(process.cwd(), 'assets', 'images-raw', 'services', 'test-cache.jpg'),
+      join(process.cwd(), 'assets', 'images-raw', 'services', 'test-format.jpg'),
+      join(process.cwd(), 'assets', 'images-raw', 'hero', 'test-hero.jpg'),
+      join(process.cwd(), 'assets', 'images-raw', 'logos', 'test-logo.jpg'),
+    ];
+
+    testImages.forEach((imagePath) => {
+      if (existsSync(imagePath)) {
+        try {
+          unlinkSync(imagePath);
+        } catch {
+          // Ignore errors during cleanup
+        }
+      }
     });
   });
 });
