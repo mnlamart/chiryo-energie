@@ -34,7 +34,7 @@ const guidanceSpirituelle = [
   },
 ];
 
-const soinsEnergetiqueCorps = [
+const soinsEnergetique = [
   {
     title: 'Reiki',
     description: 'Soins énergétiques par imposition des mains',
@@ -185,11 +185,11 @@ export default function Header() {
 
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="h-10 min-h-0 px-4 py-2 bg-transparent hover:bg-[#D4A5A9] hover:text-[#4A3638] text-[#6B4B4E] data-[state=open]:bg-[#D4A5A9] data-[state=open]:text-[#4A3638]">
-                    Soins énergetique corps
+                    Soins énergétiques
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-[90vw] max-w-[600px] gap-3 p-6 md:grid-cols-2 bg-white">
-                      {soinsEnergetiqueCorps.map((service) => (
+                      {soinsEnergetique.map((service) => (
                         <Link
                           key={service.title}
                           to={service.href}
@@ -306,7 +306,7 @@ export default function Header() {
                       onClick={() => setMobileSoinsOpen(!mobileSoinsOpen)}
                       className="flex items-center justify-between rounded-md bg-white px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-[#F5E8E9] font-medium"
                     >
-                      Soins énergetique corps
+                      Soins énergétiques
                       <ChevronDown
                         className={cn(
                           "h-5 w-5 transition-transform",
@@ -317,7 +317,7 @@ export default function Header() {
 
                     {mobileSoinsOpen && (
                       <div className="mt-2 flex flex-col gap-2 pl-4">
-                        {soinsEnergetiqueCorps.map((service) => (
+                        {soinsEnergetique.map((service) => (
                           <Link
                             key={service.title}
                             to={service.href}

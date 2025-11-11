@@ -46,7 +46,7 @@ export default function Tarifs() {
     (service) => service.id === "magnetiseuse" || service.id === "mediumnite"
   );
 
-  const soinsEnergetiqueCorps = services.filter(
+  const soinsEnergetique = services.filter(
     (service) => service.id !== "magnetiseuse" && service.id !== "mediumnite"
   );
 
@@ -140,13 +140,13 @@ export default function Tarifs() {
               </div>
             </div>
 
-            {/* Soins énergetique corps */}
+            {/* Soins énergétiques */}
             <div className="mb-8 md:mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6 text-center">
-                Soins énergetique corps
+                Soins énergétiques
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {soinsEnergetiqueCorps.map((service) => {
+                {soinsEnergetique.map((service) => {
                   const imageName = service.image ? getBaseImageName(service.image) : null;
                   return (
                   <Link

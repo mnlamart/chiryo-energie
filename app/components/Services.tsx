@@ -8,7 +8,7 @@ export default function Services() {
     service.id === 'magnetiseuse' || service.id === 'mediumnite'
   );
   
-  const soinsEnergetiqueCorps = services.filter(service => 
+  const soinsEnergetique = services.filter(service => 
     service.id !== 'magnetiseuse' && service.id !== 'mediumnite'
   );
 
@@ -37,13 +37,13 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Soins énergetique corps */}
+        {/* Soins énergétiques */}
         <div>
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
-            Soins énergetique corps
+            Soins énergétiques
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-md sm:max-w-none mx-auto sm:mx-0">
-            {soinsEnergetiqueCorps.map((service) => (
+            {soinsEnergetique.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
           </div>
