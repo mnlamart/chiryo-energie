@@ -199,6 +199,56 @@ export const serviceFAQs: Record<string, FAQ[]> = {
       question: "Proposez-vous d'autres services comme le nettoyage énergétique ?",
       answer: "Oui, je propose des nettoyages de personnes, de lieux, et la coupe de liens toxiques. Contactez-moi directement car chaque protocole est propre à la situation de chacun."
     }
+  ],
+  'reequilibrage-des-chakras': [
+    {
+      question: "Qu'est-ce que le rééquilibrage des chakras ?",
+      answer: "Le rééquilibrage des chakras est une pratique énergétique visant à harmoniser les centres d'énergie du corps, appelés chakras. Ces portails énergétiques peuvent être déséquilibrés par le stress, la fatigue ou des blocages. Le rééquilibrage permet de réharmoniser votre énergie et de lever les blocages situés sur vos portails énergétiques pour retrouver un équilibre global."
+    },
+    {
+      question: "Comment savoir si mes chakras sont déséquilibrés ?",
+      answer: "Plusieurs signes peuvent indiquer un déséquilibre des chakras : une fatigue persistante, un stress accru, des troubles émotionnels, la sensation d'être parasité ou de ressentir des blocages énergétiques, ainsi que des douleurs physiques inexpliquées. Si vous vous sentez fatigué, stressé ou parasité, le rééquilibrage des chakras peut vous aider à retrouver votre harmonie énergétique."
+    },
+    {
+      question: "Comment se déroule une séance de rééquilibrage des chakras ?",
+      answer: "Une séance de rééquilibrage des chakras dure 30 minutes. Elle commence par une discussion sur vos préoccupations et vos besoins. Ensuite, je procède à un travail énergétique pour harmoniser vos chakras en utilisant diverses techniques énergétiques adaptées à votre situation. Le but est de réharmoniser votre énergie et de lever les blocages situés sur vos portails énergétiques."
+    },
+    {
+      question: "Quels sont les bienfaits du rééquilibrage des chakras ?",
+      answer: "Le rééquilibrage des chakras offre de nombreux bienfaits : réharmonisation énergétique globale, levée des blocages situés sur les portails énergétiques, réduction du stress et de l'anxiété, augmentation de l'énergie vitale, amélioration de la clarté mentale, et un sentiment général de bien-être. Cette pratique est particulièrement bénéfique pour les personnes fatiguées, stressées ou ressentant des blocages énergétiques."
+    },
+    {
+      question: "À qui s'adresse le rééquilibrage des chakras ?",
+      answer: "Le rééquilibrage des chakras s'adresse à toute personne ressentant de la fatigue, du stress, ou la sensation d'être parasité ou de subir des blocages énergétiques. Si vous vous sentez déséquilibré sur le plan énergétique, émotionnel ou physique, cette pratique peut vous aider à réharmoniser votre énergie et à lever les blocages situés sur vos portails énergétiques."
+    },
+    {
+      question: "Combien de séances sont nécessaires ?",
+      answer: "Le nombre de séances nécessaires varie selon vos besoins individuels et votre état énergétique. Certaines personnes ressentent une amélioration significative après une seule séance, tandis que d'autres peuvent bénéficier de plusieurs séances pour des résultats optimaux. Un forfait peut être établi selon vos besoins. Contactez-moi directement pour discuter d'un plan personnalisé."
+    },
+    {
+      question: "Y a-t-il des effets secondaires après une séance ?",
+      answer: "La plupart des personnes ressentent une relaxation profonde et un sentiment de bien-être après une séance de rééquilibrage des chakras. Occasionnellement, certaines personnes peuvent éprouver une libération émotionnelle ou une légère fatigue temporaire, ce qui est normal et fait partie du processus de guérison et de réharmonisation énergétique. Ces réactions sont généralement de courte durée et indiquent que le travail énergétique est en cours."
+    },
+    {
+      question: "Comment se préparer à une séance de rééquilibrage des chakras ?",
+      answer: "Pour préparer votre séance, portez des vêtements confortables qui vous permettront de vous détendre. Arrivez avec l'esprit ouvert et prêt à recevoir l'énergie. Il est également recommandé de communiquer vos préoccupations ou vos intentions spécifiques avant la séance, afin que je puisse adapter le travail énergétique à vos besoins particuliers."
+    },
+    {
+      question: "Le rééquilibrage des chakras est-il compatible avec d'autres traitements médicaux ?",
+      answer: "Oui, le rééquilibrage des chakras est complémentaire aux traitements médicaux conventionnels et ne les remplace pas. Cette pratique énergétique peut être utilisée en parallèle avec d'autres soins pour améliorer votre bien-être global. Cependant, il est recommandé de consulter votre professionnel de santé avant de commencer toute nouvelle thérapie, et en aucun cas les séances ne sauraient se substituer à un avis médical."
+    },
+    {
+      question: "Le rééquilibrage des chakras peut-il aider à gérer le stress et l'anxiété ?",
+      answer: "Oui, le rééquilibrage des chakras est particulièrement efficace pour gérer le stress et l'anxiété. En réharmonisant votre énergie et en levant les blocages situés sur vos portails énergétiques, cette pratique favorise un sentiment de paix intérieure, réduit le stress, et améliore votre capacité à gérer l'anxiété. Si vous vous sentez stressé ou anxieux, le rééquilibrage des chakras peut vous aider à retrouver votre équilibre énergétique et émotionnel."
+    },
+    {
+      question: "Y a-t-il des contre-indications au rééquilibrage des chakras ?",
+      answer: "Le rééquilibrage des chakras est généralement sûr et adapté à la plupart des personnes. Cependant, si vous avez des conditions médicales spécifiques, je vous recommande de consulter votre professionnel de santé avant de commencer. Les séances sont complémentaires aux traitements médicaux et ne les remplacent pas. En aucun cas les séances ne sauraient se substituer à un avis médical."
+    },
+    {
+      question: "Le rééquilibrage des chakras peut-il se faire à distance ?",
+      answer: "Le rééquilibrage des chakras peut être effectué en présentiel à Joué-Les-Tours ou à domicile selon votre localisation. Pour les séances à distance, contactez-moi directement pour discuter de vos besoins et de la disponibilité. Chaque situation est unique et je peux adapter le protocole selon vos préférences."
+    }
   ]
 };
 

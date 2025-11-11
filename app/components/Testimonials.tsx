@@ -43,7 +43,7 @@ export default function Testimonials() {
   }, [api]);
 
   return (
-    <section id="temoignages" className="py-20 bg-brand-bg" aria-labelledby="testimonials-heading">
+    <section id="temoignages" className="py-12 md:py-16 bg-brand-bg" aria-labelledby="testimonials-heading">
       <Container>
         {/* Header */}
         <header className="text-center mb-16 px-4">

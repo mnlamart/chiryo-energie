@@ -5,11 +5,11 @@ import { services } from '../data/services';
 export default function Services() {
   // Categorize services
   const guidanceSpirituelle = services.filter(service => 
-    service.id === 'magnetiseuse' || service.id === 'mediumnite'
+    service.id === 'mediumnite'
   );
   
   const soinsEnergetique = services.filter(service => 
-    service.id !== 'magnetiseuse' && service.id !== 'mediumnite'
+    service.id !== 'mediumnite'
   );
 
   return (

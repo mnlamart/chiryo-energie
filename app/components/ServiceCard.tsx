@@ -25,7 +25,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
               src={imageName}
               category="services"
               variant="sq"
-              alt={`${service.title} - Chiryo Energie`}
+              alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
               className="w-full h-full object-cover"
               sizes="(max-width: 640px) 400px, (max-width: 1024px) 200px, 150px"
               width={400}

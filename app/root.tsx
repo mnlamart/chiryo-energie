@@ -296,6 +296,28 @@ function generateStructuredData(pathname: string, baseUrl: string) {
     schemas.push(servicesListSchema);
   }
 
+  // 5.5. Services Page Structured Data
+  if (pathname === "/services") {
+    // ItemList schema for services page
+    const servicesPageListSchema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Services de bien-être holistique",
+      description: "Liste complète des services proposés par Chiryo Energie à Joué-Les-Tours",
+      itemListElement: services.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+          url: `${baseUrl}/services/${service.id}`,
+        },
+      })),
+    };
+    schemas.push(servicesPageListSchema);
+  }
+
   // 6. Article Schema (for AI content extraction)
   if (pathname === "/") {
     const articleSchema = {
@@ -368,6 +390,70 @@ Contactez Chiryo Energie au 06.61.86.94.01 ou par email à chiryoenergie@gmail.c
     schemas.push(serviceArticleSchema);
   }
 
+  // 6.5. Tarifs Page Structured Data
+  if (pathname === "/tarifs") {
+    // ItemList schema for tarifs page listing all services with prices
+    const tarifsListSchema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Tarifs des services de bien-être holistique",
+      description: "Liste des tarifs des services proposés par Chiryo Energie à Joué-Les-Tours",
+      itemListElement: services.map((service, index) => {
+        const priceMatch = service.price.match(/\d+/);
+        return {
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: service.title,
+              description: service.description,
+              url: `${baseUrl}/services/${service.id}`,
+            },
+            price: priceMatch ? priceMatch[0] : "0",
+            priceCurrency: "EUR",
+            description: service.price,
+            availability: "https://schema.org/InStock",
+          },
+        };
+      }),
+    };
+    schemas.push(tarifsListSchema);
+
+    // Article schema for tarifs page
+    const tarifsArticleBody = `Tarifs des services de bien-être holistique proposés par Chiryo Energie à Joué-Les-Tours et Tours (Indre-et-Loire).
+
+${services.map((service) => {
+  return `- ${service.title} : ${service.price}${service.duration ? ` (${service.duration})` : ""}`;
+}).join("\n")}
+
+Des forfaits sont disponibles pour plusieurs séances. Consultations en présentiel, à domicile ou à distance selon les services.
+
+Contactez Chiryo Energie au 06.61.86.94.01 ou par email à chiryoenergie@gmail.com pour plus d'informations sur les tarifs et les forfaits.`;
+
+    const tarifsArticleSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Tarifs des services de bien-être holistique - Chiryo Energie",
+      abstract: "Découvrez les tarifs des services de bien-être holistique proposés par Chiryo Energie à Joué-Les-Tours : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Des forfaits sont disponibles pour plusieurs séances.",
+      articleBody: tarifsArticleBody,
+      author: {
+        "@id": `${baseUrl}#person`,
+      },
+      publisher: {
+        "@id": `${baseUrl}#business`,
+      },
+      datePublished: "2025-01-29",
+      dateModified: today,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${baseUrl}/tarifs`,
+      },
+    };
+    schemas.push(tarifsArticleSchema);
+  }
+
   // 7. BreadcrumbList
   const breadcrumbs = [
     { position: 1, name: "Accueil", item: `${baseUrl}/` },
@@ -379,11 +465,29 @@ Contactez Chiryo Energie au 06.61.86.94.01 ou par email à chiryoenergie@gmail.c
       name: "Contact",
       item: `${baseUrl}/contact`,
     });
+  } else if (pathname === "/tarifs") {
+    breadcrumbs.push({
+      position: 2,
+      name: "Tarifs",
+      item: `${baseUrl}/tarifs`,
+    });
+  } else if (pathname === "/services") {
+    breadcrumbs.push({
+      position: 2,
+      name: "Services",
+      item: `${baseUrl}/services`,
+    });
+  } else if (pathname === "/faqs") {
+    breadcrumbs.push({
+      position: 2,
+      name: "Questions fréquentes",
+      item: `${baseUrl}/faqs`,
+    });
   } else if (currentService) {
     breadcrumbs.push({
       position: 2,
       name: "Services",
-      item: `${baseUrl}/#services`,
+      item: `${baseUrl}/services`,
     });
     breadcrumbs.push({
       position: 3,

@@ -5,7 +5,7 @@ import { generalFAQs } from '../data/faqs';
 
 export default function FAQs() {
   return (
-    <section className="py-20 bg-brand-bg" aria-labelledby="faq-heading">
+    <section className="py-12 md:py-16 bg-brand-bg" aria-labelledby="faq-heading">
       <Container>
         <div>
           <header className="text-center mb-12">

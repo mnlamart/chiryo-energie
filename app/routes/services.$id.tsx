@@ -37,14 +37,15 @@ export default function Service() {
     );
   }
 
-  const description = `${service.description.substring(0, 120)}... Tarif: ${service.price}. ${service.duration ? `Durée: ${service.duration}.` : ""} Consultation à Joué-Les-Tours (Indre-et-Loire) ou à distance. Prise de rendez-vous.`;
+  // Use the required metaDescription field (SEO-optimized, 150-160 characters)
+  const description = service.metaDescription;
   const summary = `${service.title} par Chiryo Energie à Joué-Les-Tours (Indre-et-Loire). ${service.description} Tarif : ${service.price}. ${service.duration ? `Durée : ${service.duration}.` : ""} Consultation en présentiel, à domicile ou à distance selon le service.`;
   const keywords = `${service.title}, ${service.title} Joué-Les-Tours, ${service.title} Indre-et-Loire, bien-être ${service.title?.toLowerCase()}, énergéticien ${service.title?.toLowerCase()}`;
   const faqs = serviceFAQs[service.id] || [];
 
   // Determine if a service is in "Guidance spirituelle" category
   const isGuidanceSpirituelle = (serviceId: string) => {
-    return serviceId === "magnetiseuse" || serviceId === "mediumnite";
+    return serviceId === "mediumnite";
   };
 
   // Get related services from the same category
@@ -69,6 +70,10 @@ export default function Service() {
       <meta property="og:title" content={`${service.title} à Joué-Les-Tours | Chiryo Energie`} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={`${baseUrl}/services/${service.id}`} />
+      <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+      <meta property="og:image:alt" content={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta name="twitter:title" content={`${service.title} à Joué-Les-Tours | Chiryo Energie`} />
       <meta name="twitter:description" content={description} />
       <div className="py-20 bg-brand-bg">
@@ -76,7 +81,7 @@ export default function Service() {
           <Breadcrumbs
             items={[
               { label: "Accueil", path: "/" },
-              { label: "Services", path: "/#services" },
+              { label: "Services", path: "/services" },
               { label: service.title, path: `/services/${service.id}` },
             ]}
           />

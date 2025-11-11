@@ -5,7 +5,7 @@ import { contactInfo } from '../data/content';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-brand-bg" aria-labelledby="contact-heading">
+    <section id="contact" className="py-12 md:py-16 bg-brand-bg" aria-labelledby="contact-heading">
       <Container>
         <header className="text-center mb-12">
           <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

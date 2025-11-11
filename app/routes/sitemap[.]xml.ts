@@ -38,6 +38,18 @@ export function loader(_args: LoaderFunctionArgs) {
       changefreq: "monthly",
       priority: "0.7",
     },
+    {
+      loc: `${baseUrl}/services`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: "0.9",
+    },
+    {
+      loc: `${baseUrl}/tarifs`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: "0.8",
+    },
     ...services.map((service) => ({
       loc: `${baseUrl}/services/${service.id}`,
       lastmod: currentDate,

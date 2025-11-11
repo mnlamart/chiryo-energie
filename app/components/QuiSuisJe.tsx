@@ -4,7 +4,7 @@ import { aboutContent } from '../data/content';
 
 export default function QuiSuisJe() {
   return (
-    <section className="py-12 md:py-24 bg-brand-bg" aria-labelledby="qui-suis-je-heading">
+    <section className="py-12 md:py-16 bg-brand-bg" aria-labelledby="qui-suis-je-heading">
       <Container>
         <div className="max-w-7xl mx-auto">
           <div className="bg-brand-card rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg border border-white/40 overflow-hidden">

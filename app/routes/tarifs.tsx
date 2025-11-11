@@ -6,6 +6,7 @@ import ResponsiveImage from "../components/ResponsiveImage";
 import { getBaseImageName } from "../utils/images";
 import { ArrowRight } from "lucide-react";
 import * as Separator from "@radix-ui/react-separator";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 // Helper function to format price with € symbol
 function formatPrice(price: string): string {
@@ -43,23 +44,37 @@ export default function Tarifs() {
   const baseUrl = rootData?.baseUrl || "https://chiryo-energie.sevend.io";
   // Categorize services
   const guidanceSpirituelle = services.filter(
-    (service) => service.id === "magnetiseuse" || service.id === "mediumnite"
+    (service) => service.id === "mediumnite"
   );
 
   const soinsEnergetique = services.filter(
-    (service) => service.id !== "magnetiseuse" && service.id !== "mediumnite"
+    (service) => service.id !== "mediumnite"
   );
 
   return (
     <>
       <title>Tarifs - Chiryo Energie | Prestations et prix des services</title>
-      <meta name="description" content="Découvrez les tarifs des services de bien-être holistique à Joué-Les-Tours : Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Consultations en présentiel ou à distance." />
+      <meta name="description" content="Tarifs des services de bien-être holistique à Joué-Les-Tours. Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité. Forfaits disponibles. Consultez nos prix." />
+      <meta name="summary" content="Tarifs des services de bien-être holistique proposés par Chiryo Energie à Joué-Les-Tours et Tours (Indre-et-Loire) : Reiki (60€), Sophro-relaxation (60€ adulte, 45€ enfant), Réflexologie (50€), Magnétisme, Médiumnité. Des forfaits sont disponibles pour plusieurs séances." />
+      <meta name="keywords" content="tarifs Reiki Joué-Les-Tours, prix Sophro-relaxation Tours, tarifs Réflexologie Indre-et-Loire, prix Magnétisme Tours, tarifs énergéticien Centre-Val de Loire, forfaits bien-être Tours" />
       <meta property="og:title" content="Tarifs - Chiryo Energie" />
       <meta property="og:description" content="Découvrez les tarifs des services de bien-être holistique à Joué-Les-Tours." />
       <meta property="og:url" content={`${baseUrl}/tarifs`} />
+      <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+      <meta property="og:image:alt" content="Tarifs des services de bien-être holistique - Chiryo Energie" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta name="twitter:title" content="Tarifs - Chiryo Energie" />
+      <meta name="twitter:description" content="Découvrez les tarifs des services de bien-être holistique à Joué-Les-Tours." />
       <div className="min-h-screen bg-brand-bg">
         <Container>
           <div className="py-8 md:py-12">
+            <Breadcrumbs
+              items={[
+                { label: "Accueil", path: "/" },
+                { label: "Tarifs", path: "/tarifs" },
+              ]}
+            />
             {/* Header */}
             <div className="text-center mb-8 md:mb-10">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -93,7 +108,7 @@ export default function Tarifs() {
                             src={imageName}
                             category="services"
                             variant="sq"
-                            alt={`${service.title} - Chiryo Energie`}
+                            alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
                             className="w-full h-full object-cover"
                             sizes="(max-width: 768px) 96px, 128px"
                             width={128}
@@ -162,7 +177,7 @@ export default function Tarifs() {
                             src={imageName}
                             category="services"
                             variant="sq"
-                            alt={`${service.title} - Chiryo Energie`}
+                            alt={`${service.title} - Services de bien-être à Joué-Les-Tours par Chiryo Energie`}
                             className="w-full h-full object-cover"
                             sizes="(max-width: 768px) 96px, 128px"
                             width={128}

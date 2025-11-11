@@ -7,6 +7,7 @@ import { HoneypotInputs } from "remix-utils/honeypot/react";
 import * as Toast from "@radix-ui/react-toast";
 import Container from "../components/Container";
 import Button from "../components/Button";
+import Breadcrumbs from "../components/Breadcrumbs";
 import { contactInfo } from "../data/content";
 import { sendContactEmail } from "../utils/email.server";
 import { useEffect, useState, useCallback } from "react";
@@ -338,16 +339,26 @@ export default function Contact() {
   return (
     <>
       <title>Contact - Chiryo Energie</title>
-      <meta name="description" content="Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, Tours (Indre-et-Loire). Téléphone: 06.61.86.94.01. Email: chiryoenergie@gmail.com. Services de bien-être disponibles." />
+      <meta name="description" content="Contactez Chiryo Energie à Joué-Les-Tours pour prendre rendez-vous. Téléphone: 06.61.86.94.01. Email: chiryoenergie@gmail.com. Consultations en présentiel ou à distance." />
       <meta name="summary" content="Contactez Chiryo Energie, Psycho énergéticienne à Joué-Les-Tours et Tours (Indre-et-Loire). Téléphone : 06.61.86.94.01. Email : chiryoenergie@gmail.com. Prenez rendez-vous pour Reiki, Sophro-relaxation, Réflexologie, Magnétisme ou Médiumnité." />
       <meta name="keywords" content="contact énergéticien Joué-Les-Tours, prendre rendez-vous Tours, contact Chiryo Energie, téléphone énergéticien Indre-et-Loire" />
       <meta property="og:title" content="Contact - Chiryo Energie" />
       <meta property="og:description" content="Contactez Chiryo Energie pour prendre rendez-vous. Téléphone: 06.61.86.94.01, Email: chiryoenergie@gmail.com." />
       <meta property="og:url" content={`${baseUrl}/contact`} />
+      <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+      <meta property="og:image:alt" content="Contact - Chiryo Energie" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta name="twitter:title" content="Contact - Chiryo Energie" />
       <meta name="twitter:description" content="Contactez Chiryo Energie pour prendre rendez-vous à Joué-Les-Tours, France." />
       <article className="py-20 bg-brand-bg">
         <Container>
+          <Breadcrumbs
+            items={[
+              { label: "Accueil", path: "/" },
+              { label: "Contact", path: "/contact" },
+            ]}
+          />
           <div>
             <ContactHeader />
             <div className="bg-brand-card p-6 md:p-8 shadow-lg border border-white/40">

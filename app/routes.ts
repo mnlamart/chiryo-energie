@@ -8,6 +8,7 @@ export default [
   route("contact", "routes/contact.tsx"),
   route("tarifs", "routes/tarifs.tsx"),
   route("faqs", "routes/faqs.tsx"),
+  route("services", "routes/services.tsx"),
   route("services/:id", "routes/services.$id.tsx"),
   route("api/images/:category/:imageName", "routes/api.images.$category.$imageName.tsx"),
   route("sitemap.xml", "routes/sitemap[.]xml.ts"),
