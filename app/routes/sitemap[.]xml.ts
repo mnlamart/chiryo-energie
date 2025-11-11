@@ -4,6 +4,19 @@ import { services } from "../data/services";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loader(_args: LoaderFunctionArgs) {
   const baseUrl = process.env.BASE_URL || "https://chiryo-energie.sevend.io";
+  const allowIndexing = process.env.ALLOW_INDEXING === "true";
+
+  // If indexing is disabled, return 404 to prevent URL discovery
+  if (!allowIndexing) {
+    return new Response("Sitemap not available - indexing is disabled", {
+      status: 404,
+      headers: {
+        "Content-Type": "text/plain",
+        "Cache-Control": "public, max-age=3600",
+      },
+    });
+  }
+
   const currentDate = new Date().toISOString().split("T")[0];
 
   const urls = [

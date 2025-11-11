@@ -256,6 +256,24 @@ export async function action({ request }) {
    - `content-summary.txt` - Plain-text content for AI crawlers
    - `.well-known/security.txt` - Security contact info
 
+4. **Indexing Control** (via `ALLOW_INDEXING` environment variable)
+
+   The application provides comprehensive indexing control through the `ALLOW_INDEXING` environment variable, which affects three mechanisms:
+   
+   - **HTML Meta Tag** (`app/root.tsx`): When `ALLOW_INDEXING !== "true"`, adds `<meta name="robots" content="noindex, nofollow">` to all pages (page-level directive)
+   - **robots.txt** (`app/routes/robots[.]txt.ts`): When `ALLOW_INDEXING !== "true"`, returns `Disallow: /` for all user agents (site-level directive)
+   - **sitemap.xml** (`app/routes/sitemap[.]xml.ts`): When `ALLOW_INDEXING !== "true"`, returns 404 response (prevents URL discovery)
+   
+   All three mechanisms work together to provide comprehensive indexing control:
+   - The meta tag tells search engines not to index individual pages
+   - robots.txt tells crawlers not to crawl the site
+   - The sitemap 404 prevents search engines from discovering URLs
+   
+   **Usage:**
+   - Set `ALLOW_INDEXING=true` in production to enable indexing
+   - Omit or set to `false` in staging/development to prevent indexing
+   - This ensures staging environments don't accidentally get indexed
+
 ### SEO Best Practices Applied
 
 - Semantic HTML5 elements
@@ -525,7 +543,7 @@ fly deploy
 - `CONTACT_EMAIL_FROM` - Verified sender email
 - `CONTACT_EMAIL_TO` - Recipient email
 - `BASE_URL` - Canonical domain
-- `ALLOW_INDEXING=true` - Enable SEO
+- `ALLOW_INDEXING=true` - Enable SEO (controls HTML meta tags, robots.txt, and sitemap.xml)
 
 **Optional:**
 

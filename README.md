@@ -43,7 +43,11 @@ Create a `.env` file in the root directory with the following variables:
 
 - `ALLOW_INDEXING` (optional)
   - Set to `"true"` to allow search engine indexing
-  - Omit or set to `false` to block indexing with `noindex, nofollow` meta tag
+  - Omit or set to `false` to block indexing with:
+    - `noindex, nofollow` meta tag in HTML (page-level directive)
+    - `Disallow: /` in robots.txt (site-level directive)
+    - 404 response for sitemap.xml (prevents URL discovery)
+  - All three mechanisms work together for comprehensive indexing control
 
 ---
 
