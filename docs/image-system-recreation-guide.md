@@ -530,3 +530,4 @@ const srcSet = getImageSrcSet(
 - Responsive images guide: https://web.dev/fast/#optimize-your-images
 - Content-aware cropping: https://sharp.pixelplumbing.com/api-resize#resize
 
+
