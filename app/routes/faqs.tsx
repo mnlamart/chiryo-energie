@@ -10,7 +10,7 @@ export default function FAQsPage() {
 
   return (
     <>
-      <title>Questions fréquentes - Chiryo Energie</title>
+      <title>Questions fréquentes - Chiryo Energie | FAQ Services bien-être</title>
       <meta name="description" content="Questions fréquentes sur les services de bien-être holistique à Joué-Les-Tours. Réponses sur Reiki, Sophro-relaxation, Réflexologie, Magnétisme, tarifs et séances. Consultez nos FAQ." />
       <meta name="summary" content="FAQ sur les services de bien-être holistique proposés par Chiryo Energie à Joué-Les-Tours et Tours (Indre-et-Loire). Réponses aux questions sur Reiki, Sophro-relaxation, Réflexologie, Magnétisme, Médiumnité, tarifs, séances à distance." />
       <meta name="keywords" content="FAQ Reiki Joué-Les-Tours, questions fréquentes énergéticien Tours, informations services bien-être Indre-et-Loire" />

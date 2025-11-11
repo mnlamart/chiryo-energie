@@ -338,7 +338,7 @@ export default function Contact() {
 
   return (
     <>
-      <title>Contact - Chiryo Energie</title>
+      <title>Contact - Chiryo Energie | Prendre rendez-vous à Joué-Les-Tours</title>
       <meta name="description" content="Contactez Chiryo Energie à Joué-Les-Tours pour prendre rendez-vous. Téléphone: 06.61.86.94.01. Email: chiryoenergie@gmail.com. Consultations en présentiel ou à distance." />
       <meta name="summary" content="Contactez Chiryo Energie, Psycho énergéticienne à Joué-Les-Tours et Tours (Indre-et-Loire). Téléphone : 06.61.86.94.01. Email : chiryoenergie@gmail.com. Prenez rendez-vous pour Reiki, Sophro-relaxation, Réflexologie, Magnétisme ou Médiumnité." />
       <meta name="keywords" content="contact énergéticien Joué-Les-Tours, prendre rendez-vous Tours, contact Chiryo Energie, téléphone énergéticien Indre-et-Loire" />
