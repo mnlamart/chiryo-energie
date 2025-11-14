@@ -297,23 +297,27 @@ async function transformImage(
 
 /**
  * Get transformed image - checks cache first, generates if needed
+ * @param force - If true, bypasses cache completely and regenerates the image
  */
 export async function getTransformedImage(
   params: TransformParams,
-  cropStrategy?: CropStrategy
+  cropStrategy?: CropStrategy,
+  force: boolean = false
 ): Promise<Buffer> {
-  const cachePath = getCachePath(params);
-  
-  // Try to get from cache first
-  const cached = await getCachedImage(cachePath);
-  if (cached) {
-    return cached;
+  // When force is true, skip cache check entirely and regenerate
+  if (!force) {
+    const cachePath = getCachePath(params);
+    const cached = await getCachedImage(cachePath);
+    if (cached) {
+      return cached;
+    }
   }
   
-  // Generate transformed image
+  // Generate transformed image (always regenerate when force=true)
   const buffer = await transformImage(params, cropStrategy);
   
   // Cache it (blocking to ensure cache is ready for subsequent requests)
+  const cachePath = getCachePath(params);
   await cacheImage(cachePath, buffer);
   
   return buffer;

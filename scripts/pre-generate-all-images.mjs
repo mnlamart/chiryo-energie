@@ -26,6 +26,7 @@
  *   --parallel=N  Generate N images in parallel (default: 5)
  *   --image=category:imageName  Generate only a specific image (e.g., --image=hero:hero-new)
  *   --sizes=640,960,1280  Only generate specified sizes (default: all configured sizes)
+ *   --force  Force regeneration even if images are already cached
  */
 
 import { readdir, stat } from 'fs/promises';
@@ -71,7 +72,7 @@ async function getImageFiles(category) {
 /**
  * Generate image URL for API request
  */
-function getImageUrl(apiBaseUrl, category, imageName, size, format, variant) {
+function getImageUrl(apiBaseUrl, category, imageName, size, format, variant, force = false) {
   const params = new URLSearchParams({
     w: size.toString(),
     f: format,
@@ -79,6 +80,10 @@ function getImageUrl(apiBaseUrl, category, imageName, size, format, variant) {
   
   if (variant) {
     params.set('v', variant);
+  }
+  
+  if (force) {
+    params.set('force', 'true');
   }
   
   return `${apiBaseUrl}/api/images/${category}/${imageName}?${params.toString()}`;
@@ -153,7 +158,8 @@ async function generateImageVariants(
   formats,
   variants,
   generateBaseVariant,
-  parallel = 1
+  parallel = 1,
+  force = false
 ) {
   const tasks = [];
   
@@ -167,7 +173,7 @@ async function generateImageVariants(
           size,
           format,
           variant: null,
-          url: getImageUrl(apiBaseUrl, category, imageName, size, format, null),
+          url: getImageUrl(apiBaseUrl, category, imageName, size, format, null, force),
         });
       }
       
@@ -180,7 +186,7 @@ async function generateImageVariants(
             size,
             format,
             variant,
-            url: getImageUrl(apiBaseUrl, category, imageName, size, format, variant),
+            url: getImageUrl(apiBaseUrl, category, imageName, size, format, variant, force),
           });
         }
       }
@@ -220,11 +226,13 @@ async function generateImageVariants(
         results.totalSize += parseFloat(sizeKB);
         
         const variantLabel = task.variant ? `-${task.variant}` : '';
-        const status = cached ? '✅' : '✨';
-        const statusText = cached ? 'cached' : 'generated';
+        // When force is enabled, everything is regenerated, so ignore cached flag
+        const isActuallyCached = force ? false : cached;
+        const status = isActuallyCached ? '✅' : '✨';
+        const statusText = isActuallyCached ? 'cached' : 'generated';
         console.log(`    ${status} ${task.size}w ${task.format}${variantLabel} (${statusText}, ${duration}s, ${sizeKB}KB)`);
         
-        if (cached) {
+        if (isActuallyCached) {
           results.cached++;
         } else {
           results.generated++;
@@ -266,9 +274,12 @@ async function generateImageVariants(
           results.errors--; // Decrease error count since we succeeded
           
           const variantLabel = task.variant ? `-${task.variant}` : '';
-          console.log(`    ✅ ${task.size}w ${task.format}${variantLabel} (regenerated, ${duration}s, ${sizeKB}KB)`);
+          // When force is enabled, everything is regenerated
+          const isActuallyCached = force ? false : cached;
+          const statusText = force ? 'regenerated' : (cached ? 'cached' : 'generated');
+          console.log(`    ✅ ${task.size}w ${task.format}${variantLabel} (${statusText}, ${duration}s, ${sizeKB}KB)`);
           
-          if (cached) {
+          if (isActuallyCached) {
             results.cached++;
           } else {
             results.generated++;
@@ -304,6 +315,7 @@ async function preGenerateAllImages(
     parallel = 5,
     image = null,
     sizes = null,
+    force = false,
   } = options;
   
   console.log('🚀 Starting image pre-generation...\n');
@@ -336,7 +348,12 @@ async function preGenerateAllImages(
     if (sizes) {
       console.log(`📏 Sizes: ${sizes.join(', ')}`);
     }
-    console.log(`⚡ Parallel requests: ${parallel}\n`);
+    console.log(`⚡ Parallel requests: ${parallel}`);
+    if (force) {
+      console.log(`🔄 Force regeneration: enabled (cache will be bypassed)\n`);
+    } else {
+      console.log('');
+    }
     
     const categoryConfig = imageConfig.categoryConfigs[category];
     const sizesToUse = sizes || imageConfig.sizes[category];
@@ -352,7 +369,8 @@ async function preGenerateAllImages(
         formats,
         variants,
         generateBaseVariant,
-        parallel
+        parallel,
+        force
       );
       
       const avgTime = (results.totalTime / results.total).toFixed(2);
@@ -437,7 +455,8 @@ async function preGenerateAllImages(
           formats,
           variants,
           generateBaseVariant,
-          parallel
+          parallel,
+          force
         );
         
         overallStats.total += results.total;
@@ -511,6 +530,8 @@ function parseArgs() {
       options.image = arg.split('=')[1];
     } else if (arg.startsWith('--sizes=')) {
       options.sizes = arg.split('=')[1].split(',').map(s => parseInt(s.trim(), 10));
+    } else if (arg === '--force') {
+      options.force = true;
     } else if (arg.startsWith('http://') || arg.startsWith('https://')) {
       apiBaseUrl = arg;
     } else if (!arg.startsWith('--')) {

@@ -31,6 +31,8 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const widthParam = url.searchParams.get("w");
   const formatParam = url.searchParams.get("f");
   const variantParam = url.searchParams.get("v");
+  const forceParam = url.searchParams.get("force");
+  const force = forceParam === "true" || forceParam === "1";
   
   // Validate width
   if (!widthParam) {
@@ -86,7 +88,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       size,
       format,
       variant,
-    });
+    }, undefined, force);
     
     // Determine content type
     const contentType =
@@ -102,11 +104,16 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       `${category}-${imageName}-${size}-${format}-${variant || "none"}`
     ).toString("base64");
     
+    // When force=true, bypass HTTP caching to ensure fresh images
+    const cacheControl = force
+      ? "no-cache, no-store, must-revalidate"
+      : "public, max-age=31536000, immutable";
+    
     return new Response(new Uint8Array(buffer), {
       status: 200,
       headers: {
         "Content-Type": contentType,
-        "Cache-Control": "public, max-age=31536000, immutable",
+        "Cache-Control": cacheControl,
         ETag: `"${etag}"`,
       },
     });
