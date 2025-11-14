@@ -1,130 +1,134 @@
 # Chiryo Energie - Website
 
-Website for Chiryo Energie, built with React Router v7, TypeScript, and Vite.
+Professional showcase website for Chiryo Energie, a holistic wellness practice offering energy healing, Reiki, sophrology, and spiritual guidance services in Joué-Les-Tours, France.
 
-## Documentation
-
-📚 **[Architecture Documentation](docs/architecture-documentation.md)** - Comprehensive guide covering the entire architecture, patterns, and best practices. Essential reading for:
-- Understanding how the system works
-- Reusing patterns for similar showcase websites
-- Learning about performance optimization strategies
-- SEO implementation details
+Built with React Router v7, TypeScript, and modern web technologies.
 
 ## Features
 
-- **Contact Form** - Secure POST-based form with honeypot spam protection and email integration
-- **Toast Notifications** - User-friendly success notifications using Radix UI
-- **Email Integration** - Resend API integration with automatic development mocking
-- **Type-Aware Linting** - Full TypeScript type checking with ESLint
+- **Service Pages** - Dynamic service listings with detailed pages for each offering
+- **Contact Form** - Secure form with honeypot spam protection and Resend email integration
+- **Image Optimization** - On-demand image transformation with Sharp (AVIF, WebP, JPEG) and responsive variants
+- **SEO Optimized** - Structured data, sitemap, robots.txt, meta tags, and breadcrumbs
+- **Accessibility** - WCAG compliant with Radix UI components
 - **Server-Side Rendering** - Full SSR support with React Router v7
 
-## Environment Variables
+## Documentation
 
-Create a `.env` file in the root directory with the following variables:
+📚 **[Architecture Documentation](docs/architecture-documentation.md)** - Comprehensive guide covering architecture, patterns, and best practices
 
-### Resend API Configuration
-- `RESEND_API_KEY` (optional in dev, required in production)
-  - Resend API key for sending emails. If not set in development, emails will be mocked and logged to console.
-  - Get your API key from [Resend](https://resend.com)
+📚 **[SEO Documentation](docs/seo-documentation.md)** - SEO implementation details and checklist
 
-### Contact Form Email Configuration
-- `CONTACT_EMAIL_FROM` (optional)
-  - Verified sender email address (must be verified with Resend)
-  - Should be a domain you own (e.g., `contact@chiryo-energie.sevend.io`)
-  - Defaults to `contact@chiryo-energie.sevend.io` if not set
+## Tech Stack
 
-- `CONTACT_EMAIL_TO` (optional)
-  - Email address where contact form submissions are delivered
-  - Defaults to `contact@chiryo-energie.sevend.io` if not set
-
-### Security
-- `HONEYPOT_ENCRYPTION_SEED` (optional)
-  - Secret seed for honeypot spam protection encryption
-
-- `ALLOW_INDEXING` (optional)
-  - Set to `"true"` to allow search engine indexing
-  - Omit or set to `false` to block indexing with:
-    - `noindex, nofollow` meta tag in HTML (page-level directive)
-    - `Disallow: /` in robots.txt (site-level directive)
-    - 404 response for sitemap.xml (prevents URL discovery)
-  - All three mechanisms work together for comprehensive indexing control
-
----
+- **React Router v7** - Full-stack React framework with SSR
+- **React 19** - Latest React with concurrent features
+- **TypeScript** - Complete type safety
+- **Vite 7** - Build tool and dev server
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **Radix UI** - Accessible component primitives
+- **Sharp** - High-performance image optimization
+- **Zod v4** - Schema validation
+- **Conform** - Type-safe form handling
+- **Resend** - Email API for contact form submissions
+- **Express 5** - Production server
+- **Fly.io** - Production hosting
 
 ## Development
 
+### Prerequisites
+
+- Node.js 22+
+- npm or pnpm
+
 ### Available Scripts
 
-- `npm run dev` - Start development server with hot module reloading
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server (requires build first)
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server (requires build first)
 - `npm run lint` - Run ESLint
-- `npm run preview` - Preview the production build locally
 - `npm run typecheck` - Type-check TypeScript files
-- `npm run typecheck:app` - Type-check application TypeScript files
-- `npm run typecheck:node` - Type-check Node.js TypeScript files
+- `npm run test` - Run tests
+- `npm run preview` - Preview production build locally
 
-### Tech Stack
+### Environment Variables
 
-- **React Router v7** - Full-stack React framework with SSR
-- **TypeScript** - Type-safe JavaScript
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **Conform** - Type-safe form validation
-- **Zod v4** - Schema validation
-- **Radix UI** - Accessible component primitives (Toast, Accordion)
-- **Resend** - Email API for contact form submissions
-- **remix-utils** - Utility functions (honeypot spam protection)
+Create a `.env` file in the root directory:
 
----
+```env
+# Email (optional in dev, required in production)
+RESEND_API_KEY=your_resend_api_key
+CONTACT_EMAIL_FROM=contact@yourdomain.com
+CONTACT_EMAIL_TO=your@email.com
 
-## Technical Details
+# Admin System (required for admin access)
+ADMIN_PASSWORD=your_secure_password
+SESSION_SECRET=your_session_secret
 
-### Form Handling
+# SEO (optional)
+ALLOW_INDEXING=true
 
-The contact form uses:
-- **POST method** for secure form submission (prevents honeypot fields from appearing in URLs)
-- **Zod v4** for schema validation
-- **Conform** for type-safe form handling
-- **Honeypot** protection via `remix-utils` to prevent spam
-- **Toast notifications** using Radix UI for user feedback
+# Security (optional)
+HONEYPOT_ENCRYPTION_SEED=your_secret_seed
+```
 
-### Email Integration
+## Data Management
 
-- Uses **Resend API** for sending emails
-- Automatically mocks email sending in development (logs to console)
-- Properly typed with TypeScript interfaces
-- Handles errors gracefully with user-friendly messages
+Content is stored in JSON files (`app/data/*.json`) with TypeScript fallbacks (`app/data/*.ts`). The admin system allows editing content through the web interface, or you can edit JSON files directly.
 
-### Type Safety
-
-- Full TypeScript coverage
-- Type-aware ESLint rules enabled
-- React Router type generation for route safety
-- Proper ServerBuild typing for Express integration
+To reset data from TypeScript fallbacks:
+```bash
+npm run seed
+```
 
 ## Deployment
 
 ### Fly.io
 
-This application is configured for deployment on Fly.io. The configuration is in `fly.toml`.
-
-#### Environment Variables on Fly.io
-
-Set environment variables using:
+Deploy to Fly.io:
 ```bash
 fly secrets set RESEND_API_KEY=your_key
+fly secrets set ADMIN_PASSWORD=your_password
+fly secrets set SESSION_SECRET=your_secret
+fly deploy
+```
+
+### Environment Variables on Fly.io
+
+Set required secrets:
+```bash
+fly secrets set RESEND_API_KEY=xxx
 fly secrets set CONTACT_EMAIL_FROM=contact@yourdomain.com
 fly secrets set CONTACT_EMAIL_TO=your@email.com
+fly secrets set ADMIN_PASSWORD=xxx
+fly secrets set SESSION_SECRET=xxx
+fly secrets set ALLOW_INDEXING=true
+```
+
+## Project Structure
+
+```
+app/
+├── components/       # Reusable UI components
+├── data/            # Content data (services, FAQs, testimonials)
+├── routes/          # File-based routing
+├── utils/           # Utility functions (email, images, auth)
+└── types/           # TypeScript type definitions
+
+assets/
+└── images-raw/      # Source images (optimized on build/deploy)
+
+docs/                # Project documentation
+scripts/             # Build and utility scripts
 ```
 
 ## Code Quality
 
-This project uses **type-aware linting** with TypeScript ESLint, providing enhanced type safety and catching more errors at lint time. The configuration includes:
+- **TypeScript** - Full type coverage
+- **ESLint** - Type-aware linting with `typescript-eslint`
+- **Vitest** - Unit tests for critical functionality
+- **Prettier** - Code formatting (via ESLint)
 
-- Type-checked rules from `@typescript-eslint`
-- React-specific linting rules
-- Proper handling of React Router generated types
-- Strict type checking across the codebase
+## License
 
-All linting errors have been resolved to ensure code quality and type safety.
+Private project for Chiryo Energie.
