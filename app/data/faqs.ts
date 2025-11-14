@@ -233,7 +233,7 @@ export const serviceFAQs: Record<string, FAQ[]> = {
     },
     {
       question: "Comment savoir si mes chakras sont déséquilibrés ?",
-      answer: "Plusieurs signes peuvent indiquer un déséquilibre des chakras : une fatigue persistante, un stress accru, des troubles émotionnels, la sensation d'être parasité ou de ressentir des blocages énergétiques, ainsi que des douleurs physiques inexpliquées. Si vous vous sentez fatigué, stressé ou parasité, le rééquilibrage des chakras peut vous aider à retrouver votre harmonie énergétique."
+      answer: "Plusieurs signes peuvent indiquer un déséquilibre des chakras : trouble du sommeil, fatigue persistante, stress accru, trouble émotionnels, sensation d‘être parasité ou de ressentir des blocages énergétiques ainsi que des douleurs physiques inexpliquées."
     },
     {
       question: "Comment se déroule une séance de rééquilibrage des chakras ?",
@@ -241,11 +241,11 @@ export const serviceFAQs: Record<string, FAQ[]> = {
     },
     {
       question: "Quels sont les bienfaits du rééquilibrage des chakras ?",
-      answer: "Le rééquilibrage des chakras offre de nombreux bienfaits : réharmonisation énergétique globale, levée des blocages situés sur les portails énergétiques, réduction du stress et de l'anxiété, augmentation de l'énergie vitale, amélioration de la clarté mentale, et un sentiment général de bien-être. Cette pratique est particulièrement bénéfique pour les personnes fatiguées, stressées ou ressentant des blocages énergétiques."
+      answer: "Le rééquilibrage des chakras offre de nombreux bienfaits : réharmonisation énergétique globale, levée des blocages situés sur les portails énergétiques, réduction du stress et de l'anxiété, limitation des pensées négatives, augmentation de l'énergie vitale, amélioration de la clarté mentale, , regain d'énergie et sentiment général de bien-être."
     },
     {
       question: "À qui s'adresse le rééquilibrage des chakras ?",
-      answer: "Le rééquilibrage des chakras s'adresse à toute personne ressentant de la fatigue, du stress, ou la sensation d'être parasité ou de subir des blocages énergétiques. Si vous vous sentez déséquilibré sur le plan énergétique, émotionnel ou physique, cette pratique peut vous aider à réharmoniser votre énergie et à lever les blocages situés sur vos portails énergétiques."
+      answer: "Le rééquilibrage des chakras s'adresse à toute personne ressentant un déséquilibre au niveau énergétique: enfants comme adultes."
     },
     {
       question: "Combien de séances sont nécessaires ?",
@@ -264,16 +264,40 @@ export const serviceFAQs: Record<string, FAQ[]> = {
       answer: "Oui, le rééquilibrage des chakras est complémentaire aux traitements médicaux conventionnels et ne les remplace pas. Cette pratique énergétique peut être utilisée en parallèle avec d'autres soins pour améliorer votre bien-être global. Cependant, il est recommandé de consulter votre professionnel de santé avant de commencer toute nouvelle thérapie, et en aucun cas les séances ne sauraient se substituer à un avis médical."
     },
     {
-      question: "Le rééquilibrage des chakras peut-il aider à gérer le stress et l'anxiété ?",
-      answer: "Oui, le rééquilibrage des chakras est particulièrement efficace pour gérer le stress et l'anxiété. En réharmonisant votre énergie et en levant les blocages situés sur vos portails énergétiques, cette pratique favorise un sentiment de paix intérieure, réduit le stress, et améliore votre capacité à gérer l'anxiété. Si vous vous sentez stressé ou anxieux, le rééquilibrage des chakras peut vous aider à retrouver votre équilibre énergétique et émotionnel."
-    },
-    {
       question: "Y a-t-il des contre-indications au rééquilibrage des chakras ?",
       answer: "Le rééquilibrage des chakras est généralement sûr et adapté à la plupart des personnes. Cependant, si vous avez des conditions médicales spécifiques, je vous recommande de consulter votre professionnel de santé avant de commencer. Les séances sont complémentaires aux traitements médicaux et ne les remplacent pas. En aucun cas les séances ne sauraient se substituer à un avis médical."
     },
     {
       question: "Le rééquilibrage des chakras peut-il se faire à distance ?",
       answer: "Le rééquilibrage des chakras peut être effectué en présentiel à Joué-Les-Tours ou à domicile selon votre localisation. Pour les séances à distance, contactez-moi directement pour discuter de vos besoins et de la disponibilité. Chaque situation est unique et je peux adapter le protocole selon vos préférences."
+    },
+    {
+      question: "Qu'est-ce que le chakra couronne et à quoi est-il lié ?",
+      answer: "Le chakra couronne est le septième chakra, situé au sommet de la tête. Il est lié à la pensée supérieure, à l'unité, à la compréhension et à la connaissance. Ce chakra représente notre connexion à la spiritualité et à la conscience universelle. Lorsqu'il est équilibré, il favorise la sagesse, la paix intérieure et une meilleure compréhension de notre place dans l'univers."
+    },
+    {
+      question: "Qu'est-ce que le chakra du troisième œil et quelles sont ses fonctions ?",
+      answer: "Le chakra du troisième œil, ou chakra frontal, est situé entre les sourcils. Il est lié au mental, à l'intuition, aux capacités sensorielles et à la pensée positive. Ce chakra gouverne notre perception intuitive et notre capacité à voir au-delà de l'apparence. Un chakra du troisième œil équilibré favorise la clarté mentale, l'intuition développée et une vision positive de la vie."
+    },
+    {
+      question: "En quoi consiste le chakra de la gorge et quel est son rôle ?",
+      answer: "Le chakra de la gorge est le cinquième chakra, situé au niveau de la gorge. Il est lié à notre vérité intérieure, à la communication, à notre capacité d'écoute. Il transforme nos émotions en mots et permet l'expression authentique de nos pensées et sentiments. Un chakra de la gorge équilibré facilite une communication claire, honnête et bienveillante, tant avec soi-même qu'avec les autres."
+    },
+    {
+      question: "Qu'est-ce que le chakra du cœur et quelles sont ses caractéristiques ?",
+      answer: "Le chakra du cœur est le quatrième chakra, situé au centre de la poitrine. Il est lié à l'ouverture aux autres, à la solidarité, à l'amour et à la compassion. Ce chakra représente notre capacité à donner et recevoir de l'amour, ainsi qu'à ressentir de l'empathie. Lorsqu'il est équilibré, il favorise des relations harmonieuses, la générosité et une connexion profonde avec les autres et avec soi-même."
+    },
+    {
+      question: "Quel est le rôle du chakra du plexus solaire ?",
+      answer: "Le chakra du plexus solaire est le troisième chakra, situé au niveau de l'estomac. Il est lié à l'amour propre, à l'identité personnelle et à la connaissance de soi. Ce chakra gouverne notre estime de soi, notre confiance et notre capacité à prendre des décisions. Un chakra du plexus solaire équilibré favorise une bonne estime de soi, une identité personnelle forte et une meilleure compréhension de qui nous sommes vraiment."
+    },
+    {
+      question: "En quoi consiste le chakra sacré et à quoi est-il associé ?",
+      answer: "Le chakra sacré est le deuxième chakra, situé dans le bas-ventre. Il est lié au féminin ou masculin sacré, au plaisir, à la créativité et à la sexualité. Ce chakra représente notre capacité à ressentir le plaisir, à créer et à exprimer notre sensualité de manière saine. Un chakra sacré équilibré favorise une créativité épanouie, une relation harmonieuse avec notre corps et une expression saine de notre sexualité."
+    },
+    {
+      question: "Qu'est-ce que le chakra racine et pourquoi est-il important ?",
+      answer: "Le chakra racine est le premier chakra, situé à la base de la colonne vertébrale. Il est lié à la sécurité, à l'ancrage, à la détermination et à notre place dans le monde. Ce chakra représente notre fondation énergétique et notre sentiment de sécurité matérielle et émotionnelle. Un chakra racine équilibré favorise un sentiment de stabilité, de sécurité et une connexion solide avec la terre et la réalité matérielle, permettant de se sentir ancré et déterminé dans la vie."
     }
   ]
 };
