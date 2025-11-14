@@ -7,6 +7,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from './ui/sheet';
+import { ScrollArea } from './ui/scroll-area';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -33,7 +34,7 @@ const soinsEnergetique = [
     href: '/services/magnetiseuse',
   },
   {
-    title: 'Reiki',
+    title: 'Maître enseignante Reiki',
     description: 'Soins énergétiques par imposition des mains',
     href: '/services/reiki',
   },
@@ -224,7 +225,7 @@ export default function Header() {
 
                             {/* Soins énergétiques section */}
                             <div>
-                              <h3 className="text-base font-semibold text-[#2C1B1D] mb-3">Soins énergétiques</h3>
+                              <h3 className="text-base font-semibold text-[#2C1B1D] mb-3">Soins énergétiques et développement personnel</h3>
                               <div className="space-y-2">
                                 {soinsEnergetique.map((service) => (
                                   <Link
@@ -277,7 +278,8 @@ export default function Header() {
                     </Button>
                   </SheetTrigger>
                    <SheetContent side="top" className="border-[#D4A5A9] p-0 rounded-b-2xl z-[99] mt-[120px] [&>button]:hidden" style={{ backgroundColor: 'rgb(246, 210, 210)' }}>
-                    <div className="pt-4 flex flex-col gap-2 px-6 pb-6">
+                    <ScrollArea className="h-[calc(100vh-120px)] max-h-[calc(100vh-120px)]">
+                      <div className="pt-4 flex flex-col gap-2 px-6 pb-6">
                       <Link
                         to="/"
                         onClick={() => setMobileMenuOpen(false)}
@@ -334,7 +336,7 @@ export default function Header() {
                           onClick={() => setMobileSoinsOpen(!mobileSoinsOpen)}
                           className="flex items-center justify-between rounded-md bg-white/80 px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-white font-medium ml-4"
                         >
-                          Soins énergétiques
+                          Soins énergétiques et développement personnel
                           <ChevronDown
                             className={cn(
                               "h-5 w-5 transition-transform",
@@ -379,7 +381,8 @@ export default function Header() {
                       >
                         Contact
                       </Link>
-                    </div>
+                      </div>
+                    </ScrollArea>
                   </SheetContent>
                 </Sheet>
               </div>

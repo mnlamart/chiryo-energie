@@ -94,10 +94,6 @@ export const serviceFAQs: Record<string, FAQ[]> = {
     {
       question: "Les protocoles sont-ils personnalisés ?",
       answer: "Oui, les protocoles sont établis et personnalisés selon les difficultés rencontrées par chaque personne."
-    },
-    {
-      question: "Proposez-vous des initiations à la Sophrologie ?",
-      answer: "Oui, je propose des initiations. Contactez-moi directement pour plus d'informations."
     }
   ],
   'relaxation-energetique': [

@@ -7,7 +7,6 @@ import FAQs from "../components/FAQs";
 import ScrollAnimation from "../components/ScrollAnimation";
 import Container from "../components/Container";
 import Button from "../components/Button";
-import { services } from "../data/services";
 import type { loader as rootLoader } from "../root";
 
 export default function Index() {
@@ -47,35 +46,6 @@ export default function Index() {
               </p>
               <Link to="/services">
                 <Button>Découvrir tous nos services</Button>
-              </Link>
-            </div>
-          </Container>
-        </section>
-      </ScrollAnimation>
-      <ScrollAnimation>
-        <section id="tarifs" className="py-12 md:py-16 bg-brand-bg" aria-labelledby="tarifs-heading">
-          <Container>
-            <div className="text-center mb-8 md:mb-12">
-              <h2 id="tarifs-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Tarifs
-              </h2>
-              <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-6">
-                Des forfaits sont disponibles pour plusieurs séances. N'hésitez pas à me contacter pour plus d'informations.
-              </p>
-              <div className="max-w-4xl mx-auto mb-8">
-                <div className="bg-brand-card rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg border border-white/40">
-                  <div className="grid grid-cols-1 gap-4">
-                    {services.map((service) => (
-                      <div key={service.id} className="flex justify-between items-start py-2 border-b border-white/40 last:border-b-0">
-                        <span className="text-gray-800 font-medium text-sm md:text-base pr-4">{service.title}</span>
-                        <span className="text-gray-600 text-sm md:text-base whitespace-nowrap">{service.price}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <Link to="/tarifs">
-                <Button>Voir tous les tarifs</Button>
               </Link>
             </div>
           </Container>

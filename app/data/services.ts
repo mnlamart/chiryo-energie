@@ -12,7 +12,7 @@ export const services: Service[] = [
   },
   {
     id: 'reiki',
-    title: 'Reiki',
+    title: 'Maître enseignante Reiki',
     description: 'Méthode non conventionnelle d\'origine japonaise, fondée sur des soins dits « énergétiques » par imposition des mains. La personne reste habillée.',
     price: '60 euros',
     duration: '1h environ',
@@ -28,7 +28,7 @@ export const services: Service[] = [
     duration: '1h environ',
     image: 'sophro-relaxation',
     metaDescription: 'Sophro-relaxation à Joué-Les-Tours. Techniques de relaxation, respiration et visualisation pour réduire le stress. 60€ adulte, 45€ enfant. Séances personnalisées. Prenez rendez-vous.',
-    notes: '45 euros la séance enfant jusqu\'à 15 ans. Protocoles établis et personnalisés selon les difficultés rencontrées. Forfait si plusieurs séances. Pour les initiations me contacter directement.'
+    notes: '45 euros la séance enfant jusqu\'à 15 ans. Protocoles établis et personnalisés selon les difficultés rencontrées. Forfait si plusieurs séances.'
   },
   {
     id: 'relaxation-energetique',

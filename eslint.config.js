@@ -15,7 +15,7 @@ export default defineConfig([
   // Type-aware linting for project files
   {
     files: ['**/*.{ts,tsx}'],
-    ignores: ['build/**', 'node_modules/**', 'vitest.config.ts'],
+    ignores: ['build/**', 'node_modules/**', 'vitest.config.ts', '**/__tests__/**', '**/*.test.{ts,tsx}', 'tests/**'],
     extends: [
       js.configs.recommended,
       // Enable type-aware linting rules
@@ -28,7 +28,7 @@ export default defineConfig([
       globals: globals.browser,
       // Required for type-aware linting
       parserOptions: {
-        project: ['./tsconfig.app.json', './tsconfig.node.json'],
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -56,6 +56,7 @@ export default defineConfig([
   // Test files configuration with Vitest support
   {
     files: ['**/__tests__/**/*.{ts,tsx}', '**/*.test.{ts,tsx}', 'tests/**/*.ts'],
+    ignores: ['tests/setup.ts'], // Setup file - projectService has trouble detecting tsconfig.test.json for this file
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
@@ -67,7 +68,7 @@ export default defineConfig([
         ...globals.vitest,
       },
       parserOptions: {
-        project: ['./tsconfig.test.json'],
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
