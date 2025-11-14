@@ -22,7 +22,7 @@ export const generalFAQs: FAQCategory[] = [
       },
       {
         question: "Les séances peuvent-elles se faire à distance ?",
-        answer: "Oui, plusieurs services peuvent être effectués à distance : le Reiki, la Magnétiseuse (y compris coupeur de feu pour brûlures), et la Médiumnité Voyance. Contactez-moi directement pour plus d'informations."
+        answer: "Oui, plusieurs services peuvent être effectués à distance : le Reiki, la Magnétiseuse (y compris coupeuse de feu pour brûlures), et la Médiumnité Voyance. Contactez-moi directement pour plus d'informations."
       },
       {
         question: "Combien de séances sont nécessaires ?",

@@ -9,7 +9,7 @@ export const services: Service[] = [
     price: 'Tarifs à définir selon les besoins',
     image: 'magnetisme',
     metaDescription: 'Magnétiseuse coupeuse de feu à Joué-Les-Tours. Soins énergétiques pour brûlures, problèmes de peau, stress, deuil. Intervention possible à distance. Contactez-moi pour un tarif personnalisé.',
-    notes: 'J\'interviens sur les brûlures, y compris à distance ou par téléphone. Mon champs d\'action s\'étend également au nettoyage des lieux et des personnes. Mon magnétisme intervient sur les personnes et les animaux. Travail à distance possible. Merci de me contacter directement.'
+    notes: 'J\'interviens sur les brûlures, y compris à distance ou par téléphone. Mon champ d\'action s\'étend également au nettoyage des lieux et des personnes. Mon magnétisme intervient sur les personnes et les animaux. Travail à distance possible. Merci de me contacter directement.'
   },
   {
     id: 'reiki',
@@ -47,7 +47,7 @@ export const services: Service[] = [
     id: 'reequilibrage-des-chakras',
     title: 'Rééquilibrage des chakras',
     servicesPageDescription: 'Fatigué? Stressé? Parasité? Le rééquilibrage des chakras vous permet de réharmoniser votre énergie et ainsi de lever les blocages situés sur vos portails énergétiques.',
-    description: 'Fatigué? Stressé? Parasité? Le rééquilibrage des chakras vous permet de réharmoniser votre énergie et ainsi de lever les blocages situés sur vos portails énergétiques.',
+    description: 'Fatigué? Stressé? Parasité? Le rééquilibrage des chakras vous permet de réharmoniser votre énergie et ainsi de lever les blocages situés sur vos portails énergétiques.\n\nLe corps humain étant composé de 7 principaux points d\'énergie appelés chakras, en forme de spirale ou de roue, ce sont, en particulier par ces centres que l\'énergie vitale circule.',
     price: '30 euros',
     duration: '30min',
     image: 'reequilibrage-des-chakras',
@@ -56,8 +56,8 @@ export const services: Service[] = [
   {
     id: 'reflexologie',
     title: 'Réflexologie plantaire',
-    servicesPageDescription: 'C\'est le pied! et pour cause, cette pratique se situe au niveau de la plante des pieds, véritable "tableau de bord" de l\'ensemble du corps. Les pieds sont "découpés" en zones, correspondant à un tissus ou à un organe. Solliciter ces points permet de réguler les déséquilibres.',
-    description: 'C\'est le pied! et pour cause, cette pratique se situe au niveau de la plante des pieds, véritable "tableau de bord" de l\'ensemble du corps. Les pieds sont "découpés" en zones, correspondant à un tissus ou à un organe. Solliciter ces points permet de réguler les déséquilibres.',
+    servicesPageDescription: 'C\'est le pied! et pour cause, cette pratique se situe au niveau de la plante des pieds, véritable "tableau de bord" de l\'ensemble du corps. Les pieds sont "découpés" en zones, correspondant à un tissu ou à un organe. Solliciter ces points permet de réguler les déséquilibres.',
+    description: 'C\'est le pied! et pour cause, cette pratique se situe au niveau de la plante des pieds, véritable "tableau de bord" de l\'ensemble du corps. Les pieds sont "découpés" en zones, correspondant à un tissu ou à un organe. Solliciter ces points permet de réguler les déséquilibres.',
     price: '50 euros',
     duration: '1h environ dont 10 minutes de balnéo pieds',
     image: 'reflexologie',
@@ -89,8 +89,8 @@ export const services: Service[] = [
   {
     id: 'mediumnite',
     title: 'Médiumnité Voyance Cartomancie',
-    servicesPageDescription: 'Issue d\'un héritage familiale, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. J\'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m\'être transmises sans l\'utilisation de support. Je suis un canal et vous retransmets ce que je reçois.',
-    description: 'Issue d\'un héritage familiale, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. J\'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m\'être transmises sans l\'utilisation de support. Je suis un canal et vous retransmets ce que je reçois.',
+    servicesPageDescription: 'Issue d\'un héritage familial, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. J\'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m\'être transmises sans l\'utilisation de support. Je suis un canal et vous retransmets ce que je reçois.',
+    description: 'Issue d\'un héritage familial, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. J\'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m\'être transmises sans l\'utilisation de support. Je suis un canal et vous retransmets ce que je reçois.',
     price: 'Tarifs à définir selon les besoins',
     duration: 'La consultation',
     image: 'mediumnite',
@@ -101,7 +101,7 @@ export const services: Service[] = [
     id: 'conseil-naturopathie',
     title: 'Conseil en naturopathie',
     servicesPageDescription: 'Alimentation équilibrée, activité physique, gestion des émotions, sont les maîtres mots d\'un quotidien harmonieux. Visant à préserver votre force vitale grâce à une bonne hygiène de vie.',
-    description: 'Alimentation équilibrée, activité physique, gestion des émotions, sont les maîtres mots d\'un quotidien harmonieux. Visant à préserver votre force vitale grâce à une bonne hygiène de vie.\n\nJe précise que je ne suis pas naturopathe en tant que tel, mais je peux vous accompagner vers une meilleure santé, en utilisant des outils naturels pour la gestion du stress et de la respiration afin d\'optimiser le bien être de chaque individu.',
+    description: 'Alimentation équilibrée, activité physique, gestion des émotions, sont les maîtres mots d\'un quotidien harmonieux. Visant à préserver votre force vitale grâce à une bonne hygiène de vie.\n\nJe précise que je ne suis pas naturopathe en tant que tel, mais je peux vous accompagner vers une meilleure santé, en utilisant des outils naturels pour la gestion du stress et de la respiration afin d\'optimiser le bien-être de chaque individu.',
     price: 'Tarifs à définir selon les besoins',
     image: 'conseil-naturopathie',
     metaDescription: 'Conseil en naturopathie à Joué-Les-Tours. Accompagnement vers une meilleure santé avec outils naturels pour gestion du stress et respiration. Tarifs sur mesure.'
