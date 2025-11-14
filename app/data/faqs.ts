@@ -196,6 +196,36 @@ export const serviceFAQs: Record<string, FAQ[]> = {
       answer: "Oui, je propose des nettoyages de personnes, de lieux, et la coupe de liens toxiques. Contactez-moi directement car chaque protocole est propre à la situation de chacun."
     }
   ],
+  'conseil-naturopathie': [
+    {
+      question: "En quoi consiste exactement votre accompagnement en conseil naturopathique ?",
+      answer: "Mon accompagnement consiste à vous guider dans l'adoption de pratiques naturelles qui renforcent votre vitalité et votre équilibre. Je vous aide à identifier les déséquilibres dans votre mode de vie et à mettre en place des solutions concrètes et durables. Contrairement à une consultation médicale, je me concentre sur la prévention et le renforcement de vos capacités d'auto-guérison à travers des méthodes douces et naturelles."
+    },
+    {
+      question: "Quelles techniques concrètes proposez-vous pour améliorer la respiration ?",
+      answer: "Je vous enseigne différentes méthodes de respiration consciente adaptées à vos besoins : techniques de cohérence cardiaque pour réguler le système nerveux, exercices de respiration profonde pour réduire les tensions, et pratiques de respiration rythmée pour améliorer la concentration. Ces techniques peuvent être intégrées facilement dans votre quotidien, même lors de moments de stress ou de fatigue."
+    },
+    {
+      question: "Quelle est la différence entre votre accompagnement et une consultation avec un naturopathe diplômé ?",
+      answer: "Je ne délivre pas de diagnostic médical ni de prescriptions de compléments alimentaires comme le ferait un naturopathe diplômé. Mon rôle est celui d'un guide qui vous accompagne dans l'adoption de pratiques naturelles, notamment autour de la respiration et de la gestion du stress. Je vous aide à développer votre autonomie dans la prise en charge de votre bien-être au quotidien."
+    },
+    {
+      question: "Pouvez-vous m'aider à améliorer mon sommeil ou ma digestion ?",
+      answer: "Oui, mon accompagnement peut aborder ces aspects. En travaillant sur la respiration et les techniques de relaxation, nous pouvons améliorer la qualité de votre sommeil. Pour la digestion, je peux vous conseiller sur les rythmes alimentaires et les pratiques qui favorisent une meilleure assimilation. Chaque accompagnement est personnalisé selon vos problématiques spécifiques."
+    },
+    {
+      question: "Combien de temps dure une séance et à quelle fréquence recommandez-vous de venir ?",
+      answer: "La durée et la fréquence des séances sont adaptées à votre situation. Une première séance permet d'établir un bilan de vos habitudes et de définir vos objectifs. Les séances suivantes peuvent être espacées selon vos besoins, permettant un suivi régulier de votre évolution. Certaines personnes bénéficient d'un accompagnement mensuel, d'autres préfèrent des séances plus rapprochées au début."
+    },
+    {
+      question: "Dois-je préparer quelque chose avant la première séance ?",
+      answer: "Avant la première séance, il est utile de réfléchir à vos objectifs et aux domaines de votre vie où vous souhaitez voir des améliorations. Vous pouvez noter vos habitudes actuelles concernant le sommeil, l'alimentation, et les moments de stress. Cela m'aidera à mieux comprendre votre situation et à vous proposer des conseils adaptés dès le premier rendez-vous."
+    },
+    {
+      question: "Votre accompagnement peut-il compléter d'autres pratiques de bien-être que je pratique déjà ?",
+      answer: "Absolument. Mon accompagnement est complémentaire à d'autres pratiques comme le yoga, la méditation, ou les soins énergétiques. Les techniques de respiration et de gestion du stress que je propose peuvent même renforcer les bénéfices de ces pratiques. Je peux également vous aider à créer une routine quotidienne qui intègre harmonieusement différentes approches de bien-être."
+    }
+  ],
   'reequilibrage-des-chakras': [
     {
       question: "Qu'est-ce que le rééquilibrage des chakras ?",

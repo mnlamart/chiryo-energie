@@ -9,6 +9,11 @@ export interface Service {
   id: string;
   title: string;
   description: string;
+  /**
+   * Short description for service cards on listing pages
+   * Falls back to description if not provided
+   */
+  servicesPageDescription?: string;
   price: string;
   duration?: string;
   notes?: string;

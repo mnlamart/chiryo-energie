@@ -8,8 +8,12 @@ export default function Services() {
     service.id === 'mediumnite'
   );
   
+  const conseilNaturopathie = services.filter(service => 
+    service.id === 'conseil-naturopathie'
+  );
+  
   const soinsEnergetique = services.filter(service => 
-    service.id !== 'mediumnite'
+    service.id !== 'mediumnite' && service.id !== 'conseil-naturopathie'
   );
 
   return (
@@ -38,7 +42,7 @@ export default function Services() {
         </div>
 
         {/* Soins énergétiques */}
-        <div>
+        <div className="mb-12 md:mb-16">
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
             Soins énergétiques et développement personnel
           </h3>
@@ -48,6 +52,20 @@ export default function Services() {
             ))}
           </div>
         </div>
+
+        {/* Conseil en Naturopathie */}
+        {conseilNaturopathie.length > 0 && (
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
+              Conseil en Naturopathie
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-md sm:max-w-none mx-auto sm:mx-0">
+              {conseilNaturopathie.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </div>
+          </div>
+        )}
       </Container>
     </section>
   );

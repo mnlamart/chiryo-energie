@@ -48,6 +48,11 @@ export default function Service() {
     return serviceId === "mediumnite";
   };
 
+  // Determine if a service is in "Conseil en Naturopathie" category
+  const isConseilNaturopathie = (serviceId: string) => {
+    return serviceId === "conseil-naturopathie";
+  };
+
   // Get related services from the same category
   const relatedServices = services
     .filter((s) => {
@@ -57,8 +62,13 @@ export default function Service() {
       // Filter by same category
       const currentIsGuidance = isGuidanceSpirituelle(service.id);
       const otherIsGuidance = isGuidanceSpirituelle(s.id);
+      const currentIsConseil = isConseilNaturopathie(service.id);
+      const otherIsConseil = isConseilNaturopathie(s.id);
       
-      return currentIsGuidance === otherIsGuidance;
+      // Services in the same category should be shown together
+      return (currentIsGuidance && otherIsGuidance) || 
+             (currentIsConseil && otherIsConseil) ||
+             (!currentIsGuidance && !currentIsConseil && !otherIsGuidance && !otherIsConseil);
     });
 
   return (
@@ -134,7 +144,7 @@ export default function Service() {
                     )}
                   </div>
 
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
                     {service.description}
                   </p>
 

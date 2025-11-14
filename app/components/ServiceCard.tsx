@@ -45,9 +45,9 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           </h3>
           
           {/* Description */}
-          {service.description && (
+          {(service.servicesPageDescription || service.description) && (
             <p className="text-xs md:text-sm text-gray-800 mb-3 leading-relaxed text-center grow">
-              {service.description}
+              {service.servicesPageDescription || service.description}
             </p>
           )}
           

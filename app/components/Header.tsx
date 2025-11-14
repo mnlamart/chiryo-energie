@@ -27,6 +27,14 @@ const guidanceSpirituelle = [
   },
 ];
 
+const conseilNaturopathie = [
+  {
+    title: 'Conseil en naturopathie',
+    description: 'Accompagnement vers une meilleure santé avec outils naturels',
+    href: '/services/conseil-naturopathie',
+  },
+];
+
 const soinsEnergetique = [
   {
     title: 'Magnétiseuse coupeuse de feu',
@@ -72,6 +80,7 @@ const soinsEnergetique = [
 
 export default function Header() {
   const [mobileGuidanceOpen, setMobileGuidanceOpen] = useState(false);
+  const [mobileConseilNaturopathieOpen, setMobileConseilNaturopathieOpen] = useState(false);
   const [mobileSoinsOpen, setMobileSoinsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -91,6 +100,7 @@ export default function Header() {
   useEffect(() => {
     setMobileMenuOpen(false);
     setMobileGuidanceOpen(false);
+    setMobileConseilNaturopathieOpen(false);
     setMobileSoinsOpen(false);
   }, [location.pathname]);
 
@@ -190,34 +200,31 @@ export default function Header() {
                         Services
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <div className="w-[90vw] max-w-[800px] p-6 bg-white">
+                        <div className="w-[90vw] max-w-[800px] p-4 bg-white">
                           {/* Tous les services link at top */}
                           <Link
                             to="/services"
-                            className="block mb-6 pb-3 border-b border-[#D4A5A9]"
+                            className="block mb-4 pb-2 border-b border-[#D4A5A9]"
                           >
-                            <div className="text-lg font-semibold text-[#2C1B1D] hover:text-[#4A3638] transition-colors">
+                            <div className="text-base font-semibold text-[#2C1B1D] hover:text-[#4A3638] transition-colors">
                               Tous les services
                             </div>
                           </Link>
                           
-                          {/* Two columns for categories */}
-                          <div className="grid md:grid-cols-2 gap-8">
+                          {/* Three columns for categories */}
+                          <div className="grid md:grid-cols-3 gap-6">
                             {/* Guidance spirituelle section */}
                             <div>
-                              <h3 className="text-base font-semibold text-[#2C1B1D] mb-3">Guidance spirituelle</h3>
-                              <div className="space-y-2">
+                              <h3 className="text-sm font-semibold text-[#2C1B1D] mb-2">Guidance spirituelle</h3>
+                              <div className="space-y-1">
                                 {guidanceSpirituelle.map((service) => (
                                   <Link
                                     key={service.title}
                                     to={service.href}
                                     onClick={(e) => handleHashLink(e, service.href)}
-                                    className="group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5E8E9] focus:bg-[#F5E8E9]"
+                                    className="block select-none rounded-md px-3 py-3 min-h-[44px] text-sm leading-normal no-underline outline-none transition-colors hover:bg-[#F5E8E9] focus:bg-[#F5E8E9] text-[#2C1B1D] font-medium flex items-center"
                                   >
-                                    <div className="text-[#2C1B1D] font-medium">{service.title}</div>
-                                    <p className="line-clamp-2 text-[#6B4B4E] opacity-70 text-sm">
-                                      {service.description}
-                                    </p>
+                                    {service.title}
                                   </Link>
                                 ))}
                               </div>
@@ -225,19 +232,33 @@ export default function Header() {
 
                             {/* Soins énergétiques section */}
                             <div>
-                              <h3 className="text-base font-semibold text-[#2C1B1D] mb-3">Soins énergétiques et développement personnel</h3>
-                              <div className="space-y-2">
+                              <h3 className="text-sm font-semibold text-[#2C1B1D] mb-2">Soins énergétiques et développement personnel</h3>
+                              <div className="space-y-1">
                                 {soinsEnergetique.map((service) => (
                                   <Link
                                     key={service.title}
                                     to={service.href}
                                     onClick={(e) => handleHashLink(e, service.href)}
-                                    className="group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5E8E9] focus:bg-[#F5E8E9]"
+                                    className="block select-none rounded-md px-3 py-3 min-h-[44px] text-sm leading-normal no-underline outline-none transition-colors hover:bg-[#F5E8E9] focus:bg-[#F5E8E9] text-[#2C1B1D] font-medium flex items-center"
                                   >
-                                    <div className="text-[#2C1B1D] font-medium">{service.title}</div>
-                                    <p className="line-clamp-2 text-[#6B4B4E] opacity-70 text-sm">
-                                      {service.description}
-                                    </p>
+                                    {service.title}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Conseil en Naturopathie section */}
+                            <div>
+                              <h3 className="text-sm font-semibold text-[#2C1B1D] mb-2">Conseil en Naturopathie</h3>
+                              <div className="space-y-1">
+                                {conseilNaturopathie.map((service) => (
+                                  <Link
+                                    key={service.title}
+                                    to={service.href}
+                                    onClick={(e) => handleHashLink(e, service.href)}
+                                    className="block select-none rounded-md px-3 py-3 min-h-[44px] text-sm leading-normal no-underline outline-none transition-colors hover:bg-[#F5E8E9] focus:bg-[#F5E8E9] text-[#2C1B1D] font-medium flex items-center"
+                                  >
+                                    {service.title}
                                   </Link>
                                 ))}
                               </div>
@@ -354,6 +375,41 @@ export default function Header() {
                                 onClick={(e) => {
                                   handleHashLink(e, service.href);
                                   setMobileSoinsOpen(false);
+                                  setMobileMenuOpen(false);
+                                }}
+                                className="block rounded-md bg-white/50 px-4 py-2 text-[#6B4B4E] transition-colors hover:bg-white"
+                              >
+                                <div className="font-medium">{service.title}</div>
+                                <p className="opacity-70 mt-1 text-sm">{service.description}</p>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex flex-col">
+                        <button
+                          onClick={() => setMobileConseilNaturopathieOpen(!mobileConseilNaturopathieOpen)}
+                          className="flex items-center justify-between rounded-md bg-white/80 px-4 py-3 text-[#6B4B4E] transition-colors hover:bg-white font-medium ml-4"
+                        >
+                          Conseil en Naturopathie
+                          <ChevronDown
+                            className={cn(
+                              "h-5 w-5 transition-transform",
+                              mobileConseilNaturopathieOpen && 'rotate-180'
+                            )}
+                          />
+                        </button>
+
+                        {mobileConseilNaturopathieOpen && (
+                          <div className="mt-2 flex flex-col gap-2 pl-8">
+                            {conseilNaturopathie.map((service) => (
+                              <Link
+                                key={service.title}
+                                to={service.href}
+                                onClick={(e) => {
+                                  handleHashLink(e, service.href);
+                                  setMobileConseilNaturopathieOpen(false);
                                   setMobileMenuOpen(false);
                                 }}
                                 className="block rounded-md bg-white/50 px-4 py-2 text-[#6B4B4E] transition-colors hover:bg-white"
