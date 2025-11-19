@@ -1,38 +1,45 @@
 # Chiryo Energie - Website
 
-Professional showcase website for Chiryo Energie, a holistic wellness practice offering energy healing, Reiki, sophrology, and spiritual guidance services in Joué-Les-Tours, France.
 
-Built with React Router v7, TypeScript, and modern web technologies.
+A high-performance, production-ready showcase website built with modern web following SEO best practices, and accessibility compliance for Chiryo Energie, a holistic wellness practice offering energy healing, Reiki, 
+sophrology, and spiritual guidance services in Joué-Les-Tours, France.
 
-## Features
+**Live Site:** [chiryo-energie.sevend.io](https://chiryo-energie.sevend.io)
 
-- **Service Pages** - Dynamic service listings with detailed pages for each offering
-- **Contact Form** - Secure form with honeypot spam protection and Resend email integration
-- **Image Optimization** - On-demand image transformation with Sharp (AVIF, WebP, JPEG) and responsive variants
-- **SEO Optimized** - Structured data, sitemap, robots.txt, meta tags, and breadcrumbs
-- **Accessibility** - WCAG compliant with Radix UI components
-- **Server-Side Rendering** - Full SSR support with React Router v7
+## 🚀 Key Highlights
 
-## Documentation
+- **On-Demand Image Optimization** - Custom image transformation service with Sharp, generating AVIF/WebP/JPEG formats and responsive variants on-the-fly
+- **Full SSR Architecture** - React Router v7 with server-side rendering for optimal performance and SEO
+- **Type-Safe Forms** - Conform + Zod v4 integration with honeypot spam protection
+- **Performance Optimized** - Multi-stage Docker builds, compression middleware, and intelligent caching strategies
+- **SEO Excellence** - Structured data (JSON-LD), dynamic sitemap/robots.txt, meta tags, and breadcrumbs
+- **Accessibility First** - WCAG compliant with Radix UI primitives and semantic HTML
+- **Comprehensive Documentation** - Architecture docs, ADRs, and implementation guides
 
-📚 **[Architecture Documentation](docs/architecture-documentation.md)** - Comprehensive guide covering architecture, patterns, and best practices
+## 🛠️ Tech Stack
 
-📚 **[SEO Documentation](docs/seo-documentation.md)** - SEO implementation details and checklist
-
-## Tech Stack
-
+### Core
 - **React Router v7** - Full-stack React framework with SSR
 - **React 19** - Latest React with concurrent features
-- **TypeScript** - Complete type safety
-- **Vite 7** - Build tool and dev server
+- **TypeScript** - Complete type safety across the codebase
+- **Vite 7** - Ultra-fast build tool and dev server
+
+### UI & Styling
 - **Tailwind CSS v4** - Utility-first CSS framework
-- **Radix UI** - Accessible component primitives
-- **Sharp** - High-performance image optimization
-- **Zod v4** - Schema validation
-- **Conform** - Type-safe form handling
-- **Resend** - Email API for contact form submissions
-- **Express 5** - Production server
-- **Fly.io** - Production hosting
+- **Radix UI** - Accessible, unstyled component primitives
+- **Motion** - Animation library for smooth interactions
+
+### Backend & Infrastructure
+- **Express 5** - Production server with compression middleware
+- **Sharp** - High-performance image transformation (AVIF, WebP, JPEG)
+- **Docker** - Multi-stage builds for optimized production images
+- **Fly.io** - Production hosting with auto-scaling
+
+### Developer Experience
+- **Zod v4** - Runtime schema validation
+- **Conform** - Type-safe form handling with React Router
+- **Vitest** - Fast unit testing framework
+- **ESLint** - Type-aware linting with TypeScript ESLint
 
 ## Development
 
@@ -122,12 +129,21 @@ docs/                # Project documentation
 scripts/             # Build and utility scripts
 ```
 
-## Code Quality
+## 📊 Code Quality
 
-- **TypeScript** - Full type coverage
+- **TypeScript** - Full type coverage with strict mode
 - **ESLint** - Type-aware linting with `typescript-eslint`
-- **Vitest** - Unit tests for critical functionality
-- **Prettier** - Code formatting (via ESLint)
+- **Vitest** - Unit tests for critical functionality (image service, utilities)
+- **Prettier** - Consistent code formatting (via ESLint)
+- **Architecture Decision Records (ADRs)** - Documented technical decisions
+
+## 🏗️ Architecture Highlights
+
+- **On-Demand Image Transformation** - Custom image service that generates optimized variants at request time, with intelligent caching
+- **File-Based Routing** - React Router v7's declarative route configuration
+- **Type-Safe Data Layer** - JSON files with TypeScript fallbacks for type safety
+- **Middleware Architecture** - Honeypot spam protection, compression, and caching
+- **Multi-Stage Docker Builds** - Optimized production images with minimal footprint
 
 ## License
 
