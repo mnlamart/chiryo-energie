@@ -45,7 +45,7 @@ export default function Service() {
 
   // Determine if a service is in "Guidance spirituelle" category
   const isGuidanceSpirituelle = (serviceId: string) => {
-    return serviceId === "mediumnite";
+    return serviceId === "voyance" || serviceId === "mediumnite";
   };
 
   // Determine if a service is in "Conseil en Naturopathie" category

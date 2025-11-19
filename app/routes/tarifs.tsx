@@ -44,11 +44,11 @@ export default function Tarifs() {
   const baseUrl = rootData?.baseUrl || "https://chiryo-energie.sevend.io";
   // Categorize services
   const guidanceSpirituelle = services.filter(
-    (service) => service.id === "mediumnite"
+    (service) => service.id === "voyance" || service.id === "mediumnite"
   );
 
   const soinsEnergetique = services.filter(
-    (service) => service.id !== "mediumnite"
+    (service) => service.id !== "voyance" && service.id !== "mediumnite"
   );
 
   return (

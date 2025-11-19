@@ -364,7 +364,7 @@ Tarif : ${currentService.price}.
 
 ${currentService.notes || ""}
 
-Consultation disponible ${currentService.id === "reiki" || currentService.id === "magnetiseuse" || currentService.id === "mediumnite" ? "en présentiel, à domicile ou à distance" : "en présentiel ou à domicile"}.
+Consultation disponible ${currentService.id === "reiki" || currentService.id === "magnetiseuse" || currentService.id === "voyance" || currentService.id === "mediumnite" ? "en présentiel, à domicile ou à distance" : "en présentiel ou à domicile"}.
 
 Contactez Chiryo Energie au 06.61.86.94.01 ou par email à chiryoenergie@gmail.com pour prendre rendez-vous.`;
 

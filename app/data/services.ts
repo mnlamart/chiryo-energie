@@ -87,14 +87,25 @@ export const services: Service[] = [
     notes: 'Prévoir 5 séances minimum avant suivi. Forfait possible.'
   },
   {
+    id: 'voyance',
+    title: 'Voyance et cartomancie',
+    servicesPageDescription: 'Les arts divinatoires existant depuis la nuit des temps, j\'utilise différents supports: tarots, cartes, oracles ou encore le pendule. Amour, travail, décision, je vous accompagne sur votre chemin.',
+    description: 'Les arts divinatoires existant depuis la nuit des temps, j\'utilise différents supports: tarots, cartes, oracles ou encore le pendule.\n\nAmour, travail, décision, je vous accompagne sur votre chemin\n\nPar téléphone ou en présentiel, soit avec un tirage intermédiaire , soit un tirage complet (~1h, 60€).',
+    price: 'À partir de 30€',
+    duration: '30min à 1h environ',
+    image: 'voyance',
+    metaDescription: 'Voyance et cartomancie à Joué-Les-Tours. Arts divinatoires avec tarots, cartes, oracles et pendule. À partir de 30€, 30min à 1h environ. Consultations en présentiel ou par téléphone.',
+    notes: 'Consultation par téléphone ou en présentiel. Travail à distance possible. Pour les nettoyages de personnes, de lieux, pour couper les liens toxiques... Merci de me contacter directement. Chaque protocole étant propre à la situation de chacun.'
+  },
+  {
     id: 'mediumnite',
-    title: 'Médiumnité Voyance Cartomancie',
-    servicesPageDescription: 'Issue d\'un héritage familial, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. J\'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m\'être transmises sans l\'utilisation de support. Je suis un canal et vous retransmets ce que je reçois.',
-    description: 'Issue d\'un héritage familial, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. J\'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m\'être transmises sans l\'utilisation de support. Je suis un canal et vous retransmets ce que je reçois.',
+    title: 'Médiumnité',
+    servicesPageDescription: 'Sensible aux influences subtiles, aux phénomènes non perceptibles, aux énergies qui nous entourent. Je suis médium, clairvoyant, audio voyant et sensitif, un trait d\'union entre l\'ici et l\'ailleurs.',
+    description: 'Sensible aux influences subtiles, aux phénomènes non perceptibles, aux énergies qui nous entourent. Je suis médium, clairvoyant, audio voyant et sensitif, un trait d\'union entre l\'ici et l\'ailleurs. Je vous invite à me contacter, selon vos besoins, afin de définir ensemble le protocole à établir.',
     price: 'Tarifs à définir selon les besoins',
-    duration: 'La consultation',
+    duration: 'À définir selon les besoins',
     image: 'mediumnite',
-    metaDescription: 'Médiumnité, voyance et cartomancie à Joué-Les-Tours. Guidance spirituelle avec pendule et cartes. Consultations en présentiel ou par téléphone. Tarifs sur mesure. Contactez-moi.',
+    metaDescription: 'Médiumnité à Joué-Les-Tours. Médium, clairvoyant, audio voyant et sensitif. Trait d\'union entre l\'ici et l\'ailleurs. Consultations en présentiel ou à distance. Contactez-moi pour définir le protocole.',
     notes: 'Consultation par téléphone ou en présentiel. Travail à distance possible. Pour les nettoyages de personnes, de lieux, pour couper les liens toxiques... Merci de me contacter directement. Chaque protocole étant propre à la situation de chacun.'
   },
   {

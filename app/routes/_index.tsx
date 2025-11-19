@@ -48,6 +48,12 @@ export default function Index() {
                 <Button>Découvrir tous nos services</Button>
               </Link>
             </div>
+            {/* Medical Disclaimer */}
+            <div className="mt-8 pt-8 border-t border-gray-300">
+              <p className="text-sm md:text-base text-gray-600 text-center max-w-3xl mx-auto italic">
+                Aucune séance ne saurait se substituer à un avis médical. Ni remplacer un traitement médical.
+              </p>
+            </div>
           </Container>
         </section>
       </ScrollAnimation>

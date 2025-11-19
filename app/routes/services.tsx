@@ -12,7 +12,7 @@ export default function ServicesPage() {
 
   // Categorize services
   const guidanceSpirituelle = services.filter(service => 
-    service.id === 'mediumnite'
+    service.id === 'voyance' || service.id === 'mediumnite'
   );
   
   const conseilNaturopathie = services.filter(service => 
@@ -20,7 +20,7 @@ export default function ServicesPage() {
   );
   
   const soinsEnergetique = services.filter(service => 
-    service.id !== 'mediumnite' && service.id !== 'conseil-naturopathie'
+    service.id !== 'voyance' && service.id !== 'mediumnite' && service.id !== 'conseil-naturopathie'
   );
 
   return (
@@ -62,6 +62,9 @@ export default function ServicesPage() {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
                 Guidance spirituelle
               </h2>
+              <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto mb-6 md:mb-8 text-center leading-relaxed">
+                Issue d'un héritage familial, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. J'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m'être transmises sans l'utilisation de support. Je suis un canal et vous retransmets ce que je reçois.
+              </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-md sm:max-w-none mx-auto sm:mx-0">
                 {guidanceSpirituelle.map((service) => (
                   <ServiceCard key={service.id} service={service} />
@@ -99,6 +102,15 @@ export default function ServicesPage() {
               </div>
             </ScrollAnimation>
           )}
+
+          {/* Medical Disclaimer */}
+          <ScrollAnimation>
+            <div className="mt-12 md:mt-16 pt-8 border-t border-gray-300">
+              <p className="text-sm md:text-base text-gray-600 text-center max-w-3xl mx-auto italic">
+                Aucune séance ne saurait se substituer à un avis médical. Ni remplacer un traitement médical.
+              </p>
+            </div>
+          </ScrollAnimation>
         </Container>
       </section>
     </>

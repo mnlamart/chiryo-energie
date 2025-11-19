@@ -22,7 +22,7 @@ ${services
     (service) => `- ${service.title}
   Description: ${service.description}
   Tarif: ${service.price}${service.duration ? ` | Durée: ${service.duration}` : ""}
-  Disponibilité: ${service.id === "reiki" || service.id === "magnetiseuse" || service.id === "mediumnite" ? "Présentiel, à domicile ou à distance" : "Présentiel ou à domicile"}
+  Disponibilité: ${service.id === "reiki" || service.id === "magnetiseuse" || service.id === "voyance" || service.id === "mediumnite" ? "Présentiel, à domicile ou à distance" : "Présentiel ou à domicile"}
 `
   )
   .join("\n")}

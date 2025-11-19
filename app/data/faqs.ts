@@ -174,22 +174,52 @@ export const serviceFAQs: Record<string, FAQ[]> = {
       answer: "Oui, mon champ d'action s'étend également au nettoyage des lieux et des personnes. Contactez-moi directement car chaque protocole est propre à la situation."
     }
   ],
+  voyance: [
+    {
+      question: "Qu'est-ce que la voyance et la cartomancie ?",
+      answer: "Les arts divinatoires existent depuis la nuit des temps. J'utilise différents supports : tarots, cartes, oracles ou encore le pendule pour vous accompagner et vous guider sur votre chemin de vie. Que ce soit pour l'amour, le travail ou une décision importante, je vous offre un éclairage sur votre situation."
+    },
+    {
+      question: "Quels types de consultations proposez-vous ?",
+      answer: "Je propose deux types de tirages : le tirage intermédiaire (environ 30 minutes, 30€) et le tirage complet (environ 1 heure, 60€). Chaque consultation peut se faire par téléphone ou en présentiel, selon votre préférence."
+    },
+    {
+      question: "Sur quels sujets pouvez-vous me conseiller ?",
+      answer: "Je vous accompagne sur différents aspects de votre vie : l'amour, le travail, et les décisions importantes. Les arts divinatoires permettent d'obtenir des éclairages sur votre situation actuelle et future."
+    },
+    {
+      question: "Quels supports utilisez-vous ?",
+      answer: "J'utilise différents supports selon la situation : tarots, cartes, oracles ou encore le pendule. Chaque support apporte une dimension particulière à la consultation."
+    },
+    {
+      question: "Comment se déroule une consultation ?",
+      answer: "La consultation peut se faire par téléphone ou en présentiel. Vous pouvez choisir entre un tirage intermédiaire (environ 30 minutes) ou un tirage complet (environ 1 heure). Le tarif est à partir de 30€ selon le type de consultation choisi."
+    },
+    {
+      question: "Comment se préparer à une consultation de voyance ?",
+      answer: "Il est recommandé de venir avec une question ou une intention claire concernant l'amour, le travail ou une décision à prendre. L'ouverture et la réceptivité facilitent la transmission des informations. Restez naturel et détendu."
+    }
+  ],
   mediumnite: [
     {
       question: "Qu'est-ce que la médiumnité ?",
-      answer: "Issue d'un héritage familial, ma sensibilité peut vous permettre de vous accompagner et de vous guider sur votre chemin de vie. Je suis un canal et vous retransmets ce que je reçois."
+      answer: "Sensible aux influences subtiles, aux phénomènes non perceptibles et aux énergies qui nous entourent, je suis médium, clairvoyant, audio voyant et sensitif. Je suis un trait d'union entre l'ici et l'ailleurs, permettant de faire le lien entre le monde visible et invisible."
     },
     {
-      question: "Utilisez-vous des supports comme les cartes ?",
-      answer: "J'utilise certains outils comme le pendule et les cartes, mais les informations peuvent aussi m'être transmises sans l'utilisation de support."
+      question: "Que signifie être clairvoyant, audio voyant et sensitif ?",
+      answer: "En tant que médium, je possède plusieurs capacités : la clairvoyance (perception visuelle au-delà du visible), l'audio voyance (perception auditive de messages), et la sensibilité (perception des énergies et influences subtiles). Ces capacités me permettent de recevoir et de transmettre des informations qui ne sont pas accessibles par les sens ordinaires."
+    },
+    {
+      question: "Comment fonctionne une consultation de médiumnité ?",
+      answer: "Je vous invite à me contacter selon vos besoins afin de définir ensemble le protocole à établir. Chaque consultation est personnalisée car chaque situation est unique. Le tarif et la durée sont à définir selon vos besoins spécifiques."
     },
     {
       question: "Peut-on consulter à distance ?",
-      answer: "Oui, les consultations peuvent se faire par téléphone ou en présentiel. Le travail à distance est possible."
+      answer: "Oui, les consultations peuvent se faire par téléphone ou en présentiel. Le travail à distance est possible, car la médiumnité ne dépend pas de la proximité physique."
     },
     {
       question: "Comment se prépare-t-on à une consultation de médiumnité ?",
-      answer: "Il est recommandé de venir avec une question ou une intention claire, mais sans attente spécifique. L'ouverture et la réceptivité facilitent la transmission des informations. Restez naturel et détendu."
+      answer: "Il est recommandé de venir avec une question ou une intention claire, mais sans attente spécifique. L'ouverture et la réceptivité facilitent la transmission des informations. Nous définirons ensemble le protocole adapté à votre situation lors de la prise de contact."
     },
     {
       question: "Proposez-vous d'autres services comme le nettoyage énergétique ?",

@@ -5,7 +5,7 @@ import { services } from '../data/services';
 export default function Services() {
   // Categorize services
   const guidanceSpirituelle = services.filter(service => 
-    service.id === 'mediumnite'
+    service.id === 'voyance' || service.id === 'mediumnite'
   );
   
   const conseilNaturopathie = services.filter(service => 
@@ -13,7 +13,7 @@ export default function Services() {
   );
   
   const soinsEnergetique = services.filter(service => 
-    service.id !== 'mediumnite' && service.id !== 'conseil-naturopathie'
+    service.id !== 'voyance' && service.id !== 'mediumnite' && service.id !== 'conseil-naturopathie'
   );
 
   return (

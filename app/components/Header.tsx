@@ -21,8 +21,13 @@ import ResponsiveImage from './ResponsiveImage';
 
 const guidanceSpirituelle = [
   {
-    title: 'Médiumnité Voyance Cartomancie',
-    description: 'Consultations de voyance et médiumnité',
+    title: 'Voyance et cartomancie',
+    description: 'Consultations de voyance et cartomancie',
+    href: '/services/voyance',
+  },
+  {
+    title: 'Médiumnité',
+    description: 'Consultations de médiumnité',
     href: '/services/mediumnite',
   },
 ];

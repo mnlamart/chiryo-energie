@@ -306,7 +306,7 @@ async function generateImageVariants(
  * Pre-generate all images
  */
 async function preGenerateAllImages(
-  apiBaseUrl = 'http://localhost:3000',
+  apiBaseUrl = 'http://localhost:5173',
   options = {}
 ) {
   const {
@@ -320,6 +320,28 @@ async function preGenerateAllImages(
   
   console.log('🚀 Starting image pre-generation...\n');
   console.log(`📡 Using API endpoint: ${apiBaseUrl}\n`);
+  
+  // Test connection to API endpoint
+  try {
+    const testUrl = `${apiBaseUrl}/api/images/services/voyance?w=400&f=webp`;
+    console.log(`🔍 Testing connection to: ${testUrl}`);
+    const testResponse = await fetch(testUrl, { 
+      signal: AbortSignal.timeout(5000) // 5 second timeout for test
+    });
+    if (!testResponse.ok && testResponse.status !== 404) {
+      console.log(`⚠️  Server responded with status ${testResponse.status}`);
+    } else {
+      console.log(`✅ Server is reachable\n`);
+    }
+  } catch (error) {
+    console.error(`❌ Cannot connect to server at ${apiBaseUrl}`);
+    console.error(`   Error: ${error.message}`);
+    console.error(`\n💡 Make sure your dev server is running:`);
+    console.error(`   npm run dev`);
+    console.error(`\n   Or specify a different URL:`);
+    console.error(`   node scripts/pre-generate-all-images.mjs http://localhost:5173 --image=services:voyance --force\n`);
+    process.exit(1);
+  }
   
   // Handle single image generation
   if (image) {
@@ -517,7 +539,8 @@ function parseArgs() {
   const args = process.argv.slice(2);
   const options = {};
   
-  let apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
+  // Default to port 5173 for React Router dev server, fallback to 3000 for production
+  let apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:5173';
   
   for (const arg of args) {
     if (arg.startsWith('--formats=')) {
