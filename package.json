@@ -15,7 +15,8 @@
     "typecheck": "react-router typegen && tsc --noEmit",
     "typecheck:app": "react-router typegen && tsc --noEmit --project tsconfig.app.json",
     "typecheck:node": "tsc --noEmit --project tsconfig.node.json",
-    "pre-generate-images": "node scripts/pre-generate-all-images.mjs"
+    "pre-generate-images": "node scripts/pre-generate-all-images.mjs",
+    "stop": "pkill -f \"npm run dev\""
   },
   "dependencies": {
     "@conform-to/react": "^1.13.1",
